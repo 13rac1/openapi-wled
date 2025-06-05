@@ -1,0 +1,109 @@
+type: object
+description: >
+  State request object for POST /json/state. All properties are optional to allow
+  partial updates. Only the properties you want to change need to be included.
+  Properties not included will remain unchanged.
+properties:
+  on:
+    type: boolean
+    description: On/Off state of the light
+    example: true
+  bri:
+    type: integer
+    minimum: 1
+    maximum: 255
+    description: >
+      Brightness of the light. Setting bri to 0 is supported but it is
+      recommended to use the range 1-255 and use on: false to turn off.
+    example: 128
+  transition:
+    type: integer
+    minimum: 0
+    maximum: 255
+    description: >
+      Duration of the crossfade between different colors/brightness levels.
+      One unit is 100ms, so a value of 4 results in a transition of 400ms.
+    example: 7
+  tt:
+    type: integer
+    minimum: 0
+    maximum: 255
+    description: >
+      Similar to transition, but applies to just the current API call.
+    example: 4
+  ps:
+    type: integer
+    minimum: -1
+    maximum: 65535
+    description: >
+      ID of preset to apply. -1 indicates no preset.
+    example: 1
+  psave:
+    type: integer
+    minimum: 1
+    maximum: 250
+    description: >
+      Save current light config to specified preset slot.
+    example: 1
+  pl:
+    type: integer
+    minimum: -1
+    maximum: 0
+    description: >
+      ID of playlist. -1 is off and 0 is on.
+    example: -1
+  nl:
+    $ref: './Nightlight.yaml'
+  udpn:
+    $ref: './UdpSync.yaml'
+  v:
+    type: boolean
+    description: >
+      If set to true, the response will contain the full JSON state object.
+    example: true
+  rb:
+    type: boolean
+    description: >
+      If set to true, device will reboot immediately.
+    example: false
+  live:
+    type: boolean
+    description: >
+      If set to true, enters realtime mode and blanks the LEDs.
+    example: false
+  lor:
+    type: integer
+    minimum: 0
+    maximum: 2
+    description: >
+      Live data override. 0 is off, 1 is override until live data ends,
+      2 is override until ESP reboot.
+    example: 0
+  time:
+    type: integer
+    minimum: 0
+    description: >
+      Set module time to unix timestamp.
+    example: 1699123456
+  mainseg:
+    type: integer
+    minimum: 0
+    description: >
+      Main Segment.
+    example: 0
+  playlist:
+    $ref: './Playlist.yaml'
+  seg:
+    type: array
+    description: >
+      Array of segment objects to update. Only segments included will be modified.
+    items:
+      $ref: './Segment.yaml'
+example:
+  on: true
+  bri: 128
+  transition: 7
+  seg:
+    - id: 0
+      col: [[255, 0, 0], [0, 0, 0], [0, 0, 0]]
+      fx: 1 

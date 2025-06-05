@@ -1,0 +1,224 @@
+type: object
+description: >
+  Segment configuration for controlling individual parts of the LED strip.
+  Segments enable running different effects on different parts of the strip.
+properties:
+  id:
+    type: integer
+    minimum: -1
+    description: >
+      Zero-indexed ID of the segment. May be omitted, in that case the ID will be inferred
+      from the order of the segment objects in the seg array. -1 means apply to all selected segments.
+    example: 0
+  start:
+    type: integer
+    minimum: 0
+    description: >
+      LED the segment starts at. Range is 0 to info.leds.count -1.
+    example: 0
+  stop:
+    type: integer
+    minimum: 0
+    description: >
+      LED the segment stops at, not included in range. If stop is set to a lower or equal
+      value than start (setting to 0 is recommended), the segment is invalidated and deleted.
+      Range is 0 to info.leds.count.
+    example: 30
+  len:
+    type: integer
+    minimum: 0
+    readOnly: true
+    description: >
+      Length of the segment (stop - start). stop has preference, so if it is included,
+      len is ignored. This field is calculated and not settable.
+    example: 30
+  grp:
+    type: integer
+    minimum: 0
+    maximum: 255
+    description: >
+      Grouping (how many consecutive LEDs belong to the same group)
+    example: 1
+  spc:
+    type: integer
+    minimum: 0
+    maximum: 255
+    description: >
+      Spacing (how many LEDs are turned off and skipped between each group)
+    example: 0
+  of:
+    type: integer
+    description: >
+      Offset (how many LEDs to rotate the virtual start of the segments).
+      Range is -len+1 to len. Available since 0.13.0.
+    example: 0
+  on:
+    type: boolean
+    description: >
+      Turns on and off the individual segment. Available since 0.10.0.
+    example: true
+  frz:
+    type: boolean
+    description: >
+      Freezes/unfreezes the current effect
+    example: false
+  bri:
+    type: integer
+    minimum: 0
+    maximum: 255
+    description: >
+      Sets the individual segment brightness. Available since 0.10.0.
+    example: 255
+  cct:
+    type: integer
+    description: >
+      White spectrum color temperature. Range is 0 to 255 or 1900 to 10091.
+      Available since 0.13.0.
+    example: 127
+  set:
+    type: integer
+    minimum: 0
+    maximum: 3
+    description: >
+      UI segment sets/groups (undocumented feature)
+    example: 0
+  n:
+    type: string
+    description: >
+      The name of the segment. Names are not present by default.
+      If this is none, use "Segment{id}" to match the WLED UI.
+    example: "Main Strip"
+  col:
+    type: array
+    maxItems: 3
+    description: >
+      Array that has up to 3 color arrays as elements, the primary, secondary (background)
+      and tertiary colors of the segment. Each color is an array of 3 or 4 bytes,
+      which represent an RGB(W) color.
+    items:
+      type: array
+      minItems: 3
+      maxItems: 4
+      items:
+        type: integer
+        minimum: 0
+        maximum: 255
+    example: [[255, 160, 0], [0, 0, 0], [0, 0, 0]]
+  fx:
+    type: integer
+    minimum: 0
+    description: >
+      ID of the effect or ~ to increment, ~- to decrement, or r for random.
+      Range is 0 to info.fxcount -1.
+    example: 0
+  sx:
+    type: integer
+    minimum: 0
+    maximum: 255
+    description: >
+      Relative effect speed. ~ to increment, ~- to decrement.
+      ~10 to increment by 10, ~-10 to decrement by 10.
+    example: 128
+  ix:
+    type: integer
+    minimum: 0
+    maximum: 255
+    description: >
+      Effect intensity. ~ to increment, ~- to decrement.
+      ~10 to increment by 10, ~-10 to decrement by 10.
+    example: 128
+  pal:
+    type: integer
+    minimum: 0
+    description: >
+      ID of the color palette or ~ to increment, ~- to decrement, or r for random.
+      Range is 0 to info.palcount -1.
+    example: 0
+  c1:
+    type: integer
+    minimum: 0
+    maximum: 255
+    description: >
+      Effect custom slider 1. Custom sliders are hidden or displayed and labeled
+      based on effect metadata.
+    example: 128
+  c2:
+    type: integer
+    minimum: 0
+    maximum: 255
+    description: >
+      Effect custom slider 2.
+    example: 128
+  c3:
+    type: integer
+    minimum: 0
+    maximum: 31
+    description: >
+      Effect custom slider 3.
+    example: 16
+  sel:
+    type: boolean
+    description: >
+      True if the segment is selected. Selected segments will have their state (color/FX)
+      updated by APIs that don't support segments (e.g. UDP sync, HTTP API). If no segment
+      is selected, the first segment (id:0) will behave as if selected. WLED will report
+      the state of the first (lowest id) segment that is selected to APIs (HTTP, MQTT, Blynk...),
+      or mainseg in case no segment is selected and for the UDP API. Live data is always applied
+      to all LEDs regardless of segment configuration.
+    example: true
+  rev:
+    type: boolean
+    description: >
+      Flips the segment, causing animations to change direction.
+    example: false
+  mi:
+    type: boolean
+    description: >
+      Mirrors the segment. Available since 0.10.2.
+    example: false
+  o1:
+    type: boolean
+    description: >
+      Effect option 1. Custom options are hidden or displayed and labeled based on effect metadata.
+    example: false
+  o2:
+    type: boolean
+    description: >
+      Effect option 2.
+    example: false
+  o3:
+    type: boolean
+    description: >
+      Effect option 3.
+    example: false
+  si:
+    type: integer
+    minimum: 0
+    maximum: 3
+    description: >
+      Setting of the sound simulation type for audio enhanced effects.
+      0: 'BeatSin', 1: 'WeWillRockYou', 2: '10_3', 3: '14_3'
+      (as of 0.14.0-b1, there are these 4 types defined)
+    example: 0
+  m12:
+    type: integer
+    minimum: 0
+    maximum: 4
+    description: >
+      Setting of segment field 'Expand 1D FX'.
+      0: Pixels, 1: Bar, 2: Arc, 3: Corner
+    example: 0
+example:
+  id: 0
+  start: 0
+  stop: 30
+  on: true
+  bri: 255
+  col: [[255, 160, 0], [0, 0, 0], [0, 0, 0]]
+  fx: 0
+  sx: 128
+  ix: 128
+  pal: 0
+  sel: true
+  rev: false
+  mi: false 

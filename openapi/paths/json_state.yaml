@@ -1,0 +1,144 @@
+get:
+  tags:
+    - State Management
+  summary: Get current device state
+  description: >
+    Retrieve the current state of the WLED device including brightness, colors,
+    effects, segments, and all other state properties.
+  operationId: getState
+  security: []
+  responses:
+    '200':
+      description: Current device state retrieved successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/StateResponse.yaml'
+          examples:
+            basic_state:
+              summary: Basic device state
+              value:
+                on: true
+                bri: 128
+                transition: 7
+                ps: -1
+                pl: -1
+                mainseg: 0
+                seg:
+                  - id: 0
+                    start: 0
+                    stop: 30
+                    on: true
+                    bri: 255
+                    col: [[255, 160, 0], [0, 0, 0], [0, 0, 0]]
+                    fx: 0
+                    sx: 128
+                    ix: 128
+                    pal: 0
+            multi_segment:
+              summary: Multi-segment configuration
+              value:
+                on: true
+                bri: 200
+                mainseg: 0
+                seg:
+                  - id: 0
+                    start: 0
+                    stop: 15
+                    on: true
+                    col: [[255, 0, 0], [0, 0, 0], [0, 0, 0]]
+                    fx: 1
+                  - id: 1
+                    start: 15
+                    stop: 30
+                    on: true
+                    col: [[0, 255, 0], [0, 0, 0], [0, 0, 0]]
+                    fx: 2
+    '400':
+      $ref: '../components/responses/BadRequest.yaml'
+    '500':
+      $ref: '../components/responses/InternalServerError.yaml'
+
+post:
+  tags:
+    - State Management
+  summary: Update device state
+  description: >
+    Update the WLED device state. All properties are optional - only include the
+    properties you want to change. The device will respond with the updated state
+    if the 'v' parameter is set to true.
+  operationId: updateState
+  security: []
+  requestBody:
+    description: State properties to update
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../components/schemas/StateRequest.yaml'
+        examples:
+          turn_on:
+            summary: Turn device on
+            value:
+              on: true
+          set_brightness:
+            summary: Set brightness
+            value:
+              on: true
+              bri: 128
+              transition: 10
+          change_color:
+            summary: Change segment color
+            value:
+              seg:
+                - id: 0
+                  col: [[255, 0, 0], [0, 0, 0], [0, 0, 0]]
+          apply_preset:
+            summary: Apply preset
+            value:
+              ps: 1
+              v: true
+          save_preset:
+            summary: Save to preset
+            value:
+              psave: 5
+          nightlight:
+            summary: Enable nightlight
+            value:
+              nl:
+                on: true
+                dur: 60
+                mode: 1
+                tbri: 5
+  responses:
+    '200':
+      description: Device state updated successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/StateResponse.yaml'
+          examples:
+            full_state_response:
+              summary: Full state when 'v' parameter is true
+              value:
+                on: true
+                bri: 128
+                transition: 7
+                ps: 1
+                pl: -1
+                mainseg: 0
+                seg:
+                  - id: 0
+                    start: 0
+                    stop: 30
+                    on: true
+                    bri: 255
+                    col: [[255, 0, 0], [0, 0, 0], [0, 0, 0]]
+                    fx: 0
+                    sx: 128
+                    ix: 128
+                    pal: 0
+    '400':
+      $ref: '../components/responses/BadRequest.yaml'
+    '500':
+      $ref: '../components/responses/InternalServerError.yaml' 

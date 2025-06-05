@@ -1,0 +1,15 @@
+description: Internal Server Error - Device encountered an error processing the request
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Internal device error"
+        code:
+          type: integer
+          example: 500
+    example:
+      error: "Internal device error"
+      code: 500 

@@ -1,0 +1,56 @@
+type: object
+description: >
+  Custom preset playlists for automatically cycling through different presets.
+  Not included in state response. Available since 0.11.0.
+properties:
+  ps:
+    type: array
+    description: >
+      Array of preset ID integers to be applied in this order.
+    items:
+      type: integer
+      minimum: 0
+      maximum: 255
+    example: [1, 2, 3]
+  dur:
+    type: array
+    description: >
+      Array of time each preset should be kept, in tenths of seconds.
+      If only one integer is supplied, all presets will be kept for that time.
+      Defaults to 10 seconds if not provided.
+    items:
+      type: integer
+      minimum: 1
+    example: [100, 50, 200]
+  transition:
+    type: integer
+    minimum: 0
+    maximum: 255
+    description: >
+      Array of time each preset should transition to the next one, in tenths of seconds.
+      If only one integer is supplied, all presets will transition for that time.
+      Defaults to the current transition time if not provided.
+    example: 7
+  repeat:
+    type: integer
+    minimum: 0
+    maximum: 65535
+    description: >
+      How many times the entire playlist should cycle before finishing.
+      Set to 0 for an indefinite cycle. Default to indefinite if not provided.
+    example: 0
+  end:
+    type: integer
+    minimum: 0
+    maximum: 255
+    description: >
+      Single preset ID to apply after the playlist finished.
+      Has no effect when an indefinite cycle is set.
+      If not provided, the light will stay on the last preset of the playlist.
+    example: 1
+example:
+  ps: [1, 2, 3]
+  dur: [100, 50, 200]
+  transition: 7
+  repeat: 0
+  end: 1 

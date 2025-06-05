@@ -1,0 +1,54 @@
+type: object
+description: >
+  Nightlight configuration for automatically dimming or turning off lights after a duration.
+properties:
+  on:
+    type: boolean
+    description: >
+      Nightlight currently active
+    example: false
+  dur:
+    type: integer
+    minimum: 0
+    maximum: 255
+    description: >
+      Duration of nightlight in minutes
+    example: 60
+  fade:
+    type: boolean
+    description: >
+      If true, the light will gradually dim over the course of the nightlight duration.
+      If false, it will instantly turn to the target brightness once the duration has elapsed.
+      Removed in 0.13.0 (use mode instead)
+    deprecated: true
+    example: true
+  mode:
+    type: integer
+    minimum: 0
+    maximum: 3
+    description: >
+      Nightlight mode. 0: instant, 1: fade, 2: color fade, 3: sunrise.
+      Available since 0.10.2
+    example: 1
+  tbri:
+    type: integer
+    minimum: 0
+    maximum: 255
+    description: >
+      Target brightness of nightlight feature
+    example: 5
+  rem:
+    type: integer
+    minimum: -1
+    maximum: 15300
+    readOnly: true
+    description: >
+      Remaining nightlight duration in seconds, -1 if not active.
+      Only in state response, cannot be set.
+    example: -1
+example:
+  on: false
+  dur: 60
+  mode: 1
+  tbri: 5
+  rem: -1 

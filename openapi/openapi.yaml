@@ -21,5 +21,7 @@ servers:
         default: 192.168.1.100
 
 paths: {}
+  /state:
+    $ref: './paths/json_state.yaml'
 
 components: {} 

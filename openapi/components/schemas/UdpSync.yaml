@@ -1,0 +1,40 @@
+type: object
+description: >
+  UDP synchronization configuration for broadcasting and receiving state changes
+  between multiple WLED devices.
+properties:
+  send:
+    type: boolean
+    description: >
+      Send WLED broadcast (UDP sync) packet on state change
+    example: false
+  recv:
+    type: boolean
+    description: >
+      Receive broadcast packets
+    example: true
+  sgrp:
+    type: integer
+    minimum: 0
+    maximum: 255
+    description: >
+      Bitfield for broadcast send groups 1-8
+    example: 1
+  rgrp:
+    type: integer
+    minimum: 0
+    maximum: 255
+    description: >
+      Bitfield for broadcast receive groups 1-8
+    example: 1
+  nn:
+    type: boolean
+    description: >
+      Don't send a broadcast packet (applies to just the current API call).
+      Not included in state response.
+    example: false
+example:
+  send: false
+  recv: true
+  sgrp: 1
+  rgrp: 1 

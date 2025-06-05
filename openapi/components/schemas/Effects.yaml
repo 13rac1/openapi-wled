@@ -1,0 +1,16 @@
+type: array
+description: List of available effects in WLED. The index in this array corresponds to the effect ID used in segment configurations.
+items:
+  type: string
+  description: Name of the effect
+example:
+  - "Solid"
+  - "Blink"
+  - "Breathe"
+  - "Wipe"
+  - "Wipe Random"
+  - "Random Colors"
+  - "Sweep"
+  - "Dynamic"
+  - "Colorloop"
+  - "Rainbow" 

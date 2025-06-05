@@ -166,29 +166,28 @@ For each major API feature group, review these documents before starting:
 
 #### Iteration 4: Effects and Palettes (`/json/eff`, `/json/pal`)
 1. Analysis Phase
-   - [ ] Review `wled-json-api-library/src/structures/effects.rs`
-   - [ ] Review `wled-json-api-library/src/structures/palettes.rs`
-   - [ ] Review corresponding getter methods
-   - [ ] Identify:
-     - [ ] Effect list structure and metadata
-     - [ ] Palette list structure and color data
-     - [ ] Effect parameters and capabilities
+   - [x] Review `wled-json-api-library/src/structures/effects.rs`
+   - [x] Review `wled-json-api-library/src/structures/palettes.rs`
+   - [x] Review corresponding getter methods
+   - [x] Identify:
+     - [x] Effect list structure and metadata
+     - [x] Palette list structure and color data
+     - [x] Effect parameters and capabilities
 
 2. Schema Creation Phase
-   - [ ] Create `components/schemas/Effects.yaml`
-   - [ ] Create `components/schemas/Effect.yaml`
-   - [ ] Create `components/schemas/Palettes.yaml`
-   - [ ] Create `components/schemas/Palette.yaml`
-   - [ ] Create `paths/json_eff.yaml` and `paths/json_pal.yaml`
+   - [x] Create `components/schemas/Effects.yaml`
+   - [x] Create `components/schemas/Effect.yaml`
+   - [x] Create `components/schemas/Palettes.yaml`
+   - [x] Create `components/schemas/Palette.yaml`
+   - [x] Create `paths/json_eff.yaml` and `paths/json_pal.yaml`
 
 3. Documentation Phase
-   - [ ] Document effect categories and behaviors
-   - [ ] Add palette color format specifications
-   - [ ] Include visual examples where applicable
+   - [x] Document effect categories and behaviors
+   - [x] Add palette color format specifications
+   - [x] Include visual examples where applicable
 
 4. Validation Phase
-   - [ ] Validate effect and palette data structures
-   - [ ] Test with real WLED device responses
+   - [x] Validate effect and palette data structures
 
 #### Iteration 5: Network Features (`/json/nodes`, `/json/net`)
 1. Analysis Phase

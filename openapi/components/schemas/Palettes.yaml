@@ -1,0 +1,16 @@
+type: array
+description: List of available color palettes in WLED. The index in this array corresponds to the palette ID used in segment configurations.
+items:
+  type: string
+  description: Name of the color palette
+example:
+  - "Default"
+  - "* Random Cycle"
+  - "* Color 1"
+  - "* Colors 1&2"
+  - "* Color Gradient"
+  - "Party"
+  - "Cloud"
+  - "Lava"
+  - "Ocean"
+  - "Forest" 

@@ -1,0 +1,34 @@
+type: object
+description: Configuration options for a single color palette
+properties:
+  id:
+    type: integer
+    minimum: 0
+    maximum: 65535
+    description: Palette ID (index in the palettes array)
+    readOnly: true
+    format: uint16
+  name:
+    type: string
+    description: Name of the color palette
+    readOnly: true
+  isCustom:
+    type: boolean
+    description: Whether this is a custom palette (true) or built-in palette (false)
+    readOnly: true
+  blendMode:
+    type: integer
+    minimum: 0
+    maximum: 255
+    format: uint8
+    description: |
+      Palette blending mode:
+      * 0 - wrap when moving
+      * 1 - always wrap
+      * 2 - never wrap
+      * 3 - none (undefined)
+example:
+  id: 0
+  name: "Default"
+  isCustom: false
+  blendMode: 0 

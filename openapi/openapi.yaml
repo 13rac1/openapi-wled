@@ -1,43 +1,61 @@
 openapi: 3.0.3
 info:
-  version: 1.0.0
   title: WLED JSON API
+  version: '0.14'
   description: |
-    OpenAPI specification for the WLED JSON API, providing control and monitoring of WLED devices.
-    
-    This API allows you to interact with WLED devices to control LED effects, colors, and device settings.
-  contact:
-    name: WLED Project
-    url: https://github.com/Aircoookie/WLED
+    JSON API for controlling WLED LED controllers.
+    This API allows you to control LED effects, colors, and device settings.
   license:
-    name: MIT License
-    url: https://github.com/Aircoookie/WLED/blob/master/LICENSE
+    name: MIT
+    url: https://opensource.org/licenses/MIT
 
 servers:
-  - url: http://{device}
-    description: WLED device
-    variables:
-      device:
-        default: wled.local
-        description: The hostname or IP address of your WLED device
+  - url: http://wled.local
+    description: Local WLED device
+
+tags:
+  - name: State
+    description: LED state control
+  - name: Config
+    description: Device configuration
+  - name: Info
+    description: Device information
+  - name: Effects
+    description: LED effects management
+  - name: Palettes
+    description: Color palette management
 
 paths:
-  /json/info:
-    $ref: 'paths/json_info.yaml'
   /json/state:
-    $ref: 'paths/json_state.yaml'
+    $ref: paths/json_state.yaml
   /json/cfg:
-    $ref: 'paths/json_cfg.yaml'
+    $ref: paths/json_cfg.yaml
+  /json/info:
+    $ref: paths/json_info.yaml
+  /json/eff:
+    $ref: paths/json_eff.yaml
+  /json/pal:
+    $ref: paths/json_pal.yaml
 
 components:
   schemas:
     DeviceInfo:
-      $ref: 'components/schemas/DeviceInfo.yaml'
-    VersionInfo:
-      $ref: 'components/schemas/VersionInfo.yaml'
-    HardwareInfo:
-      $ref: 'components/schemas/HardwareInfo.yaml'
+      $ref: components/schemas/DeviceInfo.yaml
+    Effects:
+      $ref: components/schemas/Effects.yaml
+    Effect:
+      $ref: components/schemas/Effect.yaml
+    Palettes:
+      $ref: components/schemas/Palettes.yaml
+    Palette:
+      $ref: components/schemas/Palette.yaml
+  responses:
+    UnauthorizedError:
+      $ref: components/responses/UnauthorizedError.yaml
   securitySchemes:
     basicAuth:
       type: http
-      scheme: basic 
+      scheme: basic
+
+security:
+  - basicAuth: [] 

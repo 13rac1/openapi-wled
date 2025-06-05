@@ -1,0 +1,19 @@
+get:
+  tags:
+    - Effects
+  summary: Get available effects
+  description: |
+    Returns a list of all available effects in WLED.
+    The index of each effect in the array corresponds to the effect ID used in segment configurations.
+  operationId: getEffects
+  responses:
+    '200':
+      description: List of available effects
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/Effects.yaml'
+    '401':
+      $ref: '../components/responses/UnauthorizedError.yaml'
+  security:
+    - basicAuth: [] 

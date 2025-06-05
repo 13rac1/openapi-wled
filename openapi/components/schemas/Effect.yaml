@@ -1,0 +1,64 @@
+type: object
+description: Configuration options for a single effect
+properties:
+  id:
+    type: integer
+    minimum: 0
+    maximum: 65535
+    description: Effect ID (index in the effects array)
+    readOnly: true
+    format: uint16
+  name:
+    type: string
+    description: Name of the effect
+    readOnly: true
+  speed:
+    type: integer
+    minimum: 0
+    maximum: 255
+    description: Effect speed (0-255)
+    format: uint8
+  intensity:
+    type: integer
+    minimum: 0
+    maximum: 255
+    description: Effect intensity (0-255)
+    format: uint8
+  custom1:
+    type: integer
+    minimum: 0
+    maximum: 255
+    description: Custom slider 1 value (0-255). Usage depends on the specific effect.
+    format: uint8
+  custom2:
+    type: integer
+    minimum: 0
+    maximum: 255
+    description: Custom slider 2 value (0-255). Usage depends on the specific effect.
+    format: uint8
+  custom3:
+    type: integer
+    minimum: 0
+    maximum: 31
+    description: Custom slider 3 value (0-31). Usage depends on the specific effect.
+    format: uint8
+  option1:
+    type: boolean
+    description: Effect option 1. Usage depends on the specific effect.
+  option2:
+    type: boolean
+    description: Effect option 2. Usage depends on the specific effect.
+  option3:
+    type: boolean
+    description: Effect option 3. Usage depends on the specific effect.
+example:
+  id: 0
+  name: "Solid"
+  speed: 128
+  intensity: 255
+  custom1: 0
+  custom2: 0
+  custom3: 0
+  option1: false
+  option2: false
+  option3: false 

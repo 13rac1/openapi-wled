@@ -1,0 +1,20 @@
+get:
+  tags:
+    - Palettes
+  summary: Get available color palettes
+  description: |
+    Returns a list of all available color palettes in WLED.
+    The index of each palette in the array corresponds to the palette ID used in segment configurations.
+    The list includes both built-in palettes and custom palettes.
+  operationId: getPalettes
+  responses:
+    '200':
+      description: List of available color palettes
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/Palettes.yaml'
+    '401':
+      $ref: '../components/responses/UnauthorizedError.yaml'
+  security:
+    - basicAuth: [] 

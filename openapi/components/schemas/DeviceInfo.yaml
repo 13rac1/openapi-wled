@@ -1,0 +1,261 @@
+description: Device information returned by the WLED device
+type: object
+properties:
+  ver:
+    type: string
+    description: Version name
+    example: "0.14.0"
+    readOnly: true
+  vid:
+    type: integer
+    format: int32
+    description: Build ID (YYMMDDB, B = daily build index)
+    example: 2310130
+    readOnly: true
+  leds:
+    type: object
+    description: Contains info about the LED setup
+    readOnly: true
+    properties:
+      count:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 1200
+        description: Total LED count (will include virtual/nonexistent pixels in matrix)
+        readOnly: true
+      pwr:
+        type: integer
+        format: int32
+        minimum: 0
+        maximum: 65000
+        description: Current LED power usage in milliamps as determined by the ABL (0 if ABL is disabled)
+        readOnly: true
+      fps:
+        type: integer
+        format: int32
+        description: Refresh rate of the LED strip in frames per second
+        readOnly: true
+      maxpwr:
+        type: integer
+        format: int32
+        minimum: 0
+        maximum: 65000
+        description: Maximum power budget in milliamps for the ABL. 0 if ABL is disabled
+        readOnly: true
+      maxseg:
+        type: integer
+        format: int32
+        minimum: 0
+        description: Maximum number of segments supported by this version
+        readOnly: true
+      seglc:
+        type: array
+        description: Per-segment virtual light capabilities
+        readOnly: true
+        items:
+          type: integer
+          format: int32
+          readOnly: true
+      lc:
+        type: integer
+        format: int32
+        description: Logical AND of all active segment's virtual light capabilities
+        readOnly: true
+      matrix:
+        type: object
+        description: Dimensions of matrix (not included in all builds)
+        readOnly: true
+        properties:
+          w:
+            type: integer
+            format: int32
+            description: Max width
+            readOnly: true
+          h:
+            type: integer
+            format: int32
+            description: Max height
+            readOnly: true
+  str:
+    type: boolean
+    description: UIs which only have a single button for sync should toggle send+receive if this is true, only send otherwise
+    readOnly: true
+  name:
+    type: string
+    description: Friendly name of the light. Intended for display in lists and titles
+    example: "WLED"
+    readOnly: true
+  udpport:
+    type: integer
+    format: int32
+    description: The UDP port for realtime packets and WLED broadcast
+    example: 21324
+    readOnly: true
+  live:
+    type: boolean
+    description: If true, the software is currently receiving realtime data via UDP or E1.31
+    readOnly: true
+  liveseg:
+    type: integer
+    format: int32
+    description: Main segment id if its active, -1 otherwise
+    minimum: -1
+    readOnly: true
+  lm:
+    type: string
+    description: Info about the realtime data source (UDP, Hyperion, E1.31, etc.)
+    readOnly: true
+  lip:
+    type: string
+    description: Realtime data source IP address
+    readOnly: true
+  ws:
+    type: integer
+    format: int32
+    minimum: -1
+    maximum: 8
+    description: Number of currently connected WebSockets clients. -1 indicates that WS is unsupported in this build
+    readOnly: true
+  fxcount:
+    type: integer
+    format: int32
+    description: Number of effects included
+    readOnly: true
+  palcount:
+    type: integer
+    format: int32
+    description: Number of built-in palettes configured
+    readOnly: true
+  cpalcount:
+    type: integer
+    format: int32
+    description: Number of custom palettes
+    readOnly: true
+  maps:
+    type: array
+    description: Available LED maps
+    readOnly: true
+    items:
+      type: object
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: Index of an available LED map
+          readOnly: true
+        n:
+          type: string
+          description: LED map name (only included in builds for hardware with sufficient processing power)
+          readOnly: true
+  wifi:
+    type: object
+    description: Info about WiFi connection
+    readOnly: true
+    properties:
+      bssid:
+        type: string
+        description: Current BSSID / MAC associated with the network
+        readOnly: true
+      rssi:
+        type: integer
+        format: int64
+        description: WiFi signal strength indicator
+        readOnly: true
+      signal:
+        type: integer
+        format: int32
+        minimum: 0
+        maximum: 100
+        description: Relative signal quality of the current connection
+        readOnly: true
+      channel:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 14
+        description: The current WiFi channel
+        readOnly: true
+  fs:
+    type: object
+    description: Info about the embedded LittleFS filesystem (since 0.11.0)
+    readOnly: true
+    properties:
+      u:
+        type: integer
+        format: int32
+        description: Estimate of used filesystem space in kilobytes
+        readOnly: true
+      t:
+        type: integer
+        format: int32
+        description: Total filesystem size in kilobytes
+        readOnly: true
+      pmt:
+        type: integer
+        format: int64
+        description: Unix timestamp for the last modification to the presets.json file
+        readOnly: true
+  ndc:
+    type: integer
+    format: int32
+    minimum: -1
+    maximum: 255
+    description: Number of other WLED devices discovered on the network. -1 if Node discovery disabled
+    readOnly: true
+  arch:
+    type: string
+    description: Name of the platform
+    example: "esp32"
+    readOnly: true
+  core:
+    type: string
+    description: Version of the underlying (Arduino core) SDK
+    example: "v3.3.6-16-gcc5440f6a2"
+    readOnly: true
+  freeheap:
+    type: integer
+    format: int32
+    description: Bytes of heap memory (RAM) currently available. Problematic if <10k
+    readOnly: true
+  psram:
+    type: integer
+    format: int64
+    description: Available PSRAM in bytes (only present when hardware supports psram)
+    readOnly: true
+  uptime:
+    type: integer
+    format: int32
+    description: Time since the last boot/reset in seconds
+    readOnly: true
+  time:
+    type: string
+    description: The current time in human readable format
+    example: "1970-1-1, 00:00:06"
+    readOnly: true
+  opt:
+    type: integer
+    format: int32
+    description: Used for debugging purposes only. Bitmap of build info
+    readOnly: true
+  brand:
+    type: string
+    description: The producer/vendor of the light. Always WLED for standard installations
+    example: "WLED"
+    readOnly: true
+  product:
+    type: string
+    description: The product name. Always FOSS for standard installations
+    example: "FOSS"
+    readOnly: true
+  mac:
+    type: string
+    description: The hexadecimal hardware MAC address of the light, lowercase and without colons
+    example: "a842e38d9828"
+    readOnly: true
+  ip:
+    type: string
+    description: The IP address of this instance. Empty string if not connected (since 0.13.0)
+    example: "192.168.1.40"
+    readOnly: true 

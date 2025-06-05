@@ -1,0 +1,144 @@
+description: Hardware information for the WLED device
+type: object
+properties:
+  leds:
+    type: object
+    description: Contains info about the LED setup
+    required:
+      - count
+      - maxseg
+    readOnly: true
+    properties:
+      count:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 1200
+        description: Total LED count (will include virtual/nonexistent pixels in matrix)
+        readOnly: true
+      pwr:
+        type: integer
+        format: int32
+        minimum: 0
+        maximum: 65000
+        description: Current LED power usage in milliamps as determined by the ABL (0 if ABL is disabled)
+        readOnly: true
+      fps:
+        type: integer
+        format: int32
+        description: Refresh rate of the LED strip in frames per second
+        readOnly: true
+      maxpwr:
+        type: integer
+        format: int32
+        minimum: 0
+        maximum: 65000
+        description: Maximum power budget in milliamps for the ABL. 0 if ABL is disabled
+        readOnly: true
+      maxseg:
+        type: integer
+        format: int32
+        minimum: 0
+        description: Maximum number of segments supported by this version
+        readOnly: true
+      seglc:
+        type: array
+        description: Per-segment virtual light capabilities bitmap
+        readOnly: true
+        items:
+          type: integer
+          format: int32
+          description: |
+            Bitmap using the following masks:
+            - 0x01: SEG_CAPABILITY_RGB
+            - 0x02: SEG_CAPABILITY_W
+            - 0x04: SEG_CAPABILITY_CCT
+          readOnly: true
+      lc:
+        type: integer
+        format: int32
+        description: Logical AND of all active segment's virtual light capabilities
+        readOnly: true
+      matrix:
+        type: object
+        description: Dimensions of matrix (not included in all builds)
+        readOnly: true
+        properties:
+          w:
+            type: integer
+            format: int32
+            description: Max width
+            readOnly: true
+          h:
+            type: integer
+            format: int32
+            description: Max height
+            readOnly: true
+  freeheap:
+    type: integer
+    format: int32
+    description: Bytes of heap memory (RAM) currently available. Problematic if <10k
+    readOnly: true
+  psram:
+    type: integer
+    format: int64
+    description: Available PSRAM in bytes (only present when hardware supports psram)
+    readOnly: true
+  fs:
+    type: object
+    description: Info about the embedded LittleFS filesystem (since 0.11.0)
+    readOnly: true
+    properties:
+      u:
+        type: integer
+        format: int32
+        description: Estimate of used filesystem space in kilobytes
+        readOnly: true
+      t:
+        type: integer
+        format: int32
+        description: Total filesystem size in kilobytes
+        readOnly: true
+      pmt:
+        type: integer
+        format: int64
+        description: Unix timestamp for the last modification to the presets.json file
+        readOnly: true
+  wifi:
+    type: object
+    description: Info about WiFi connection
+    readOnly: true
+    properties:
+      bssid:
+        type: string
+        description: Current BSSID / MAC associated with the network
+        readOnly: true
+      rssi:
+        type: integer
+        format: int64
+        description: WiFi signal strength indicator
+        readOnly: true
+      signal:
+        type: integer
+        format: int32
+        minimum: 0
+        maximum: 100
+        description: Relative signal quality of the current connection
+        readOnly: true
+      channel:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 14
+        description: The current WiFi channel
+        readOnly: true
+  mac:
+    type: string
+    description: The hexadecimal hardware MAC address of the light, lowercase and without colons
+    example: "a842e38d9828"
+    readOnly: true
+  uptime:
+    type: integer
+    format: int32
+    description: Time since the last boot/reset in seconds
+    readOnly: true 

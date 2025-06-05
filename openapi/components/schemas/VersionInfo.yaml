@@ -1,0 +1,48 @@
+description: Version information for the WLED device
+type: object
+properties:
+  ver:
+    type: string
+    description: Version name of the WLED firmware
+    example: "0.14.0"
+    readOnly: true
+  vid:
+    type: integer
+    format: int32
+    description: Build ID (YYMMDDB, B = daily build index)
+    example: 2310130
+    readOnly: true
+  arch:
+    type: string
+    description: Name of the platform
+    example: "esp32"
+    readOnly: true
+  core:
+    type: string
+    description: Version of the underlying (Arduino core) SDK
+    example: "v3.3.6-16-gcc5440f6a2"
+    readOnly: true
+  brand:
+    type: string
+    description: The producer/vendor of the light. Always WLED for standard installations
+    example: "WLED"
+    readOnly: true
+  product:
+    type: string
+    description: The product name. Always FOSS for standard installations
+    example: "FOSS"
+    readOnly: true
+  opt:
+    type: integer
+    format: int32
+    description: |
+      Debug build info bitmap:
+      - 0x80: debug enabled
+      - 0x40: disable alexa
+      - 0x20: Deprecated (was Blynk support)
+      - 0x10: usermod Chronixie
+      - 0x08: disable filesystem build tag
+      - 0x04: disable hue sync build tag
+      - 0x02: enable AdaLight build tag
+      - 0x01: disable OTA build tag
+    readOnly: true 

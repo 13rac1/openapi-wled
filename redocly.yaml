@@ -5,8 +5,8 @@ apis:
 extends:
   - recommended
 rules:
-  no-unused-components: warn
-  no-server-example.com: off
+  no-unused-components: error
+  no-server-example.com: warn
   operation-operationId: error
   operation-summary: error
   operation-description: warn

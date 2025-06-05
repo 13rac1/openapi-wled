@@ -1,0 +1,82 @@
+get:
+  tags:
+    - Device Information
+  summary: Get device information
+  description: |
+    Retrieves comprehensive information about the WLED device including:
+    - Version and build information
+    - Hardware capabilities and status
+    - LED configuration
+    - Network status
+    - System resources
+  operationId: getDeviceInfo
+  security:
+    - basicAuth: []
+  responses:
+    '200':
+      description: Successful response containing device information
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/DeviceInfo.yaml'
+          examples:
+            default:
+              value:
+                ver: "0.14.0"
+                vid: 2310130
+                leds:
+                  count: 6
+                  pwr: 0
+                  fps: 5
+                  maxpwr: 0
+                  maxseg: 32
+                  seglc: [1]
+                  lc: 1
+                name: "WLED"
+                udpport: 21324
+                live: false
+                liveseg: -1
+                fxcount: 187
+                palcount: 71
+                wifi:
+                  bssid: "FC:EC:DA:A4:C4:77"
+                  rssi: -60
+                  signal: 80
+                  channel: 1
+                fs:
+                  u: 12
+                  t: 983
+                  pmt: 0
+                ndc: 0
+                arch: "esp32"
+                core: "v3.3.6-16-gcc5440f6a2"
+                freeheap: 200300
+                uptime: 6
+                time: "1970-1-1, 00:00:06"
+                opt: 79
+                brand: "WLED"
+                product: "FOSS"
+                mac: "a842e38d9828"
+                ip: "192.168.1.40"
+    '404':
+      description: Device not found or not responding
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                description: Error message
+                example: "Device not found"
+    '500':
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                description: Error message
+                example: "Internal server error" 

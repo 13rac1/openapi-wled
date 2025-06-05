@@ -3,27 +3,41 @@ info:
   version: 1.0.0
   title: WLED JSON API
   description: |
-    OpenAPI 3.0 schema for the WLED JSON API.
-    This API allows control of WLED devices through a RESTful interface.
+    OpenAPI specification for the WLED JSON API, providing control and monitoring of WLED devices.
+    
+    This API allows you to interact with WLED devices to control LED effects, colors, and device settings.
   contact:
-    name: WLED Community
+    name: WLED Project
     url: https://github.com/Aircoookie/WLED
   license:
-    name: MIT
+    name: MIT License
     url: https://github.com/Aircoookie/WLED/blob/master/LICENSE
 
 servers:
-  - url: http://{device-ip}/json
-    description: WLED device JSON API endpoint
+  - url: http://{device}
+    description: WLED device
     variables:
-      device-ip:
-        description: IP address of the WLED device
-        default: 192.168.1.100
+      device:
+        default: wled.local
+        description: The hostname or IP address of your WLED device
 
 paths:
-  /state:
-    $ref: './paths/json_state.yaml'
-  /cfg:
-    $ref: './paths/json_cfg.yaml'
+  /json/info:
+    $ref: 'paths/json_info.yaml'
+  /json/state:
+    $ref: 'paths/json_state.yaml'
+  /json/cfg:
+    $ref: 'paths/json_cfg.yaml'
 
-components: {} 
+components:
+  schemas:
+    DeviceInfo:
+      $ref: 'components/schemas/DeviceInfo.yaml'
+    VersionInfo:
+      $ref: 'components/schemas/VersionInfo.yaml'
+    HardwareInfo:
+      $ref: 'components/schemas/HardwareInfo.yaml'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic 

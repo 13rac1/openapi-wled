@@ -20,8 +20,10 @@ servers:
         description: IP address of the WLED device
         default: 192.168.1.100
 
-paths: {}
+paths:
   /state:
     $ref: './paths/json_state.yaml'
+  /cfg:
+    $ref: './paths/json_cfg.yaml'
 
 components: {} 

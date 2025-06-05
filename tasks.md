@@ -92,33 +92,49 @@ For each major API feature group, review these documents before starting:
 
 #### Iteration 2: Configuration Management (`/json/cfg`)
 1. Analysis Phase
-   - [ ] Review `wled-json-api-library/src/structures/cfg/` directory structure
-   - [ ] Review configuration sub-modules (def, hw, network, etc.)
-   - [ ] Review `wled-json-api-library/src/wled.rs` methods: `get_cfg_from_wled()`, `flush_config()`
-   - [ ] Identify:
-     - [ ] Hardware configuration options
-     - [ ] Network settings (WiFi, Ethernet, AP mode)
-     - [ ] Default behavior settings
-     - [ ] Interface and remote control settings
+   - [x] Review `wled-json-api-library/src/structures/cfg/` directory structure
+   - [x] Review configuration sub-modules (def, hw, network, etc.)
+   - [x] Review `wled-json-api-library/src/wled.rs` methods: `get_cfg_from_wled()`, `flush_config()`
+   - [x] Identify:
+     - [x] Hardware configuration options
+     - [x] Network settings (WiFi, Ethernet, AP mode)
+     - [x] Default behavior settings
+     - [x] Interface and remote control settings
 
-2. Schema Creation Phase
-   - [ ] Create `components/schemas/Config.yaml` - main configuration object
-   - [ ] Create `components/schemas/HardwareConfig.yaml` - hardware settings
-   - [ ] Create `components/schemas/NetworkConfig.yaml` - network settings
-   - [ ] Create `components/schemas/DefaultConfig.yaml` - default behavior settings
-   - [ ] Create `paths/json_cfg.yaml` - GET and POST operations
-   - [ ] Update common error responses
+2. Schema Creation Phase - Core Structure
+   - [x] Create `components/schemas/Config.yaml` - main configuration object (placeholder)
+   - [x] Create `paths/json_cfg.yaml` - GET and POST operations
+   - [x] Update common error responses
+   - [x] Create `components/schemas/ConfigResponse.yaml` and `ConfigRequest.yaml`
 
-3. Documentation Phase
-   - [ ] Document configuration categories and their purposes
-   - [ ] Add examples for common configuration scenarios
-   - [ ] Include warnings about dangerous configuration changes
-   - [ ] Document backup/restore considerations
+3. Schema Creation Phase - Detailed Component Schemas
+   - [x] Implement detailed `components/schemas/config/Config.yaml` based on Rust Cfg struct
+   - [x] Implement `components/schemas/config/AccessPointConfig.yaml` from cfg_ap.rs
+   - [x] Implement `components/schemas/config/DefaultConfig.yaml` from cfg_def.rs
+   - [x] Implement `components/schemas/config/DmxConfig.yaml` from cfg_dmx.rs
+   - [x] Implement `components/schemas/config/EthernetConfig.yaml` from cfg_eth.rs
+   - [x] Implement `components/schemas/config/HardwareConfig.yaml` from cfg_hw/mod.rs
+   - [x] Implement `components/schemas/config/LedConfig.yaml` from cfg_hw/cfg_hw_led.rs (Note: LED config is implemented as part of HardwareConfig.yaml since it's not a standalone schema in the Rust code)
+   - [x] Implement `components/schemas/config/DeviceIdentification.yaml` from cfg_id.rs
+   - [x] Implement `components/schemas/config/InterfaceConfig.yaml` from cfg_if2.rs
+   - [x] Implement `components/schemas/config/LightConfig.yaml` from cfg_light.rs
+   - [x] Implement `components/schemas/config/NetworkConfig.yaml` from cfg_nw.rs
+   - [x] Implement `components/schemas/config/AnalogClock.yaml` from cfg_ol.rs
+   - [x] Implement `components/schemas/config/OtaConfig.yaml` from cfg_ota.rs
+   - [x] Implement `components/schemas/config/RemoteConfig.yaml` from cfg_remote.rs
+   - [x] Implement `components/schemas/config/TimersConfig.yaml` from cfg_timers.rs
+   - [x] Implement `components/schemas/config/WifiConfig.yaml` from cfg_wifi.rs
 
-4. Validation Phase
-   - [ ] Run validation and preview tools
-   - [ ] Test configuration examples
-   - [ ] Fix any issues
+4. Documentation Phase
+   - [x] Document configuration categories and their purposes
+   - [x] Add examples for common configuration scenarios
+   - [x] Include warnings about dangerous configuration changes
+   - [x] Document backup/restore considerations
+
+5. Validation Phase
+   - [x] Run validation and preview tools with detailed schemas
+   - [x] Test configuration examples with all components
+   - [x] Fix any issues with detailed implementations
 
 #### Iteration 3: Device Information (`/json/info`)
 1. Analysis Phase

@@ -1,0 +1,136 @@
+description: Light configuration settings
+type: object
+properties:
+  scale-bri:
+    type: integer
+    format: uint8
+    description: Percentage of brightness to set (to limit power, if you set it to 50 and set bri to 255, actual brightness will be 127)
+    minimum: 0
+    maximum: 255
+    nullable: true
+  pal-mode:
+    type: integer
+    format: uint8
+    description: "paletteBlend: 0 - wrap when moving, 1 - always wrap, 2 - never wrap, 3 - none (undefined)"
+    minimum: 0
+    maximum: 255
+    nullable: true
+  aseg:
+    type: boolean
+    description: >
+      If true, a segment per bus will be created on boot and LED settings save.
+      If false, only one segment spanning the total LEDs is created,
+      but not on LED settings save if there is more than one segment currently
+    nullable: true
+  gc:
+    type: object
+    description: Gamma correction configuration
+    nullable: true
+    properties:
+      bri:
+        type: number
+        format: double
+        description: Gamma correction for brightness
+        nullable: true
+      col:
+        type: number
+        format: double
+        description: Gamma correction for color
+        nullable: true
+      val:
+        type: number
+        format: double
+        description: Gamma correction value
+        nullable: true
+  tr:
+    type: object
+    description: Transition configuration
+    nullable: true
+    properties:
+      mode:
+        type: boolean
+        description: Transition mode
+        nullable: true
+      dur:
+        type: integer
+        format: uint16
+        description: Default transition time / 100
+        minimum: 0
+        maximum: 65535
+        nullable: true
+      pal:
+        type: integer
+        format: uint8
+        description: Palette transition configuration
+        minimum: 0
+        maximum: 255
+        nullable: true
+      rpc:
+        type: integer
+        format: uint8
+        description: Amount of time [s] between random palette changes (min 1s, max 255s)
+        minimum: 0
+        maximum: 255
+        nullable: true
+  nl:
+    type: object
+    description: Night light configuration
+    nullable: true
+    properties:
+      mode:
+        type: integer
+        format: uint8
+        description: Night light mode
+        enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        x-enumNames:
+          - NL_MODE_SET
+          - NL_MODE_FADE
+          - NL_MODE_COLORFADE
+          - NL_MODE_SUN
+          - RSVD1
+          - RSVD2
+          - RSVD3
+          - RSVD4
+          - RSVD5
+          - RSVD6
+        nullable: true
+      dur:
+        type: integer
+        format: uint8
+        description: Night light duration
+        minimum: 0
+        maximum: 255
+        nullable: true
+      tbri:
+        type: integer
+        format: uint8
+        description: Brightness after nightlight is over
+        minimum: 0
+        maximum: 255
+        nullable: true
+      macro:
+        type: integer
+        format: uint8
+        description: Macro to execute after nightlight delay is over
+        minimum: 0
+        maximum: 255
+        nullable: true
+required: []
+example:
+  scale-bri: 100
+  pal-mode: 0
+  aseg: false
+  gc:
+    bri: 1.0
+    col: 1.0
+    val: 1.0
+  tr:
+    mode: false
+    dur: 700
+    pal: 0
+    rpc: 60
+  nl:
+    mode: 0
+    dur: 60
+    tbri: 0
+    macro: 0 

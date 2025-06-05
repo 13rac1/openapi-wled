@@ -1,0 +1,117 @@
+type: object
+description: >
+  Main configuration object containing all WLED device configuration settings including
+  network, hardware, lighting, defaults, interfaces, and various system settings.
+  **WARNING**: Modifying configuration settings can potentially render the device
+  inaccessible or cause unexpected behavior. Always backup configurations before making changes.
+properties:
+  rev:
+    type: array
+    items:
+      type: integer
+      minimum: 0
+    description: >
+      Version of WLED (e.g., "1.0.2" is represented as [1, 0, 2]).
+      WLED source typically uses only 2 indices.
+    readOnly: true
+    example: [1, 0, 2]
+  vid:
+    type: integer
+    minimum: 0
+    description: >
+      Version ID; version code in format yymmddb (b = daily build).
+      This corresponds to the VERSION macro in WLED source.
+    readOnly: true
+    example: 2310140
+  id:
+    $ref: './DeviceIdentification.yaml'
+    description: >
+      Device identification information including name, OTA lock settings,
+      and instance details.
+  nw:
+    $ref: './NetworkConfig.yaml'
+    description: >
+      Client mode network configuration including WiFi settings and network
+      features.
+  eth:
+    $ref: './EthernetConfig.yaml'
+    description: Ethernet configuration (only included in builds with Ethernet support)
+  ap:
+    $ref: './AccessPointConfig.yaml'
+    description: >
+      Access point configuration for when device hosts its own WiFi network.
+  wifi:
+    $ref: './WifiConfig.yaml'
+    description: >
+      WiFi-specific settings including sleep mode configuration.
+  hw:
+    $ref: './HardwareConfig.yaml'
+    description: >
+      Hardware configuration including LED pin assignments, button settings,
+      and other physical interface options.
+  light:
+    $ref: './LightConfig.yaml'
+    description: >
+      Light behavior settings including brightness scaling, transitions,
+      and nightlight features.
+  def:
+    $ref: './DefaultConfig.yaml'
+    description: >
+      Default behavior settings for power-up state and presets.
+  if:
+    $ref: './InterfaceConfig.yaml'
+    description: >
+      Interface configuration for various control protocols and integrations.
+  remote:
+    $ref: './RemoteConfig.yaml'
+    description: >
+      Remote control settings including infrared and other remote interfaces.
+  ol:
+    $ref: './AnalogClockConfig.yaml'
+    description: >
+      Analog clock display configuration and settings.
+  timers:
+    $ref: './TimersConfig.yaml'
+    description: >
+      Timer and scheduling configuration for automated control.
+  ota:
+    $ref: './OtaConfig.yaml'
+    description: >
+      Over-the-air update settings and configuration.
+  dmx:
+    $ref: './DmxConfig.yaml'
+    description: >
+      DMX protocol settings. Only included in builds with DMX support.
+  um:
+    type: object
+    description: >
+      Usermod settings. This depends on the specific usermod installed,
+      so the structure is dynamic and implementation-dependent.
+    additionalProperties: true
+    example: {}
+example:
+  rev: [0, 14, 0]
+  vid: 2310140
+  id:
+    name: "WLED-Living-Room"
+    inv: "Generic ESP32"
+  nw:
+    ins:
+      - ssid: "MyWiFiNetwork"
+        pskl: 12
+        ip: [192, 168, 1, 100]
+        gw: [192, 168, 1, 1]
+        sn: [255, 255, 255, 0]
+  def:
+    ps: 1
+    on: true
+    bri: 128
+  hw:
+    led:
+      total: 144
+      maxpwr: 850
+    btn:
+      mqtt: false
+  light:
+    scale-bri: 100
+    aseg: true 

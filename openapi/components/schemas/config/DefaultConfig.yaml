@@ -1,0 +1,26 @@
+description: Default settings for WLED device after power-up
+type: object
+properties:
+  ps:
+    type: integer
+    format: uint8
+    description: Save preset to load after power-up
+    minimum: 0
+    maximum: 255
+    nullable: true
+  on:
+    type: boolean
+    description: Turn on LEDs at power-up
+    nullable: true
+  bri:
+    type: integer
+    format: uint8
+    description: Default brightness
+    minimum: 0
+    maximum: 255
+    nullable: true
+required: []
+example:
+  ps: 1
+  on: true
+  bri: 128 

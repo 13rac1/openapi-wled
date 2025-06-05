@@ -1,0 +1,57 @@
+description: DMX configuration settings (only included in some WLED builds)
+type: object
+properties:
+  chan:
+    type: integer
+    format: uint8
+    description: Number of channels per fixture
+    minimum: 0
+    maximum: 255
+    nullable: true
+  gap:
+    type: integer
+    format: uint16
+    description: Gap between fixtures. Makes addressing easier because you don't have to memorize odd numbers when climbing up onto a rig.
+    minimum: 0
+    maximum: 65535
+    nullable: true
+  start:
+    type: integer
+    format: uint16
+    description: Start address of the first fixture
+    minimum: 0
+    maximum: 65535
+    nullable: true
+  start-led:
+    type: integer
+    format: uint16
+    description: LED from which DMX fixtures start
+    minimum: 0
+    maximum: 65535
+    nullable: true
+  fixmap:
+    type: array
+    description: Fixture map. Assigns the different channels to different functions. See wled21_dmx.ino for more information.
+    items:
+      type: integer
+      format: uint8
+      minimum: 0
+      maximum: 255
+    minItems: 16
+    maxItems: 16
+    nullable: true
+  e131proxy:
+    type: integer
+    format: uint16
+    description: Output this E1.31 (sACN) / ArtNet universe via MAX485 (0 = disabled)
+    minimum: 0
+    maximum: 65535
+    nullable: true
+required: []
+example:
+  chan: 3
+  gap: 10
+  start: 1
+  start-led: 0
+  fixmap: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  e131proxy: 0 

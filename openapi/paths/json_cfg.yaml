@@ -1,0 +1,121 @@
+get:
+  tags:
+    - Configuration Management
+  summary: Get device configuration
+  description: >
+    Retrieve the complete WLED device configuration including network settings,
+    hardware configuration, lighting parameters, and all other system settings.
+    **Note**: Sensitive information like WiFi passwords are not returned in full.
+  operationId: getConfig
+  security: []
+  responses:
+    '200':
+      description: Device configuration retrieved successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/ConfigResponse.yaml'
+          examples:
+            basic_config:
+              summary: Basic device configuration
+              value:
+                id:
+                  name: "WLED-Living-Room"
+                  inv: "Generic ESP32"
+                nw:
+                  ins:
+                    - ssid: "MyWiFiNetwork"
+                      pskl: 12
+                      ip: [192, 168, 1, 100]
+                      gw: [192, 168, 1, 1]
+                      sn: [255, 255, 255, 0]
+                def:
+                  ps: 1
+                  on: true
+                  bri: 128
+                hw:
+                  led:
+                    total: 144
+                    maxpwr: 850
+                light:
+                  scale-bri: 100
+                  aseg: true
+    '400':
+      $ref: '../components/responses/BadRequest.yaml'
+    '500':
+      $ref: '../components/responses/InternalServerError.yaml'
+
+post:
+  tags:
+    - Configuration Management
+  summary: Update device configuration
+  description: >
+    Update WLED device configuration. All properties are optional - only include the
+    properties you want to change. **WARNING**: Incorrect configuration changes can
+    render the device inaccessible. Always backup configurations before making changes.
+    The device may reboot after certain configuration changes.
+  operationId: updateConfig
+  security: []
+  requestBody:
+    description: Configuration properties to update
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../components/schemas/ConfigRequest.yaml'
+        examples:
+          update_device_name:
+            summary: Change device name
+            value:
+              id:
+                name: "New-WLED-Name"
+          update_defaults:
+            summary: Update default settings
+            value:
+              def:
+                ps: 2
+                on: true
+                bri: 200
+          update_network:
+            summary: Change network settings
+            value:
+              nw:
+                ins:
+                  - ssid: "NewWiFiNetwork"
+                    ip: [0, 0, 0, 0]
+          update_power_limit:
+            summary: Update power limiting
+            value:
+              light:
+                scale-bri: 80
+              hw:
+                led:
+                  maxpwr: 750
+          update_ap_settings:
+            summary: Configure access point
+            value:
+              ap:
+                ssid: "MyCustomAP"
+                chan: 6
+                behav: 1
+  responses:
+    '200':
+      description: Device configuration updated successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/ConfigResponse.yaml'
+          examples:
+            config_updated:
+              summary: Configuration update successful
+              value:
+                id:
+                  name: "New-WLED-Name"
+                def:
+                  ps: 2
+                  on: true
+                  bri: 200
+    '400':
+      $ref: '../components/responses/BadRequest.yaml'
+    '500':
+      $ref: '../components/responses/InternalServerError.yaml' 

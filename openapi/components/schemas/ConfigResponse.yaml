@@ -1,0 +1,31 @@
+description: Complete configuration response containing all device settings
+type: object
+properties:
+  ap:
+    $ref: './config/AccessPointConfig.yaml'
+  def:
+    $ref: './config/DefaultConfig.yaml'
+  dmx:
+    $ref: './config/DmxConfig.yaml'
+  eth:
+    $ref: './config/EthernetConfig.yaml'
+  hw:
+    $ref: './config/HardwareConfig.yaml'
+  id:
+    $ref: './config/DeviceIdentification.yaml'
+  if2:
+    $ref: './config/InterfaceConfig.yaml'
+  light:
+    $ref: './config/LightConfig.yaml'
+  nw:
+    $ref: './config/NetworkConfig.yaml'
+  ol:
+    $ref: './config/AnalogClock.yaml'
+  ota:
+    $ref: './config/OtaConfig.yaml'
+  remote:
+    $ref: './config/RemoteConfig.yaml'
+  timers:
+    $ref: './config/TimersConfig.yaml'
+  wifi:
+    $ref: './config/WifiConfig.yaml' 

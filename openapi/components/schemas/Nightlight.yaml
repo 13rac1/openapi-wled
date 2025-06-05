@@ -1,54 +1,59 @@
+description: Nightlight configuration for automatic dimming
 type: object
-description: >
-  Nightlight configuration for automatically dimming or turning off lights after a duration.
 properties:
   on:
     type: boolean
-    description: >
-      Nightlight currently active
-    example: false
+    description: Whether nightlight is currently active
+    nullable: true
   dur:
     type: integer
+    format: uint8
     minimum: 0
     maximum: 255
-    description: >
-      Duration of nightlight in minutes
-    example: 60
+    description: Duration of nightlight in minutes
+    nullable: true
   fade:
     type: boolean
-    description: >
+    description: |
       If true, the light will gradually dim over the course of the nightlight duration.
       If false, it will instantly turn to the target brightness once the duration has elapsed.
       Removed in 0.13.0 (use mode instead)
-    deprecated: true
-    example: true
+    nullable: true
   mode:
     type: integer
-    minimum: 0
-    maximum: 3
-    description: >
-      Nightlight mode. 0: instant, 1: fade, 2: color fade, 3: sunrise.
-      Available since 0.10.2
-    example: 1
+    format: uint8
+    enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    x-enumNames:
+      - NL_MODE_SET
+      - NL_MODE_FADE
+      - NL_MODE_COLORFADE
+      - NL_MODE_SUN
+      - RSVD1
+      - RSVD2
+      - RSVD3
+      - RSVD4
+      - RSVD5
+      - RSVD6
+    description: |
+      Nightlight mode (available since 0.10.2):
+      * 0 (NL_MODE_SET) - After nightlight time elapsed, set to target brightness
+      * 1 (NL_MODE_FADE) - Fade to target brightness gradually
+      * 2 (NL_MODE_COLORFADE) - Fade to target brightness and secondary color gradually
+      * 3 (NL_MODE_SUN) - Sunrise/sunset simulation. Target brightness is set immediately,
+        then Sunrise effect starts. Maximum 60 minutes.
+    nullable: true
   tbri:
     type: integer
+    format: uint8
     minimum: 0
     maximum: 255
-    description: >
-      Target brightness of nightlight feature
-    example: 5
+    description: Target brightness of nightlight feature
+    nullable: true
   rem:
     type: integer
+    format: int16
     minimum: -1
     maximum: 15300
+    description: Remaining nightlight duration in seconds, -1 if not active. Only in state response, can not be set.
     readOnly: true
-    description: >
-      Remaining nightlight duration in seconds, -1 if not active.
-      Only in state response, cannot be set.
-    example: -1
-example:
-  on: false
-  dur: 60
-  mode: 1
-  tbri: 5
-  rem: -1 
+    nullable: true 

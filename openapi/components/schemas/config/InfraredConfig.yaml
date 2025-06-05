@@ -1,0 +1,10 @@
+type: object
+description: Infrared receiver configuration
+properties:
+  pin:
+    type: integer
+    description: IR receiver pin
+  type:
+    type: integer
+    description: IR receiver type
+example: {} 

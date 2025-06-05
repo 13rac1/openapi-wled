@@ -1,0 +1,9 @@
+type: object
+description: Button configuration
+properties:
+  mqtt:
+    type: boolean
+    description: Publish button events to MQTT
+    example: false
+example:
+  mqtt: false 

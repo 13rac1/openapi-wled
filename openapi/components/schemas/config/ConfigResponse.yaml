@@ -1,0 +1,39 @@
+allOf:
+  - $ref: './Config.yaml'
+description: >
+  Configuration response object returned by GET /json/cfg. Contains the complete device
+  configuration including network settings, hardware configuration, lighting parameters,
+  and all other system settings.
+example:
+  rev: [0, 14, 0]
+  vid: 2310140
+  id:
+    name: "WLED-Living-Room"
+    inv: "Generic ESP32"
+  nw:
+    ins:
+      - ssid: "MyWiFiNetwork"
+        pskl: 12
+        ip: [192, 168, 1, 100]
+        gw: [192, 168, 1, 1]
+        sn: [255, 255, 255, 0]
+  ap:
+    ssid: "WLED-AP"
+    pskl: 8
+    chan: 1
+    hide: 0
+    behav: 0
+    ip: [4, 3, 2, 1]
+  def:
+    ps: 1
+    on: true
+    bri: 128
+  hw:
+    led:
+      total: 144
+      maxpwr: 850
+    btn:
+      mqtt: false
+  light:
+    scale-bri: 100
+    aseg: true 

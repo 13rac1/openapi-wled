@@ -1,0 +1,10 @@
+description: WiFi configuration settings for WLED device
+type: object
+properties:
+  sleep:
+    type: boolean
+    description: WiFi sleep mode setting. When enabled, WiFi will enter power saving mode.
+    nullable: true
+required: []
+example:
+  sleep: false 

@@ -1,0 +1,56 @@
+type: object
+description: >
+  Individual network connection configuration including SSID, password, and IP settings.
+properties:
+  ssid:
+    type: string
+    maxLength: 32
+    description: >
+      SSID of the network to connect to. Must be a valid WiFi network name.
+    example: "MyWiFiNetwork"
+  pskl:
+    type: integer
+    minimum: 0
+    maximum: 255
+    description: >
+      Length of the WiFi password (password itself is not returned for security).
+    example: 12
+  ip:
+    type: array
+    items:
+      type: integer
+      minimum: 0
+      maximum: 255
+    minItems: 4
+    maxItems: 4
+    description: >
+      Static IP address of ESP32 device. Use [0, 0, 0, 0] for DHCP.
+    example: [192, 168, 1, 100]
+  gw:
+    type: array
+    items:
+      type: integer
+      minimum: 0
+      maximum: 255
+    minItems: 4
+    maxItems: 4
+    description: >
+      Gateway (router) IP address. Usually the router's LAN IP.
+    example: [192, 168, 1, 1]
+  sn:
+    type: array
+    items:
+      type: integer
+      minimum: 0
+      maximum: 255
+    minItems: 4
+    maxItems: 4
+    description: >
+      Subnet mask. Most common subnet in home networks is [255, 255, 255, 0].
+    example: [255, 255, 255, 0]
+example:
+  ssid: "MyWiFiNetwork"
+  pskl: 12
+  ip: [192, 168, 1, 100]
+  gw: [192, 168, 1, 1]
+  sn: [255, 255, 255, 0] 

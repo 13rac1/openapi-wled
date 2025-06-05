@@ -1,0 +1,12 @@
+type: object
+description: Remote control configuration
+example: {}
+properties:
+  remote_enabled:
+    type: boolean
+    description: Whether remote control is enabled
+    nullable: true
+  linked_remote:
+    type: string
+    description: Identifier or configuration for linked remote device
+    nullable: true 

@@ -1,0 +1,13 @@
+type: object
+description: Color order mapping for LED segments
+properties:
+  start:
+    type: integer
+    description: Start index
+  len:
+    type: integer  
+    description: Length
+  order:
+    type: integer
+    description: Color order
+example: {} 

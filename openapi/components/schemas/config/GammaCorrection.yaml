@@ -1,0 +1,34 @@
+type: object
+description: >
+  Gamma correction settings for brightness, color, and value adjustments.
+  Gamma correction helps create more perceptually uniform brightness curves
+  and color transitions for better visual appearance.
+properties:
+  bri:
+    type: number
+    minimum: 0.1
+    maximum: 5.0
+    description: >
+      Brightness gamma correction factor. Higher values create more contrast
+      between low and high brightness levels. Typical values range from 1.0 to 3.0.
+    example: 2.8
+  col:
+    type: number
+    minimum: 0.1
+    maximum: 5.0
+    description: >
+      Color gamma correction factor. Adjusts the gamma curve for color channels
+      to improve color reproduction. Typical values range from 1.0 to 3.0.
+    example: 2.8
+  val:
+    type: number
+    minimum: 0.1
+    maximum: 5.0
+    description: >
+      Value (luminance) gamma correction factor. Controls the overall perceived
+      brightness curve. A value of 1.0 means no gamma correction.
+    example: 1.0
+example:
+  bri: 2.8
+  col: 2.8
+  val: 1.0 

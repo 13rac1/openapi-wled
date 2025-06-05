@@ -1,0 +1,25 @@
+description: Device identification and naming configuration
+type: object
+properties:
+  mdns:
+    type: string
+    description: mDNS address (*.local, replaced by wledXXXXXX if default is used)
+    nullable: true
+  name:
+    type: string
+    description: Server Description; Name of module - use default
+    nullable: true
+  inv:
+    type: string
+    description: Alexa invocation name; speech control name of device. Choose something voice-to-text can understand
+    nullable: true
+  sui:
+    type: boolean
+    description: Simplified UI
+    nullable: true
+required: []
+example:
+  mdns: "myled.local"
+  name: "WLED Light"
+  inv: "living room light"
+  sui: false 

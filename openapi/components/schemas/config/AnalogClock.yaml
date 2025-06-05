@@ -1,0 +1,48 @@
+description: Analog clock overlay configuration
+type: object
+properties:
+  clock:
+    type: integer
+    format: uint8
+    minimum: 0
+    maximum: 255
+    description: |
+      Overlay mode selection:
+      - 0: no overlay
+      - 1: analog clock
+      - 2: was single-digit clock (deprecated)
+      - 3: was cronixie (deprecated)
+    nullable: true
+  cntdwn:
+    type: boolean
+    description: Countdown mode; Clock will count down towards date
+    nullable: true
+  min:
+    type: integer
+    format: uint8
+    minimum: 0
+    maximum: 255
+    description: Overlay min; boundaries of overlay mode
+    nullable: true
+  max:
+    type: integer
+    format: uint8
+    minimum: 0
+    maximum: 255
+    description: Overlay max; boundaries of overlay mode
+    nullable: true
+  o12pix:
+    type: integer
+    format: uint8
+    minimum: 0
+    maximum: 255
+    description: The pixel in your strip where "midnight" would be
+    nullable: true
+  o5m:
+    type: boolean
+    description: Analog Clock 5 Minute Marks; Light pixels at every 5-minute position
+    nullable: true
+  osec:
+    type: boolean
+    description: Display seconds as trail of LEDs instead of a single pixel
+    nullable: true 

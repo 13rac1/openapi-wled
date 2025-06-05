@@ -1,0 +1,60 @@
+type: object
+description: >
+  Nightlight mode configuration that controls automatic dimming and color changes
+  over a specified duration. Useful for creating gradual fade-outs or sunrise/sunset effects.
+properties:
+  mode:
+    type: integer
+    format: uint8
+    enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    x-enumNames:
+      - NL_MODE_SET
+      - NL_MODE_FADE
+      - NL_MODE_COLORFADE
+      - NL_MODE_SUN
+      - RSVD1
+      - RSVD2
+      - RSVD3
+      - RSVD4
+      - RSVD5
+      - RSVD6
+    description: >
+      Nightlight operation mode:
+      * 0 (NL_MODE_SET) - After nightlight time elapsed, set to target brightness
+      * 1 (NL_MODE_FADE) - Fade to target brightness gradually
+      * 2 (NL_MODE_COLORFADE) - Fade to target brightness and secondary color gradually
+      * 3 (NL_MODE_SUN) - Sunrise/sunset simulation. Target brightness is set immediately,
+        then Sunrise effect starts. Maximum 60 minutes.
+    example: 1
+  dur:
+    type: integer
+    format: uint8
+    minimum: 0
+    maximum: 255
+    description: >
+      Duration of the nightlight mode in minutes. For sunrise/sunset mode (3),
+      maximum duration is 60 minutes.
+    example: 60
+  tbri:
+    type: integer
+    format: uint8
+    minimum: 0
+    maximum: 255
+    description: >
+      Target brightness level to reach after nightlight duration completes.
+      This is the final brightness that will be set or faded to.
+    example: 0
+  macro:
+    type: integer
+    format: uint8
+    minimum: 0
+    maximum: 255
+    description: >
+      Macro to execute after the nightlight duration completes and the target
+      brightness is reached.
+    example: 0
+example:
+  mode: 1
+  dur: 60
+  tbri: 0
+  macro: 0 

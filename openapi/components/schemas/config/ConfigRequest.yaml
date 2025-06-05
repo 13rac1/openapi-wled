@@ -1,0 +1,51 @@
+type: object
+description: >
+  Configuration request object for POST /json/cfg. All properties are optional to allow
+  partial updates. Only the properties you want to change need to be included.
+  **WARNING**: Changing configuration settings can render the device inaccessible.
+  Always backup configurations before making changes.
+properties:
+  id:
+    $ref: './DeviceIdentification.yaml'
+  nw:
+    $ref: './NetworkConfig.yaml'
+  eth:
+    $ref: './EthernetConfig.yaml'
+  ap:
+    $ref: './AccessPointConfig.yaml'
+  wifi:
+    $ref: './WifiConfig.yaml'
+  hw:
+    $ref: './HardwareConfig.yaml'
+  light:
+    $ref: './LightConfig.yaml'
+  def:
+    $ref: './DefaultConfig.yaml'
+  if:
+    $ref: './InterfaceConfig.yaml'
+  remote:
+    $ref: './RemoteConfig.yaml'
+  ol:
+    $ref: './AnalogClockConfig.yaml'
+  timers:
+    $ref: './TimersConfig.yaml'
+  ota:
+    $ref: './OtaConfig.yaml'
+  dmx:
+    $ref: './DmxConfig.yaml'
+  um:
+    type: object
+    description: >
+      Usermod settings. Structure depends on installed usermods.
+    additionalProperties: true
+example:
+  def:
+    ps: 1
+    on: true
+    bri: 200
+  nw:
+    ins:
+      - ssid: "NewWiFiNetwork"
+        ip: [0, 0, 0, 0]
+  light:
+    scale-bri: 80 

@@ -1,0 +1,10 @@
+type: object
+description: Relay configuration
+properties:
+  pin:
+    type: integer
+    description: Relay pin
+  rev:
+    type: boolean
+    description: Reverse/negate output
+example: {} 

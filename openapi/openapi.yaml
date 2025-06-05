@@ -1,0 +1,25 @@
+openapi: 3.0.3
+info:
+  version: 1.0.0
+  title: WLED JSON API
+  description: |
+    OpenAPI 3.0 schema for the WLED JSON API.
+    This API allows control of WLED devices through a RESTful interface.
+  contact:
+    name: WLED Community
+    url: https://github.com/Aircoookie/WLED
+  license:
+    name: MIT
+    url: https://github.com/Aircoookie/WLED/blob/master/LICENSE
+
+servers:
+  - url: http://{device-ip}/json
+    description: WLED device JSON API endpoint
+    variables:
+      device-ip:
+        description: IP address of the WLED device
+        default: 192.168.1.100
+
+paths: {}
+
+components: {} 

@@ -16,10 +16,10 @@
 ## OpenAPI Schema Creation Plan
 
 ### Initial Setup Phase
-- [ ] Initialize the OpenAPI project structure following the multi-file format
-- [ ] Create the root `openapi.yaml` file with basic API information
-- [ ] Set up the folder structure for components, paths, and code samples
-- [ ] Configure `.redocly.yaml` for linting and documentation settings
+- [x] Initialize the OpenAPI project structure following the multi-file format
+- [x] Create the root `openapi.yaml` file with basic API information
+- [x] Set up the folder structure for components, paths, and code samples
+- [x] Configure `.redocly.yaml` for linting and documentation settings
 
 ### Iterative Development Process
 For each major API feature/endpoint group:

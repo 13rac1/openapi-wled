@@ -3,8 +3,11 @@ description: Relay configuration
 properties:
   pin:
     type: integer
+    format: int8
     description: Relay pin
   rev:
     type: boolean
     description: Reverse/negate output
-example: {} 
+example:
+  pin: 12
+  rev: false 

@@ -1,0 +1,122 @@
+description: Live data configuration
+type: object
+properties:
+  en:
+    type: boolean
+    description: Receive UDP realtime
+    nullable: true
+  mso:
+    type: boolean
+    description: Use Main Segment Only
+    nullable: true
+  port:
+    type: integer
+    format: uint16
+    description: DMX in port. E1.31 default is 5568, Art-Net is 6454
+    minimum: 0
+    maximum: 65535
+    nullable: true
+  mc:
+    type: boolean
+    description: Multicast or unicast mode
+    nullable: true
+  dmx:
+    type: object
+    description: DMX configuration
+    nullable: true
+    properties:
+      uni:
+        type: integer
+        format: uint16
+        description: Settings for E1.31 (sACN) protocol (only DMX_MODE_MULTIPLE_* can span over consecutive universes)
+        minimum: 0
+        maximum: 65535
+        nullable: true
+      seqskip:
+        type: boolean
+        description: Freeze instead of flickering
+        nullable: true
+      e131prio:
+        type: integer
+        format: uint8
+        description: E1.31 port priority (if != 0 priority handling is active)
+        minimum: 0
+        maximum: 255
+        nullable: true
+      addr:
+        type: integer
+        format: uint16
+        description: DMX start address of fixture, a.k.a. first Channel [for E1.31 (sACN) protocol]
+        minimum: 0
+        maximum: 65535
+        nullable: true
+      dss:
+        type: integer
+        format: uint16
+        description: DMX channel spacing; Number of void/unused channels between each segments DMX channels
+        minimum: 0
+        maximum: 65535
+        nullable: true
+      mode:
+        type: integer
+        format: uint8
+        description: DMX mode
+        enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+        x-enumNames:
+          - DMX_MODE_DISABLED
+          - DMX_MODE_SINGLE_RGB
+          - DMX_MODE_SINGLE_DRGB
+          - DMX_MODE_EFFECT
+          - DMX_MODE_MULTIPLE_RGB
+          - DMX_MODE_MULTIPLE_DRGB
+          - DMX_MODE_MULTIPLE_RGBW
+          - DMX_MODE_EFFECT_W
+          - DMX_MODE_EFFECT_SEGMENT
+          - DMX_MODE_EFFECT_SEGMENT_W
+          - DMX_MODE_PRESET
+          - RSVD1
+          - RSVD2
+          - RSVD3
+          - RSVD4
+          - RSVD5
+          - RSVD6
+        nullable: true
+  timeout:
+    type: integer
+    format: uint16
+    description: (ms timeout of realtime mode before returning to normal mode) / 100
+    minimum: 0
+    maximum: 65535
+    nullable: true
+  maxbri:
+    type: boolean
+    description: Enable to force max brightness if source has very dark colors that would be black
+    nullable: true
+  no-gc:
+    type: boolean
+    description: Disable gamma correction; activate if gamma correction is handled by the source
+    nullable: true
+  offset:
+    type: integer
+    format: uint32
+    description: Realtime LED offset
+    minimum: 0
+    maximum: 4294967295
+    nullable: true
+required: []
+example:
+  en: true
+  mso: false
+  port: 5568
+  mc: true
+  dmx:
+    uni: 1
+    seqskip: false
+    e131prio: 100
+    addr: 1
+    dss: 0
+    mode: 4
+  timeout: 2500
+  maxbri: false
+  no-gc: false
+  offset: 0 

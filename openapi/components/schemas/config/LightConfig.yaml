@@ -23,98 +23,11 @@ properties:
       but not on LED settings save if there is more than one segment currently
     nullable: true
   gc:
-    type: object
-    description: Gamma correction configuration
-    nullable: true
-    properties:
-      bri:
-        type: number
-        format: double
-        description: Gamma correction for brightness
-        nullable: true
-      col:
-        type: number
-        format: double
-        description: Gamma correction for color
-        nullable: true
-      val:
-        type: number
-        format: double
-        description: Gamma correction value
-        nullable: true
+    $ref: './GammaCorrection.yaml'
   tr:
-    type: object
-    description: Transition configuration
-    nullable: true
-    properties:
-      mode:
-        type: boolean
-        description: Transition mode
-        nullable: true
-      dur:
-        type: integer
-        format: uint16
-        description: Default transition time / 100
-        minimum: 0
-        maximum: 65535
-        nullable: true
-      pal:
-        type: integer
-        format: uint8
-        description: Palette transition configuration
-        minimum: 0
-        maximum: 255
-        nullable: true
-      rpc:
-        type: integer
-        format: uint8
-        description: Amount of time [s] between random palette changes (min 1s, max 255s)
-        minimum: 0
-        maximum: 255
-        nullable: true
+    $ref: './TransitionConfig.yaml'
   nl:
-    type: object
-    description: Night light configuration
-    nullable: true
-    properties:
-      mode:
-        type: integer
-        format: uint8
-        description: Night light mode
-        enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-        x-enumNames:
-          - NL_MODE_SET
-          - NL_MODE_FADE
-          - NL_MODE_COLORFADE
-          - NL_MODE_SUN
-          - RSVD1
-          - RSVD2
-          - RSVD3
-          - RSVD4
-          - RSVD5
-          - RSVD6
-        nullable: true
-      dur:
-        type: integer
-        format: uint8
-        description: Night light duration
-        minimum: 0
-        maximum: 255
-        nullable: true
-      tbri:
-        type: integer
-        format: uint8
-        description: Brightness after nightlight is over
-        minimum: 0
-        maximum: 255
-        nullable: true
-      macro:
-        type: integer
-        format: uint8
-        description: Macro to execute after nightlight delay is over
-        minimum: 0
-        maximum: 255
-        nullable: true
+    $ref: './NightlightConfig.yaml'
 required: []
 example:
   scale-bri: 100

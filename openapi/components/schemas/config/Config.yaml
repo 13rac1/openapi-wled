@@ -67,7 +67,7 @@ properties:
     description: >
       Remote control settings including infrared and other remote interfaces.
   ol:
-    $ref: './AnalogClockConfig.yaml'
+    $ref: './AnalogClock.yaml'
     description: >
       Analog clock display configuration and settings.
   timers:

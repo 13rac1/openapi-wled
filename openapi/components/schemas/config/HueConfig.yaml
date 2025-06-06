@@ -1,0 +1,59 @@
+description: Philips Hue configuration
+type: object
+properties:
+  en:
+    type: boolean
+    description: Poll hue bridge for light state
+    nullable: true
+  id:
+    type: integer
+    format: uint8
+    description: ID of hue lamp to sync to. Find the ID in the hue app ("about" section)
+    minimum: 0
+    maximum: 255
+    nullable: true
+  iv:
+    type: integer
+    format: uint16
+    description: (low values (< 1sec) may cause lag but offer quicker response) / 100
+    minimum: 0
+    maximum: 65535
+    nullable: true
+  recv:
+    type: object
+    description: Hue receiver configuration
+    nullable: true
+    properties:
+      on:
+        type: boolean
+        description: Hue Apply On Off
+        nullable: true
+      bri:
+        type: boolean
+        description: Hue Apply Bri
+        nullable: true
+      col:
+        type: boolean
+        description: Hue Apply Color
+        nullable: true
+  ip:
+    type: array
+    description: Hue bridge IP address
+    minItems: 4
+    maxItems: 4
+    items:
+      type: integer
+      format: uint8
+      minimum: 0
+      maximum: 255
+    nullable: true
+required: []
+example:
+  en: true
+  id: 1
+  iv: 2500
+  recv:
+    on: true
+    bri: true
+    col: true
+  ip: [192, 168, 1, 101] 

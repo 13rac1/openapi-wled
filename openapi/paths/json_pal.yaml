@@ -1,6 +1,6 @@
 get:
   tags:
-    - Palettes
+    - Effects and Palettes
   summary: Get available color palettes
   description: |
     Returns a list of all available color palettes in WLED.

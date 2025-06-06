@@ -1,6 +1,6 @@
 get:
   tags:
-    - Effects
+    - Effects and Palettes
   summary: Get available effects
   description: |
     Returns a list of all available effects in WLED.

@@ -3,8 +3,16 @@ description: Infrared receiver configuration
 properties:
   pin:
     type: integer
+    format: int8
     description: IR receiver pin
   type:
     type: integer
+    format: uint8
     description: IR receiver type
-example: {} 
+  sel:
+    type: boolean
+    description: Apply IR to all selected segments
+example:
+  pin: 4
+  type: 1
+  sel: true 

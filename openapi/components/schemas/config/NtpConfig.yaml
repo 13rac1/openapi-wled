@@ -1,0 +1,78 @@
+description: NTP configuration
+type: object
+properties:
+  en:
+    type: boolean
+    description: Get internet time. Only required if you use clock overlays or time-activated macros
+    nullable: true
+  host:
+    type: string
+    description: NTP server to use
+    nullable: true
+  tz:
+    type: integer
+    format: uint8
+    description: Timezone ID. Refer to timezones array in wled10_ntp.ino
+    enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 255]
+    x-enumNames:
+      - TZ_UTC
+      - TZ_UK
+      - TZ_EUROPE_CENTRAL
+      - TZ_EUROPE_EASTERN
+      - TZ_US_EASTERN
+      - TZ_US_CENTRAL
+      - TZ_US_MOUNTAIN
+      - TZ_US_ARIZONA
+      - TZ_US_PACIFIC
+      - TZ_CHINA
+      - TZ_JAPAN
+      - TZ_AUSTRALIA_EASTERN
+      - TZ_NEW_ZEALAND
+      - TZ_NORTH_KOREA
+      - TZ_INDIA
+      - TZ_SASKACHEWAN
+      - TZ_AUSTRALIA_NORTHERN
+      - TZ_AUSTRALIA_SOUTHERN
+      - TZ_HAWAII
+      - TZ_NOVOSIBIRSK
+      - TZ_ANCHORAGE
+      - TZ_MX_CENTRAL
+      - TZ_PAKISTAN
+      - TZ_RSVD1
+      - TZ_RSVD2
+      - TZ_RSVD3
+      - TZ_RSVD4
+      - TZ_RSVD5
+      - TZ_RSVD6
+      - TZ_INIT
+    nullable: true
+  offset:
+    type: integer
+    format: uint32
+    description: Seconds to offset from UTC before timezone calculation
+    minimum: 0
+    maximum: 4294967295
+    nullable: true
+  ampm:
+    type: boolean
+    description: Use AM/PM; 12h/24h clock format
+    nullable: true
+  ln:
+    type: number
+    format: double
+    description: Longitude
+    nullable: true
+  lt:
+    type: number
+    format: double
+    description: Latitude
+    nullable: true
+required: []
+example:
+  en: true
+  host: "pool.ntp.org"
+  tz: 0
+  offset: 0
+  ampm: false
+  ln: 0.0
+  lt: 0.0 

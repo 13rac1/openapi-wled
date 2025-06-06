@@ -1,0 +1,107 @@
+description: WLED sync configuration
+type: object
+properties:
+  port0:
+    type: integer
+    format: uint16
+    description: WLED notifier default port
+    minimum: 0
+    maximum: 65535
+    nullable: true
+  port1:
+    type: integer
+    format: uint16
+    description: WLED notifier supplemental port
+    minimum: 0
+    maximum: 65535
+    nullable: true
+  recv:
+    type: object
+    description: WLED notifier receive configuration
+    nullable: true
+    properties:
+      bri:
+        type: boolean
+        description: Apply brightness from incoming notifications
+        nullable: true
+      col:
+        type: boolean
+        description: Apply color
+        nullable: true
+      fx:
+        type: boolean
+        description: Apply effects setup
+        nullable: true
+      grp:
+        type: integer
+        format: uint8
+        description: Sync receive groups this instance belongs to (bit mapped)
+        minimum: 0
+        maximum: 255
+        nullable: true
+      seg:
+        type: boolean
+        description: Apply segment options
+        nullable: true
+      sb:
+        type: boolean
+        description: Apply segment bounds (start, stop, offset)
+        nullable: true
+  send:
+    type: object
+    description: WLED notifier send configuration
+    nullable: true
+    properties:
+      dir:
+        type: boolean
+        description: Send notification if change via UI or HTTP API
+        nullable: true
+      btn:
+        type: boolean
+        description: Send if updated by button or infrared remote
+        nullable: true
+      va:
+        type: boolean
+        description: Send notification if updated via Alexa
+        nullable: true
+      hue:
+        type: boolean
+        description: Send notification if Hue light changes
+        nullable: true
+      macro:
+        type: boolean
+        description: Send notification for macro
+        nullable: true
+      grp:
+        type: integer
+        format: uint8
+        description: Sync groups this instance syncs (bit mapped)
+        minimum: 0
+        maximum: 255
+        nullable: true
+      ret:
+        type: integer
+        format: uint8
+        description: Number of times a UDP sync message is retransmitted. Increase to increase reliability
+        minimum: 0
+        maximum: 255
+        nullable: true
+required: []
+example:
+  port0: 21324
+  port1: 65506
+  recv:
+    bri: true
+    col: true
+    fx: true
+    grp: 1
+    seg: true
+    sb: true
+  send:
+    dir: true
+    btn: true
+    va: true
+    hue: true
+    macro: true
+    grp: 1
+    ret: 1 

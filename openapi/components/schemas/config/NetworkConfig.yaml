@@ -6,50 +6,7 @@ properties:
     description: Network interface configurations (WLED source only uses one element)
     nullable: true
     items:
-      type: object
-      properties:
-        ssid:
-          type: string
-          description: SSID of the network to connect to
-          nullable: true
-        pskl:
-          type: integer
-          description: Length of the wifi password
-          minimum: 0
-          nullable: true
-        ip:
-          type: array
-          description: Static IP of ESP
-          minItems: 4
-          maxItems: 4
-          items:
-            type: integer
-            format: uint8
-            minimum: 0
-            maximum: 255
-          nullable: true
-        gw:
-          type: array
-          description: Gateway (router) IP
-          minItems: 4
-          maxItems: 4
-          items:
-            type: integer
-            format: uint8
-            minimum: 0
-            maximum: 255
-          nullable: true
-        sn:
-          type: array
-          description: Subnet mask (most common in home networks is 255.255.255.0)
-          minItems: 4
-          maxItems: 4
-          items:
-            type: integer
-            format: uint8
-            minimum: 0
-            maximum: 255
-          nullable: true
+      $ref: './NetworkInstance.yaml'
 required: []
 example:
   ins:

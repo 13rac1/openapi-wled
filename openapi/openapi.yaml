@@ -38,16 +38,14 @@ servers:
         description: IP address of your WLED device
 
 tags:
-  - name: State
+  - name: State Management
     description: LED state control (brightness, effects, segments)
-  - name: Config
+  - name: Configuration Management
     description: Device configuration and settings
-  - name: Info
+  - name: Device Information
     description: Device information and capabilities
-  - name: Effects
-    description: LED effects management and parameters
-  - name: Palettes
-    description: Color palette management and customization
+  - name: Effects and Palettes
+    description: LED effects and color palette management
   - name: Network
     description: Network discovery and configuration
     externalDocs:

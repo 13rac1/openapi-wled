@@ -1,0 +1,15 @@
+description: Node configuration
+type: object
+properties:
+  list:
+    type: boolean
+    description: Node List Enabled
+    nullable: true
+  bcast:
+    type: boolean
+    description: Node Broadcast Enabled
+    nullable: true
+required: []
+example:
+  list: true
+  bcast: true 

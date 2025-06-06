@@ -1,0 +1,62 @@
+description: MQTT configuration
+type: object
+properties:
+  en:
+    type: boolean
+    description: MQTT enabled
+    nullable: true
+  broker:
+    type: string
+    description: Both domains and IPs should work (no SSL)
+    nullable: true
+  port:
+    type: integer
+    format: uint16
+    description: MQTT port
+    minimum: 0
+    maximum: 65535
+    nullable: true
+  user:
+    type: string
+    description: Optional username for MQTT auth
+    nullable: true
+  pskl:
+    type: integer
+    format: uint8
+    description: Optional length of password for MQTT auth
+    minimum: 0
+    maximum: 255
+    nullable: true
+  cid:
+    type: string
+    description: Override the client ID
+    nullable: true
+  rtn:
+    type: boolean
+    description: Retain brightness and color
+    nullable: true
+  topics:
+    type: object
+    description: MQTT topics configuration
+    nullable: true
+    properties:
+      device:
+        type: string
+        description: Main MQTT topic (individual per device, default is wled/mac)
+        nullable: true
+      group:
+        type: string
+        description: Second MQTT topic (for example to group devices)
+        nullable: true
+required: []
+example:
+  en: true
+  broker: "mqtt.example.com"
+  port: 1883
+  user: "wled"
+  pskl: 4
+  cid: "wled-living-room"
+  rtn: true
+  topics:
+    device: "wled/living-room"
+    group: "wled/all" 

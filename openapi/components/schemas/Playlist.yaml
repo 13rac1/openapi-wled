@@ -27,7 +27,7 @@ properties:
     minimum: 0
     maximum: 255
     description: >
-      Array of time each preset should transition to the next one, in tenths of seconds.
+      Time each preset should transition to the next one, in tenths of seconds.
       If only one integer is supplied, all presets will transition for that time.
       Defaults to the current transition time if not provided.
     example: 7

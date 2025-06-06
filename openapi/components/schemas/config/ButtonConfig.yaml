@@ -1,6 +1,88 @@
 type: object
 description: Button configuration
 properties:
+  max:
+    type: integer
+    format: uint8
+    description: Maximum number of buttons (not actually used)
+    minimum: 0
+    maximum: 255
+    nullable: true
+  pull:
+    type: boolean
+    description: Pull-up/down configuration
+    nullable: true
+  ins:
+    type: array
+    description: Button input configurations
+    nullable: true
+    items:
+      type: object
+      properties:
+        type:
+          type: integer
+          format: uint8
+          description: Button type
+          enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+          x-enumNames:
+            - BTN_TYPE_NONE
+            - BTN_TYPE_RESERVED
+            - BTN_TYPE_PUSH
+            - BTN_TYPE_PUSH_ACT_HIGH
+            - BTN_TYPE_SWITCH
+            - BTN_TYPE_PIR_SENSOR
+            - BTN_TYPE_TOUCH
+            - BTN_TYPE_ANALOG
+            - BTN_TYPE_ANALOG_INVERTED
+            - RSVD1
+            - RSVD2
+            - RSVD3
+            - RSVD4
+            - RSVD5
+            - RSVD6
+          nullable: true
+        pin:
+          type: array
+          description: Button pins
+          items:
+            type: integer
+            format: int8
+            minimum: -128
+            maximum: 127
+          nullable: true
+        macros:
+          type: object
+          description: Button macros
+          nullable: true
+          properties:
+            "0":
+              type: integer
+              format: uint8
+              description: Preset to apply when button is pressed once, or default behaviour if 0
+              minimum: 0
+              maximum: 255
+              nullable: true
+            "1":
+              type: integer
+              format: uint8
+              description: Preset to apply when button is pressed for a long time, or default behaviour if 0
+              minimum: 0
+              maximum: 255
+              nullable: true
+            "2":
+              type: integer
+              format: uint8
+              description: Preset to apply when button is pressed twice, or default behaviour if 0
+              minimum: 0
+              maximum: 255
+              nullable: true
+  tt:
+    type: integer
+    format: uint8
+    description: Touch threshold
+    minimum: 0
+    maximum: 255
+    nullable: true
   mqtt:
     type: boolean
     description: Publish button events to MQTT

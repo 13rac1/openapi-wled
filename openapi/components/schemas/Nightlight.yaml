@@ -22,18 +22,8 @@ properties:
   mode:
     type: integer
     format: uint8
-    enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    x-enumNames:
-      - NL_MODE_SET
-      - NL_MODE_FADE
-      - NL_MODE_COLORFADE
-      - NL_MODE_SUN
-      - RSVD1
-      - RSVD2
-      - RSVD3
-      - RSVD4
-      - RSVD5
-      - RSVD6
+    minimum: 0
+    maximum: 3
     description: |
       Nightlight mode (available since 0.10.2):
       * 0 (NL_MODE_SET) - After nightlight time elapsed, set to target brightness

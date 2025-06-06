@@ -1,0 +1,263 @@
+description: LED configuration settings
+type: object
+properties:
+  total:
+    type: integer
+    format: uint16
+    description: Total length (no longer read as of WLED 14.0, but provided for compatibility on downgrade)
+    minimum: 0
+    maximum: 65535
+    nullable: true
+  maxpwr:
+    type: integer
+    format: uint16
+    description: Maximum power in milliamps
+    minimum: 0
+    maximum: 65535
+    nullable: true
+  ledma:
+    type: integer
+    format: uint8
+    description: Milliamps per LED
+    minimum: 0
+    maximum: 255
+    nullable: true
+  cct:
+    type: boolean
+    description: CCT color correction of RGB color
+    nullable: true
+  cr:
+    type: boolean
+    description: CCT is calculated from RGB instead of using seg.cct
+    nullable: true
+  cb:
+    type: integer
+    format: uint8
+    description: CCT Blending
+    minimum: 0
+    maximum: 255
+    nullable: true
+  fps:
+    type: integer
+    format: uint8
+    description: Target FPS
+    minimum: 0
+    maximum: 255
+    nullable: true
+  rgbwm:
+    type: integer
+    format: uint8
+    description: Global auto white mode override (255 = disabled, per-bus setting is used)
+    minimum: 0
+    maximum: 255
+    nullable: true
+  ld:
+    type: boolean
+    description: Use Global LED Buffer
+    nullable: true
+  matrix:
+    type: object
+    description: 2D WLED matrix configuration
+    nullable: true
+    properties:
+      mpc:
+        type: integer
+        format: uint8
+        description: Number of panels (strip.panels in WLED source)
+        minimum: 0
+        maximum: 255
+        nullable: true
+      panels:
+        type: array
+        description: Panel configurations
+        nullable: true
+        items:
+          type: object
+          properties:
+            b:
+              type: boolean
+              description: Starts at bottom
+              nullable: true
+            r:
+              type: boolean
+              description: Starts on right
+              nullable: true
+            v:
+              type: boolean
+              description: Is vertical
+              nullable: true
+            s:
+              type: boolean
+              description: Is serpentine
+              nullable: true
+            x:
+              type: integer
+              format: uint16
+              description: X offset relative to the top left of matrix in LEDs
+              minimum: 0
+              maximum: 65535
+              nullable: true
+            y:
+              type: integer
+              format: uint16
+              description: Y offset relative to the top left of matrix in LEDs
+              minimum: 0
+              maximum: 65535
+              nullable: true
+            h:
+              type: integer
+              format: uint8
+              description: Height of the panel
+              minimum: 0
+              maximum: 255
+              nullable: true
+            w:
+              type: integer
+              format: uint8
+              description: Width of the panel
+              minimum: 0
+              maximum: 255
+              nullable: true
+  ins:
+    type: array
+    description: WLED bus configurations
+    nullable: true
+    items:
+      type: object
+      properties:
+        start:
+          type: integer
+          format: uint16
+          description: Start index
+          minimum: 0
+          maximum: 65535
+          nullable: true
+        len:
+          type: integer
+          format: uint16
+          description: Length
+          minimum: 0
+          maximum: 65535
+          nullable: true
+        pin:
+          type: array
+          description: List of pins
+          items:
+            type: integer
+            format: uint8
+            minimum: 0
+            maximum: 255
+          nullable: true
+        order:
+          type: integer
+          format: uint8
+          description: Color order
+          minimum: 0
+          maximum: 255
+          nullable: true
+        rev:
+          type: boolean
+          description: Is reversed
+          nullable: true
+        skip:
+          type: integer
+          format: uint8
+          description: Number of LEDs to skip
+          minimum: 0
+          maximum: 255
+          nullable: true
+        type:
+          type: integer
+          format: uint8
+          description: Light type
+          enum: [0, 1, 18, 19, 20, 21, 22, 23, 24, 25, 26, 29, 30, 31, 40, 41, 42, 43, 44, 45, 50, 51, 52, 53, 54, 80, 81, 82, 88, 89, 90, 91, 92, 93, 94, 95, 96]
+          x-enumNames:
+            - TYPE_NONE
+            - TYPE_RESERVED
+            - TYPE_WS2812_1CH
+            - TYPE_WS2812_1CH_X3
+            - TYPE_WS2812_2CH_X3
+            - TYPE_WS2812_WWA
+            - TYPE_WS2812_RGB
+            - TYPE_GS8608
+            - TYPE_WS2811_400KHZ
+            - TYPE_TM1829
+            - TYPE_UCS8903
+            - TYPE_UCS8904
+            - TYPE_SK6812_RGBW
+            - TYPE_TM1814
+            - TYPE_ONOFF
+            - TYPE_ANALOG_1CH
+            - TYPE_ANALOG_2CH
+            - TYPE_ANALOG_3CH
+            - TYPE_ANALOG_4CH
+            - TYPE_ANALOG_5CH
+            - TYPE_WS2801
+            - TYPE_APA102
+            - TYPE_LPD8806
+            - TYPE_P9813
+            - TYPE_LPD6803
+            - TYPE_NET_DDP_RGB
+            - TYPE_NET_E131_RGB
+            - TYPE_NET_ARTNET_RGB
+            - TYPE_NET_DDP_RGBW
+            - RSVD1
+            - RSVD2
+            - RSVD3
+            - RSVD4
+            - RSVD5
+            - RSVD6
+            - RSVD7
+            - RSVD8
+          nullable: true
+        ref:
+          type: boolean
+          description: Is Off Refresh Required
+          nullable: true
+        rgbwm:
+          type: integer
+          format: uint8
+          description: Auto White Mode
+          minimum: 0
+          maximum: 255
+          nullable: true
+        freq:
+          type: integer
+          format: uint16
+          description: Frequency
+          minimum: 0
+          maximum: 65535
+          nullable: true
+required: []
+example:
+  total: 144
+  maxpwr: 850
+  ledma: 55
+  cct: false
+  cr: false
+  cb: 0
+  fps: 42
+  rgbwm: 255
+  ld: false
+  matrix:
+    mpc: 1
+    panels:
+      - b: false
+        r: false
+        v: true
+        s: true
+        x: 0
+        y: 0
+        h: 12
+        w: 12
+  ins:
+    - start: 0
+      len: 144
+      pin: [16]
+      order: 0
+      rev: false
+      skip: 0
+      type: 22
+      ref: false
+      rgbwm: 255
+      freq: 0 

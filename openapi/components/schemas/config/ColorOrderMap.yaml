@@ -3,11 +3,17 @@ description: Color order mapping for LED segments
 properties:
   start:
     type: integer
+    format: uint16
     description: Start index
   len:
-    type: integer  
+    type: integer
+    format: uint16
     description: Length
   order:
     type: integer
+    format: uint8
     description: Color order
-example: {} 
+example:
+  start: 0
+  len: 144
+  order: 0 

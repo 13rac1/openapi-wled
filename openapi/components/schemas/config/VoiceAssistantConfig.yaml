@@ -1,0 +1,30 @@
+description: Voice Assistant configuration
+type: object
+properties:
+  alexa:
+    type: boolean
+    description: Enable device discovery by Amazon Echo
+    nullable: true
+  macros:
+    type: array
+    description: Alexa macros [macroAlexaOn, macroAlexaOff]
+    minItems: 2
+    maxItems: 2
+    items:
+      type: integer
+      format: uint8
+      minimum: 0
+      maximum: 255
+    nullable: true
+  p:
+    type: integer
+    format: uint8
+    description: Number of presets to expose to Alexa, starting from preset 1, up to 9
+    minimum: 0
+    maximum: 255
+    nullable: true
+required: []
+example:
+  alexa: true
+  macros: [1, 2]
+  p: 9 

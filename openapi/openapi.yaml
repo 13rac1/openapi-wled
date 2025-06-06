@@ -5,25 +5,59 @@ info:
   description: |
     JSON API for controlling WLED LED controllers.
     This API allows you to control LED effects, colors, and device settings.
+
+    # Introduction
+    WLED is a fast and feature-rich implementation of an ESP8266/ESP32 webserver to control NeoPixel (WS2812B, WS2811, SK6812) LEDs or also SPI based chipsets like the WS2801 and APA102.
+
+    # Authentication
+    Basic authentication can be enabled in WLED settings. When enabled, all API endpoints require basic auth.
+
+  termsOfService: 'https://github.com/Aircoookie/WLED/blob/master/LICENSE'
+  contact:
+    name: WLED Project
+    url: 'https://github.com/Aircoookie/WLED'
   license:
     name: MIT
-    url: https://opensource.org/licenses/MIT
+    url: 'https://opensource.org/licenses/MIT'
+  x-logo:
+    url: 'https://raw.githubusercontent.com/Aircoookie/WLED/master/images/wled_logo_akemi.png'
+    altText: WLED Logo
+
+externalDocs:
+  description: WLED Wiki and Documentation
+  url: 'https://kno.wled.ge/'
 
 servers:
   - url: http://wled.local
-    description: Local WLED device
+    description: Local WLED device (mDNS)
+  - url: http://{ip}
+    description: WLED device by IP address
+    variables:
+      ip:
+        default: '192.168.1.4'
+        description: IP address of your WLED device
 
 tags:
   - name: State
-    description: LED state control
+    description: LED state control (brightness, effects, segments)
   - name: Config
-    description: Device configuration
+    description: Device configuration and settings
   - name: Info
-    description: Device information
+    description: Device information and capabilities
   - name: Effects
-    description: LED effects management
+    description: LED effects management and parameters
   - name: Palettes
-    description: Color palette management
+    description: Color palette management and customization
+  - name: Network
+    description: Network discovery and configuration
+    externalDocs:
+      description: Network Features Documentation
+      url: './docs/network_features.md'
+  - name: Live Data
+    description: Real-time LED control (experimental)
+    externalDocs:
+      description: Live Data Documentation
+      url: './docs/live_data.md'
 
 paths:
   /json/state:
@@ -36,6 +70,12 @@ paths:
     $ref: paths/json_eff.yaml
   /json/pal:
     $ref: paths/json_pal.yaml
+  /json/nodes:
+    $ref: paths/json_nodes.yaml
+  /json/net:
+    $ref: paths/json_net.yaml
+  /json/live:
+    $ref: paths/json_live.yaml
 
 components:
   schemas:
@@ -49,13 +89,28 @@ components:
       $ref: components/schemas/Palettes.yaml
     Palette:
       $ref: components/schemas/Palette.yaml
+    Node:
+      $ref: components/schemas/Node.yaml
+    Nodes:
+      $ref: components/schemas/Nodes.yaml
+    Network:
+      $ref: components/schemas/Network.yaml
+    NetworkList:
+      $ref: components/schemas/NetworkList.yaml
+    Live:
+      $ref: components/schemas/Live.yaml
   responses:
     UnauthorizedError:
       $ref: components/responses/UnauthorizedError.yaml
+    BadRequest:
+      $ref: components/responses/BadRequest.yaml
+    TooManyRequests:
+      $ref: components/responses/TooManyRequests.yaml
   securitySchemes:
     basicAuth:
       type: http
       scheme: basic
+      description: Basic authentication when enabled in WLED settings
 
 security:
   - basicAuth: [] 

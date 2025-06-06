@@ -1,4 +1,4 @@
-description: Bad Request - Invalid JSON or malformed request
+description: Invalid request payload
 content:
   application/json:
     schema:
@@ -6,10 +6,6 @@ content:
       properties:
         error:
           type: string
-          example: "Invalid JSON format"
-        code:
-          type: integer
-          example: 400
+          example: "Invalid request format"
     example:
-      error: "Invalid JSON format"
-      code: 400 
+      error: "Invalid request format" 

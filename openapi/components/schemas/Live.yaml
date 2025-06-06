@@ -1,0 +1,21 @@
+type: object
+description: |
+  Live data streaming structure.
+  WARNING: This feature is incomplete and not recommended for use.
+  For real-time LED control, use the DDP protocol instead of JSON streaming.
+required: []
+properties:
+  leds:
+    type: array
+    description: Array of LED values (incomplete implementation)
+    nullable: true
+    items:
+      type: string
+  n:
+    type: integer
+    format: int64
+    description: Number field (purpose undefined in current implementation)
+    nullable: true
+example:
+  leds: ["#FF0000", "#00FF00"]
+  n: 2 

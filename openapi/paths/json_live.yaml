@@ -1,0 +1,32 @@
+get:
+  tags:
+    - Live Data
+  summary: Get live LED data stream
+  description: |
+    WARNING: This endpoint is incomplete and not recommended for use.
+    The JSON streaming implementation is inefficient and may cause performance issues.
+    For real-time LED control, use the DDP (Distributed Display Protocol) instead.
+    
+    See: https://github.com/Aircoookie/WLED/wiki/UDP-Realtime-Control
+  operationId: getLiveData
+  responses:
+    '200':
+      description: Live LED data stream
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/Live.yaml'
+    '401':
+      $ref: '../components/responses/UnauthorizedError.yaml'
+    '429':
+      $ref: '../components/responses/TooManyRequests.yaml'
+    '500':
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Live data streaming failed" 

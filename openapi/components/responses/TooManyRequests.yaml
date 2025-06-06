@@ -1,0 +1,13 @@
+description: Rate limit exceeded
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Too many requests"
+        retryAfter:
+          type: integer
+          description: Number of seconds to wait before retrying
+          example: 5 

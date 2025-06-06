@@ -16,17 +16,5 @@ get:
         application/json:
           schema:
             $ref: '../components/schemas/Live.yaml'
-    '401':
-      $ref: '../components/responses/UnauthorizedError.yaml'
-    '429':
-      $ref: '../components/responses/TooManyRequests.yaml'
-    '500':
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                example: "Live data streaming failed" 
+    '400':
+      $ref: ../components/responses/BadRequest.yaml 

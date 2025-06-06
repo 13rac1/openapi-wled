@@ -98,12 +98,8 @@ components:
     Live:
       $ref: components/schemas/Live.yaml
   responses:
-    UnauthorizedError:
-      $ref: components/responses/UnauthorizedError.yaml
     BadRequest:
       $ref: components/responses/BadRequest.yaml
-    TooManyRequests:
-      $ref: components/responses/TooManyRequests.yaml
   securitySchemes:
     basicAuth:
       type: http

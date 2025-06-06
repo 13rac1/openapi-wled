@@ -13,7 +13,11 @@ get:
         application/json:
           schema:
             $ref: '../components/schemas/Effects.yaml'
-    '401':
-      $ref: '../components/responses/UnauthorizedError.yaml'
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
   security:
-    - basicAuth: [] 
+    - basicAuth: []
+  x-code-samples:
+    - lang: curl
+      source:
+        $ref: ../code_samples/curl/eff/get.curl 

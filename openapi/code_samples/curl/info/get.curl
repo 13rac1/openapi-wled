@@ -1,0 +1,2 @@
+curl --request GET \
+  --url http://{host}/json/info 

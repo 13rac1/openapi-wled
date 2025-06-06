@@ -14,17 +14,11 @@ get:
         application/json:
           schema:
             $ref: '../components/schemas/NetworkList.yaml'
-    '401':
-      $ref: '../components/responses/UnauthorizedError.yaml'
-    '500':
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                example: "Network scan failed"
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
   security:
-    - basicAuth: [] 
+    - basicAuth: []
+  x-code-samples:
+    - lang: curl
+      source:
+        $ref: ../code_samples/curl/net/get.curl 

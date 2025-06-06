@@ -1,4 +1,4 @@
-description: Invalid request payload
+description: A generic error response for when a request is invalid.
 content:
   application/json:
     schema:
@@ -6,6 +6,4 @@ content:
       properties:
         error:
           type: string
-          example: "Invalid request format"
-    example:
-      error: "Invalid request format" 
+          description: A brief description of the error. 

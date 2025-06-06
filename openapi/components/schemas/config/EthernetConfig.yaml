@@ -4,7 +4,20 @@ properties:
   relay:
     type: integer
     format: uint8
-    description: Type of ethernet board/module
+    description: |
+      Type of ethernet board/module.
+      - `0`: WledEthNone
+      - `1`: WledEthWt32Eth01
+      - `2`: WledEthEsp32Poe
+      - `3`: WledEthWesp32
+      - `4`: WledEthQuinled
+      - `5`: WledEthTwilightlord
+      - `6`: WledEthEsp32deux
+      - `7`: WledEthEsp32ethkitve
+      - `8`: WledEthQuinledOcta
+      - `9`: WledEthAbcwledv43eth
+      - `10`: WledEthSerg74
+      - `11`-`18`: Reserved
     enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
     nullable: true
     x-enumNames:

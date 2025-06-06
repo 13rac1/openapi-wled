@@ -55,13 +55,7 @@ get:
                     col: [[0, 255, 0], [0, 0, 0], [0, 0, 0]]
                     fx: 2
     '400':
-      $ref: '../components/responses/BadRequest.yaml'
-    '500':
-      $ref: '../components/responses/InternalServerError.yaml'
-    '401':
-      $ref: '../components/responses/UnauthorizedError.yaml'
-    '429':
-      $ref: '../components/responses/TooManyRequests.yaml'
+      $ref: ../components/responses/BadRequest.yaml
 
 post:
   tags:
@@ -143,10 +137,4 @@ post:
                     ix: 128
                     pal: 0
     '400':
-      $ref: '../components/responses/BadRequest.yaml'
-    '500':
-      $ref: '../components/responses/InternalServerError.yaml'
-    '401':
-      $ref: '../components/responses/UnauthorizedError.yaml'
-    '429':
-      $ref: '../components/responses/TooManyRequests.yaml' 
+      $ref: ../components/responses/BadRequest.yaml 

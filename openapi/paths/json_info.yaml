@@ -14,11 +14,11 @@ get:
     - basicAuth: []
   responses:
     '200':
-      description: Successful response containing device information
+      description: A successful response with device information.
       content:
         application/json:
           schema:
-            $ref: '../components/schemas/DeviceInfo.yaml'
+            $ref: ../components/schemas/DeviceInfo.yaml
           examples:
             default:
               value:
@@ -58,25 +58,9 @@ get:
                 product: "FOSS"
                 mac: "a842e38d9828"
                 ip: "192.168.1.40"
-    '404':
-      description: Device not found or not responding
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                description: Error message
-                example: "Device not found"
-    '500':
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                description: Error message
-                example: "Internal server error" 
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+  x-code-samples:
+    - lang: curl
+      source:
+        $ref: ../code_samples/curl/info/get.curl 

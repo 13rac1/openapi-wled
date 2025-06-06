@@ -14,7 +14,11 @@ get:
         application/json:
           schema:
             $ref: '../components/schemas/Palettes.yaml'
-    '401':
-      $ref: '../components/responses/UnauthorizedError.yaml'
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
   security:
-    - basicAuth: [] 
+    - basicAuth: []
+  x-code-samples:
+    - lang: curl
+      source:
+        $ref: ../code_samples/curl/pal/get.curl 

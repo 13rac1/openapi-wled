@@ -13,17 +13,11 @@ get:
         application/json:
           schema:
             $ref: '../components/schemas/Nodes.yaml'
-    '401':
-      $ref: '../components/responses/UnauthorizedError.yaml'
-    '500':
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                example: "Node discovery failed"
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
   security:
-    - basicAuth: [] 
+    - basicAuth: []
+  x-code-samples:
+    - lang: curl
+      source:
+        $ref: ../code_samples/curl/nodes/get.curl 

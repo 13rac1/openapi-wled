@@ -1,0 +1,30 @@
+get:
+  tags:
+    - Network
+  summary: Scan for WiFi networks
+  description: |
+    Performs a scan for available WiFi networks in range.
+    Returns network details including SSID, signal strength, and encryption type.
+    Note: Scanning may temporarily interrupt LED output.
+  operationId: getNetworks
+  responses:
+    '200':
+      description: List of discovered WiFi networks
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/NetworkList.yaml'
+    '401':
+      $ref: '../components/responses/UnauthorizedError.yaml'
+    '500':
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Network scan failed"
+  security:
+    - basicAuth: [] 

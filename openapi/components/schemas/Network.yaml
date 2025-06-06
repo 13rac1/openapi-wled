@@ -1,0 +1,53 @@
+type: object
+description: Information about a WiFi network discovered by WLED
+required: []
+properties:
+  ssid:
+    type: string
+    description: Network name (SSID)
+    nullable: true
+  rssi:
+    type: integer
+    format: int32
+    minimum: -2147483648
+    maximum: 2147483647
+    description: Signal strength in dBm
+    nullable: true
+  bssid:
+    type: string
+    description: MAC address (BSSID) of the access point
+    pattern: '^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$'
+    nullable: true
+  channel:
+    type: integer
+    format: int32
+    minimum: -2147483648
+    maximum: 2147483647
+    description: WiFi channel number (typically 1-14)
+    nullable: true
+  enc:
+    type: string
+    description: |
+      Encryption type:
+      * WIFI_AUTH_OPEN - Open network
+      * WIFI_AUTH_WEP - WEP encryption
+      * WIFI_AUTH_WPA_PSK - WPA-PSK encryption
+      * WIFI_AUTH_WPA2_PSK - WPA2-PSK encryption
+      * WIFI_AUTH_WPA_WPA2_PSK - WPA/WPA2-PSK encryption
+      * WIFI_AUTH_WPA2_ENTERPRISE - WPA2-Enterprise encryption
+      * WIFI_AUTH_MAX - Maximum value
+    enum:
+      - WIFI_AUTH_OPEN
+      - WIFI_AUTH_WEP
+      - WIFI_AUTH_WPA_PSK
+      - WIFI_AUTH_WPA2_PSK
+      - WIFI_AUTH_WPA_WPA2_PSK
+      - WIFI_AUTH_WPA2_ENTERPRISE
+      - WIFI_AUTH_MAX
+    nullable: true
+example:
+  ssid: "MyWiFi"
+  rssi: -65
+  bssid: "00:11:22:33:44:55"
+  channel: 6
+  enc: "WIFI_AUTH_WPA2_PSK" 

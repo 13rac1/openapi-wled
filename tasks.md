@@ -191,26 +191,30 @@ For each major API feature group, review these documents before starting:
 
 #### Iteration 5: Network Features (`/json/nodes`, `/json/net`)
 1. Analysis Phase
-   - [ ] Review `wled-json-api-library/src/structures/nodes.rs`
-   - [ ] Review `wled-json-api-library/src/structures/net.rs`
-   - [ ] Identify:
-     - [ ] Node discovery protocol and data
-     - [ ] Network status and configuration
-     - [ ] Multi-device coordination features
+   - [x] Review `wled-json-api-library/src/structures/nodes.rs`
+   - [x] Review `wled-json-api-library/src/structures/net.rs`
+   - [x] Review corresponding getter methods
+   - [x] Identify:
+     - [x] Node discovery protocol and data
+     - [x] Network status and configuration
+     - [x] Multi-device coordination features
 
 2. Schema Creation Phase
-   - [ ] Create network-related schemas
-   - [ ] Create node discovery schemas
-   - [ ] Create corresponding path definitions
+   - [x] Create network-related schemas
+   - [x] Create node discovery schemas
+   - [x] Create corresponding path definitions
 
 3. Documentation Phase
-   - [ ] Document network discovery mechanisms
-   - [ ] Explain multi-device synchronization
-   - [ ] Add network troubleshooting information
+   - [x] Document network discovery mechanisms
+   - [x] Explain multi-device synchronization
+   - [x] Add network troubleshooting information
 
 4. Validation Phase
-   - [ ] Test with multiple WLED devices
-   - [ ] Validate network configuration scenarios
+   - [x] Test with multiple WLED devices
+   - [x] Validate network configuration scenarios
+   - [x] Run validation and preview tools with detailed schemas
+   - [x] Test configuration examples with all components
+   - [x] Fix any issues with detailed implementations
 
 #### Iteration 6: Live Data and Streaming (`/json/live`)
 1. Analysis Phase
@@ -230,8 +234,9 @@ For each major API feature group, review these documents before starting:
    - [ ] Include usage recommendations
 
 4. Validation Phase
-   - [ ] Test streaming performance characteristics
-   - [ ] Validate real-time data accuracy
+   - [ ] Run validation and preview tools with detailed schemas
+   - [ ] Test configuration examples with all components
+   - [ ] Fix any issues with detailed implementations
 
 ### Finalization Phase
 - [ ] Bundle the complete multi-file definition

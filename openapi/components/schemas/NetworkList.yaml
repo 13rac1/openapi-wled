@@ -1,0 +1,22 @@
+type: object
+description: List of WiFi networks discovered by WLED
+required: []
+properties:
+  networks:
+    type: array
+    description: Array of discovered networks
+    nullable: true
+    items:
+      $ref: './Network.yaml'
+example:
+  networks:
+    - ssid: "MyWiFi"
+      rssi: -65
+      bssid: "00:11:22:33:44:55"
+      channel: 6
+      enc: "WIFI_AUTH_WPA2_PSK"
+    - ssid: "GuestWiFi"
+      rssi: -72
+      bssid: "AA:BB:CC:DD:EE:FF"
+      channel: 11
+      enc: "WIFI_AUTH_OPEN" 

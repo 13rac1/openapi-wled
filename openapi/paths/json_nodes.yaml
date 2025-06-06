@@ -1,0 +1,29 @@
+get:
+  tags:
+    - Network
+  summary: Get discovered WLED nodes
+  description: |
+    Returns a list of WLED nodes discovered on the local network using mDNS/DNS-SD.
+    Discovery records include device name, type, IP address, and version information.
+  operationId: getNodes
+  responses:
+    '200':
+      description: List of discovered WLED nodes
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/Nodes.yaml'
+    '401':
+      $ref: '../components/responses/UnauthorizedError.yaml'
+    '500':
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Node discovery failed"
+  security:
+    - basicAuth: [] 

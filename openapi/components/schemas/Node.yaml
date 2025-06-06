@@ -1,0 +1,42 @@
+type: object
+description: Information about a discovered WLED node on the network
+required: []
+properties:
+  name:
+    type: string
+    description: Name of the WLED node
+    nullable: true
+  type:
+    type: integer
+    format: uint8
+    description: |
+      Hardware type identifier:
+      * 82 - ESP8266
+      * 32 - ESP32
+      * 33 - ESP32S2
+      * 34 - ESP32S3
+      * 35 - ESP32C3
+    nullable: true
+  ip:
+    type: string
+    description: IP address of the node
+    format: ipv4
+    nullable: true
+  age:
+    type: integer
+    format: uint8
+    description: Age of the node discovery record
+    nullable: true
+  vid:
+    type: integer
+    format: uint32
+    minimum: 0
+    maximum: 4294967295
+    description: Version ID of the node's firmware
+    nullable: true
+example:
+  name: "WLED-Kitchen"
+  type: 32
+  ip: "192.168.1.50"
+  age: 0
+  vid: 230224 

@@ -1,0 +1,22 @@
+type: object
+description: List of WLED nodes discovered on the network
+required: []
+properties:
+  nodes:
+    type: array
+    description: Array of discovered WLED nodes
+    nullable: true
+    items:
+      $ref: './Node.yaml'
+example:
+  nodes:
+    - name: "WLED-Kitchen"
+      type: 32
+      ip: "192.168.1.50"
+      age: 0
+      vid: 230224
+    - name: "WLED-Living"
+      type: 82
+      ip: "192.168.1.51"
+      age: 1
+      vid: 230224 

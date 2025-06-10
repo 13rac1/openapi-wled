@@ -2,9 +2,13 @@
 
 An OpenAPI 3.0 schema for the WLED JSON API.
 
-Created from: https://github.com/paul-fornage/wled-json-api-library
+Originally created as a 1:1 specification copy of [github.com/paul-fornage/wled-json-api-library](https://github.com/paul-fornage/wled-json-api-library).
 
-## Working on your OpenAPI Definition
+## AI Usage
+
+This project was created with the Cursor IDE using Claude 3.7, Claude 4.0 and Gemini 2.5.
+
+## Development
 
 ### Install
 

@@ -82,6 +82,13 @@ properties:
     description: >
       UI segment sets/groups (undocumented feature)
     example: 0
+  lc:
+    type: integer
+    minimum: 0
+    description: >
+      Light capabilities bitfield
+    readOnly: true
+    example: 3
   n:
     type: string
     description: >
@@ -212,6 +219,8 @@ example:
   id: 0
   start: 0
   stop: 30
+  len: 30
+  lc: 3
   on: true
   bri: 255
   col: [[255, 160, 0], [0, 0, 0], [0, 0, 0]]

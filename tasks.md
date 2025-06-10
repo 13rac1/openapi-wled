@@ -295,25 +295,25 @@ Based on the analysis in `docs/implementation-vs-schema-gaps.md`, the following 
   - ReadOnly: `true`
 
 #### Task 2.2: Complete Nightlight Object
-- [ ] Add `rem` field to `components/schemas/Nightlight.yaml`
+- [x] Add `rem` field to `components/schemas/Nightlight.yaml`
   - Type: `integer`
   - Description: "Remaining time in seconds (-1 if inactive)"
   - ReadOnly: `true`
 
 #### Task 2.3: Complete UDP Sync Object
-- [ ] Add `sgrp` field to `components/schemas/UdpSync.yaml`
+- [x] Add `sgrp` field to `components/schemas/UdpSync.yaml`
   - Type: `integer`
   - Description: "Sync groups (bitfield)"
-- [ ] Add `rgrp` field to `components/schemas/UdpSync.yaml`
+- [x] Add `rgrp` field to `components/schemas/UdpSync.yaml`
   - Type: `integer` 
   - Description: "Receive groups (bitfield)"
 
 #### Task 2.4: Complete Segment Object
-- [ ] Add `lc` field to `components/schemas/Segment.yaml`
+- [x] Add `lc` field to `components/schemas/Segment.yaml`
   - Type: `integer`
   - Description: "Light capabilities bitfield"
   - ReadOnly: `true`
-- [ ] Add `len` field to `components/schemas/Segment.yaml`
+- [x] Add `len` field to `components/schemas/Segment.yaml`
   - Type: `integer`
   - Description: "Segment length (calculated from stop-start)"
   - ReadOnly: `true`

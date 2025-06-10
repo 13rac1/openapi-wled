@@ -134,9 +134,12 @@ example:
     dur: 60
     mode: 1
     tbri: 5
+    rem: -1
   udpn:
     send: false
     recv: true
+    sgrp: 1
+    rgrp: 1
   mainseg: 0
   ledmap: 0
   error: 0
@@ -144,6 +147,8 @@ example:
     - id: 0
       start: 0
       stop: 30
+      len: 30
+      lc: 3 
       on: true
       bri: 255
       col: [[255, 160, 0], [0, 0, 0], [0, 0, 0]]

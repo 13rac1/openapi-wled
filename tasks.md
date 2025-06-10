@@ -246,3 +246,256 @@ For each major API feature group, review these documents before starting:
 - [x] Create final validation report
 - [x] Update project README with schema information
 - [x] Create usage examples and code samples
+
+## Schema-Implementation Alignment Tasks
+
+Based on the analysis in `docs/implementation-vs-schema-gaps.md`, the following tasks are needed to bring the OpenAPI schema to full parity with the actual WLED JSON API implementation:
+
+### Phase 1: Missing API Endpoints
+
+#### Task 1.1: Add Combined State + Info Endpoint
+- [ ] Create `paths/json_si.yaml` for `/json/si` endpoint
+- [ ] Define GET operation returning combined state and info objects
+- [ ] Create response schema `components/schemas/StateInfoResponse.yaml`
+- [ ] Add path reference to main `openapi.yaml`
+- [ ] Add code samples and documentation
+
+#### Task 1.2: Add Effect Data Endpoint  
+- [ ] Create `paths/json_fxda.yaml` for `/json/fxda` endpoint
+- [ ] Define GET operation returning array of effect metadata
+- [ ] Create response schema `components/schemas/EffectDataResponse.yaml`
+- [ ] Document effect metadata format (data after '@' character)
+- [ ] Add path reference to main `openapi.yaml`
+
+#### Task 1.3: Add Paginated Palette Endpoint
+- [ ] Create `paths/json_palx.yaml` for `/json/palx` endpoint
+- [ ] Define GET operation with optional `page` query parameter
+- [ ] Create response schema `components/schemas/PaginatedPalettesResponse.yaml`
+- [ ] Document pagination structure with `m` (max pages) and `p` (palette data)
+- [ ] Include color data arrays vs simple names
+- [ ] Add path reference to main `openapi.yaml`
+
+#### Task 1.4: Add Base JSON Endpoint
+- [ ] Create `paths/json.yaml` for `/json` endpoint (no suffix)
+- [ ] Define GET operation returning complete API data
+- [ ] Create response schema `components/schemas/CompleteApiResponse.yaml`
+- [ ] Include state, info, effects, and palette names
+- [ ] Add path reference to main `openapi.yaml`
+
+### Phase 2: State Object Field Completion
+
+#### Task 2.1: Add Missing Core State Fields
+- [ ] Add `ledmap` field to `components/schemas/State.yaml`
+  - Type: `integer`
+  - Description: "Current LED map ID"
+  - ReadOnly: `true`
+- [ ] Add `error` field to `components/schemas/State.yaml`
+  - Type: `integer` 
+  - Description: "Error code if present"
+  - ReadOnly: `true`
+
+#### Task 2.2: Complete Nightlight Object
+- [ ] Add `rem` field to `components/schemas/Nightlight.yaml`
+  - Type: `integer`
+  - Description: "Remaining time in seconds (-1 if inactive)"
+  - ReadOnly: `true`
+
+#### Task 2.3: Complete UDP Sync Object
+- [ ] Add `sgrp` field to `components/schemas/UdpSync.yaml`
+  - Type: `integer`
+  - Description: "Sync groups (bitfield)"
+- [ ] Add `rgrp` field to `components/schemas/UdpSync.yaml`
+  - Type: `integer` 
+  - Description: "Receive groups (bitfield)"
+
+#### Task 2.4: Complete Segment Object
+- [ ] Add `lc` field to `components/schemas/Segment.yaml`
+  - Type: `integer`
+  - Description: "Light capabilities bitfield"
+  - ReadOnly: `true`
+- [ ] Add `len` field to `components/schemas/Segment.yaml`
+  - Type: `integer`
+  - Description: "Segment length (calculated from stop-start)"
+  - ReadOnly: `true`
+
+### Phase 3: Configuration Schema Field Validation (35 Files)
+
+#### Task 3.1: Setup Systematic Validation Process
+- [ ] Create validation script/tool to compare implementation vs schema
+- [ ] Set up test WLED device for configuration capture
+- [ ] Create configuration validation matrix spreadsheet
+- [ ] Document validation methodology and criteria
+
+#### Task 3.2: Core Configuration Structure Validation
+- [ ] `Config.yaml` - Main configuration wrapper structure
+- [ ] `ConfigRequest.yaml` - POST request structure  
+- [ ] `ConfigResponse.yaml` - GET response structure
+
+#### Task 3.3: Network Configuration Validation (High Priority)
+- [ ] `NetworkConfig.yaml` - Main network configuration
+- [ ] `NetworkInstance.yaml` - Individual WiFi network instances
+- [ ] `WifiConfig.yaml` - WiFi-specific settings 
+- [ ] `AccessPointConfig.yaml` - AP mode configuration
+- [ ] `EthernetConfig.yaml` - **KNOWN ISSUE**: Change `relay` → `type`, verify enums
+
+#### Task 3.4: Hardware Configuration Validation (High Priority)
+- [ ] `HardwareConfig.yaml` - Main hardware wrapper
+- [ ] `LedConfig.yaml` - **COMPLEX**: LED strips, buses, pin configurations
+  - Verify bus configuration arrays
+  - Check LED strip type enums
+  - Validate pin assignment structures
+  - **Add 2D Matrix fields**: `mpc`, `panels` array with `b`, `r`, `v`, `s`, `x`, `y`, `h`, `w`
+- [ ] `ButtonConfig.yaml` - Button hardware and macro configuration
+  - Check macro array structures
+  - Verify pin configurations
+  - Validate button type enums
+- [ ] `InfraredConfig.yaml` - IR receiver configuration
+- [ ] `RelayConfig.yaml` - Relay output configuration
+- [ ] `HardwareInterfaceConfig.yaml` - I2C/SPI pin configurations
+
+#### Task 3.5: Interface Configuration Validation (Medium Priority)
+- [ ] `InterfaceConfig.yaml` - Main interface wrapper
+- [ ] `SyncConfig.yaml` - UDP sync configuration
+  - Check sync port configurations
+  - Verify group settings
+- [ ] `MqttConfig.yaml` - MQTT broker configuration
+  - Verify MQTT settings structure
+  - Check topic configurations
+- [ ] `HueConfig.yaml` - Philips Hue integration
+- [ ] `NtpConfig.yaml` - NTP time synchronization
+  - Validate NTP configuration fields
+- [ ] `LiveConfig.yaml` - Real-time data streaming
+- [ ] `DmxConfig.yaml` - DMX protocol configuration
+- [ ] `NodesConfig.yaml` - Node discovery settings
+- [ ] `VoiceAssistantConfig.yaml` - Alexa integration
+
+#### Task 3.6: Behavior Configuration Validation (Medium Priority)
+- [ ] `LightConfig.yaml` - Light behavior settings
+  - Verify gamma correction structure
+  - Check transition settings
+- [ ] `GammaCorrection.yaml` - Gamma correction specifics
+- [ ] `TransitionConfig.yaml` - Transition timing
+- [ ] `NightlightConfig.yaml` - Nightlight behavior
+- [ ] `DefaultConfig.yaml` - Boot-up defaults
+- [ ] `AnalogClock.yaml` - Clock display settings
+- [ ] `TimersConfig.yaml` - **COMPLEX**: Scheduling and automation
+  - Verify timer instance structures
+  - Check countdown configuration
+  - Validate scheduling fields
+
+#### Task 3.7: Device Configuration Validation (Low Priority)
+- [ ] `DeviceIdentification.yaml` - Device naming and mDNS
+- [ ] `OtaConfig.yaml` - Over-the-air update settings
+- [ ] `RemoteConfig.yaml` - Remote control settings
+- [ ] `ColorOrderMap.yaml` - LED color order mapping
+
+#### Task 3.8: Configuration Field Mapping Documentation
+- [ ] Create comprehensive field mapping document showing:
+  - Implementation field name → Schema field name
+  - Data type mismatches
+  - Missing fields in either direction
+  - Conditional fields (ESP32 vs ESP8266, feature flags)
+- [ ] Document all discovered field name mismatches
+- [ ] Create migration guide for field name changes
+
+#### Task 3.9: Configuration Validation Testing
+- [ ] Capture actual `/json/cfg` responses from different device configurations:
+  - [ ] ESP32 with all features enabled
+  - [ ] ESP8266 basic configuration  
+  - [ ] ESP32 with Ethernet
+  - [ ] ESP32 with 2D matrix
+  - [ ] Different usermod configurations
+- [ ] Run schema validation against captured responses
+- [ ] Document validation failures and required fixes
+- [ ] Create automated validation test suite
+
+### Phase 4: Device Information Completion
+
+#### Task 4.1: Add Missing Platform-Specific Fields
+- [ ] Add `cn` field to `components/schemas/DeviceInfo.yaml`
+  - Type: `string`
+  - Description: "Codename"
+  - ReadOnly: `true`
+- [ ] Add `release` field to `components/schemas/DeviceInfo.yaml`
+  - Type: `string`
+  - Description: "Release information"
+  - ReadOnly: `true`
+- [ ] Add `clock` field to `components/schemas/DeviceInfo.yaml`
+  - Type: `integer`
+  - Description: "CPU frequency in MHz"
+  - ReadOnly: `true`
+- [ ] Add `flash` field to `components/schemas/DeviceInfo.yaml`
+  - Type: `integer`
+  - Description: "Flash memory size in MB"
+  - ReadOnly: `true`
+- [ ] Add `ndc` field to `components/schemas/DeviceInfo.yaml`
+  - Type: `integer`
+  - Description: "Node discovery count (-1 if disabled)"
+  - ReadOnly: `true`
+
+#### Task 4.2: Platform-Specific Conditional Fields
+- [ ] Document ESP32 vs ESP8266 specific fields
+- [ ] Add conditional schema support for different builds
+- [ ] Include feature availability flags documentation
+
+### Phase 5: Testing and Validation
+
+#### Task 5.1: Real Device Testing
+- [ ] Set up WLED device testing environment
+- [ ] Capture actual API responses from different WLED builds:
+  - [ ] ESP32 with all features enabled
+  - [ ] ESP8266 basic build
+  - [ ] ESP32 with 2D matrix support
+  - [ ] ESP32 with Ethernet support
+- [ ] Compare responses with schema definitions systematically
+
+#### Task 5.2: Schema Validation
+- [ ] Run `npm test` after all changes
+- [ ] Fix any validation errors
+- [ ] Test bundled schema generation
+- [ ] Verify all $ref links resolve correctly
+
+#### Task 5.3: Documentation Updates
+- [ ] Update main `openapi.yaml` with all new path references
+- [ ] Add code samples for new endpoints
+- [ ] Update API documentation with new features
+- [ ] Create migration guide for schema changes
+
+### Phase 6: Rust Library Alignment
+
+#### Task 6.1: Cross-Reference Analysis  
+- [ ] Compare updated schema with Rust library structures
+- [ ] Document remaining differences
+- [ ] Create mapping guide for field name differences
+- [ ] Identify potential Rust library updates needed
+
+#### Task 6.2: Version Compatibility
+- [ ] Document which WLED versions support which features
+- [ ] Add conditional field documentation
+- [ ] Create compatibility matrix
+
+### Phase 7: Final Validation and Documentation
+
+#### Task 7.1: Complete Testing
+- [ ] Test all endpoints with real devices
+- [ ] Validate all request/response examples
+- [ ] Verify error response handling
+- [ ] Test edge cases and error conditions
+
+#### Task 7.2: Documentation Finalization
+- [ ] Update `README.md` with schema completion status
+- [ ] Create API usage examples for all endpoints
+- [ ] Document known limitations and issues
+- [ ] Create troubleshooting guide
+
+#### Task 7.3: Quality Assurance
+- [ ] Code review of all schema changes
+- [ ] Spell check and grammar review of documentation
+- [ ] Verify all links and references work
+- [ ] Final validation report creation
+
+---
+
+**Estimated Completion**: This represents approximately 40-50 hours of focused work to achieve full schema-implementation parity.
+
+**Priority Order**: Phase 1 (missing endpoints) should be completed first as these represent the largest gaps in API coverage. Phase 3 (configuration validation) is also high priority due to the field name mismatches discovered.

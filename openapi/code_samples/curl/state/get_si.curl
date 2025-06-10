@@ -1,0 +1,5 @@
+#!/bin/bash
+# Get combined WLED device state and info
+curl -X GET "http://192.168.1.100/json/si" \
+  -H "Accept: application/json" \
+  -H "Content-Type: application/json" 

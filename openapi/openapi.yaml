@@ -60,6 +60,8 @@ tags:
 paths:
   /json/state:
     $ref: paths/json_state.yaml
+  /json/si:
+    $ref: paths/json_si.yaml
   /json/cfg:
     $ref: paths/json_cfg.yaml
   /json/info:
@@ -79,6 +81,8 @@ components:
   schemas:
     DeviceInfo:
       $ref: components/schemas/DeviceInfo.yaml
+    StateInfoResponse:
+      $ref: components/schemas/StateInfoResponse.yaml
     Effects:
       $ref: components/schemas/Effects.yaml
     Effect:

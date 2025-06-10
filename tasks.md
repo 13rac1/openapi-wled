@@ -254,11 +254,11 @@ Based on the analysis in `docs/implementation-vs-schema-gaps.md`, the following 
 ### Phase 1: Missing API Endpoints
 
 #### Task 1.1: Add Combined State + Info Endpoint
-- [ ] Create `paths/json_si.yaml` for `/json/si` endpoint
-- [ ] Define GET operation returning combined state and info objects
-- [ ] Create response schema `components/schemas/StateInfoResponse.yaml`
-- [ ] Add path reference to main `openapi.yaml`
-- [ ] Add code samples and documentation
+- [x] Create `paths/json_si.yaml` for `/json/si` endpoint
+- [x] Define GET operation returning combined state and info objects
+- [x] Create response schema `components/schemas/StateInfoResponse.yaml`
+- [x] Add path reference to main `openapi.yaml`
+- [x] Add code samples and documentation
 
 #### Task 1.2: Add Effect Data Endpoint  
 - [ ] Create `paths/json_fxda.yaml` for `/json/fxda` endpoint

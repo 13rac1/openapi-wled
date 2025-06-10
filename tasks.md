@@ -276,11 +276,11 @@ Based on the analysis in `docs/implementation-vs-schema-gaps.md`, the following 
 - [x] Add path reference to main `openapi.yaml`
 
 #### Task 1.4: Add Base JSON Endpoint
-- [ ] Create `paths/json.yaml` for `/json` endpoint (no suffix)
-- [ ] Define GET operation returning complete API data
-- [ ] Create response schema `components/schemas/CompleteApiResponse.yaml`
-- [ ] Include state, info, effects, and palette names
-- [ ] Add path reference to main `openapi.yaml`
+- [x] Create `paths/json.yaml` for `/json` endpoint (no suffix)
+- [x] Define GET operation returning complete API data
+- [x] Create response schema `components/schemas/CompleteApiResponse.yaml`
+- [x] Include state, info, effects, and palette names
+- [x] Add path reference to main `openapi.yaml`
 
 ### Phase 2: State Object Field Completion
 

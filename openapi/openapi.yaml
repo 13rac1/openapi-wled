@@ -58,6 +58,8 @@ tags:
       url: './docs/live_data.md'
 
 paths:
+  /json:
+    $ref: paths/json.yaml
   /json/state:
     $ref: paths/json_state.yaml
   /json/si:
@@ -83,6 +85,8 @@ paths:
 
 components:
   schemas:
+    CompleteApiResponse:
+      $ref: components/schemas/CompleteApiResponse.yaml
     DeviceInfo:
       $ref: components/schemas/DeviceInfo.yaml
     StateInfoResponse:

@@ -1,0 +1,57 @@
+get:
+  tags:
+    - Effects and Palettes
+  summary: Get effect metadata
+  description: >
+    Retrieve metadata for all available effects. Returns an array of metadata strings
+    where each string contains parameter information for the corresponding effect.
+    
+    The metadata includes:
+    - Effect parameter ranges and defaults
+    - Custom slider configurations  
+    - Effect option settings
+    - Visual behavior hints
+    
+    Each metadata string is extracted from the effect definition after the '@' character.
+    Empty strings indicate effects with no additional metadata.
+    
+    **Note**: The array index corresponds to the effect ID used in segment configurations.
+  operationId: getEffectData
+  security: []
+  responses:
+    '200':
+      description: Effect metadata array retrieved successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/EffectDataResponse.yaml'
+          examples:
+            effect_metadata:
+              summary: Array of effect metadata strings
+              value:
+                - ""
+                - ""
+                - "" 
+                - ""
+                - ""
+                - ""
+                - ""
+                - ""
+                - ""
+                - ""
+                - "sx=60,ix=128,1d;!,;;!,;1,2,3,4,5,6,7,8"
+                - "!,,,160;!,,,164;;m12=1"
+                - "sx=60,ix=128,1d;!,;;!,;1,2,3,4,5,6,7,8"
+                - ""
+                - ""
+                - "sx=60,ix=128,1d;!,;;!,;1,2,3,4,5,6,7,8"
+                - ""
+                - ""
+                - "sx=60,ix=128,1d;!,;;!,;1,2,3,4,5,6,7,8"
+                - ""
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+  x-code-samples:
+    - lang: curl
+      source:
+        $ref: ../code_samples/curl/eff/get_fxda.curl 

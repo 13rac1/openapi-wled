@@ -68,6 +68,8 @@ paths:
     $ref: paths/json_info.yaml
   /json/eff:
     $ref: paths/json_eff.yaml
+  /json/fxda:
+    $ref: paths/json_fxda.yaml
   /json/pal:
     $ref: paths/json_pal.yaml
   /json/nodes:
@@ -87,6 +89,8 @@ components:
       $ref: components/schemas/Effects.yaml
     Effect:
       $ref: components/schemas/Effect.yaml
+    EffectDataResponse:
+      $ref: components/schemas/EffectDataResponse.yaml
     Palettes:
       $ref: components/schemas/Palettes.yaml
     Palette:

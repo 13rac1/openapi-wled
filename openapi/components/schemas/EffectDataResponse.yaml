@@ -1,0 +1,29 @@
+description: >
+  Effect data response returned by GET /json/fxda. Contains an array of effect metadata 
+  strings extracted from effect definitions. Each string represents metadata for the 
+  corresponding effect (by array index), containing the data that appears after the '@' 
+  character in the original effect definition.
+type: array
+items:
+  type: string
+  description: >
+    Effect metadata string for this effect. Contains parameters, sliders, and options
+    specific to this effect. Empty string if no metadata is available for this effect.
+  example: "!,,,160;!,,,164;;m12=1"
+readOnly: true
+example:
+  - ""
+  - ""
+  - ""
+  - ""
+  - ""
+  - ""
+  - ""
+  - ""
+  - ""
+  - ""
+  - "sx=60,ix=128,1d;!,;;!,;1,2,3,4,5,6,7,8"
+  - "!,,,160;!,,,164;;m12=1"
+  - "sx=60,ix=128,1d;!,;;!,;1,2,3,4,5,6,7,8"
+  - ""
+  - "" 

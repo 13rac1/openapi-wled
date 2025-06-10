@@ -261,11 +261,11 @@ Based on the analysis in `docs/implementation-vs-schema-gaps.md`, the following 
 - [x] Add code samples and documentation
 
 #### Task 1.2: Add Effect Data Endpoint  
-- [ ] Create `paths/json_fxda.yaml` for `/json/fxda` endpoint
-- [ ] Define GET operation returning array of effect metadata
-- [ ] Create response schema `components/schemas/EffectDataResponse.yaml`
-- [ ] Document effect metadata format (data after '@' character)
-- [ ] Add path reference to main `openapi.yaml`
+- [x] Create `paths/json_fxda.yaml` for `/json/fxda` endpoint
+- [x] Define GET operation returning array of effect metadata
+- [x] Create response schema `components/schemas/EffectDataResponse.yaml`
+- [x] Document effect metadata format (data after '@' character)
+- [x] Add path reference to main `openapi.yaml`
 
 #### Task 1.3: Add Paginated Palette Endpoint
 - [ ] Create `paths/json_palx.yaml` for `/json/palx` endpoint

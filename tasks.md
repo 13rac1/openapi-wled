@@ -285,11 +285,11 @@ Based on the analysis in `docs/implementation-vs-schema-gaps.md`, the following 
 ### Phase 2: State Object Field Completion
 
 #### Task 2.1: Add Missing Core State Fields
-- [ ] Add `ledmap` field to `components/schemas/State.yaml`
+- [x] Add `ledmap` field to `components/schemas/State.yaml`
   - Type: `integer`
   - Description: "Current LED map ID"
   - ReadOnly: `true`
-- [ ] Add `error` field to `components/schemas/State.yaml`
+- [x] Add `error` field to `components/schemas/State.yaml`
   - Type: `integer` 
   - Description: "Error code if present"
   - ReadOnly: `true`

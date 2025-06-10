@@ -72,6 +72,8 @@ paths:
     $ref: paths/json_fxda.yaml
   /json/pal:
     $ref: paths/json_pal.yaml
+  /json/palx:
+    $ref: paths/json_palx.yaml
   /json/nodes:
     $ref: paths/json_nodes.yaml
   /json/net:
@@ -95,6 +97,8 @@ components:
       $ref: components/schemas/Palettes.yaml
     Palette:
       $ref: components/schemas/Palette.yaml
+    PaginatedPalettesResponse:
+      $ref: components/schemas/PaginatedPalettesResponse.yaml
     Node:
       $ref: components/schemas/Node.yaml
     Nodes:

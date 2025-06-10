@@ -1,0 +1,7 @@
+# Get first page of palette data
+curl --request GET \
+  --url "http://{host}/json/palx"
+
+# Get specific page of palette data  
+curl --request GET \
+  --url "http://{host}/json/palx?page=1" 

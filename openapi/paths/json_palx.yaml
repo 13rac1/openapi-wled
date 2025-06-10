@@ -1,0 +1,93 @@
+get:
+  tags:
+    - Effects and Palettes
+  summary: Get paginated palette data with colors
+  description: >
+    Retrieve detailed palette data with full color information in a paginated format.
+    Unlike `/json/pal` which returns only palette names, this endpoint provides the actual
+    color data for each palette, including RGB values and special color references.
+    
+    **Pagination**: Due to memory constraints (especially on ESP8266), palette data is 
+    split into pages. ESP8266 devices return 5 palettes per page, while ESP32 devices 
+    return 8 palettes per page.
+    
+    **Color Data Format**:
+    - RGB colors: Arrays of `[position, red, green, blue]` values (0-255)
+    - Segment colors: Strings "c1", "c2", "c3" referring to current segment colors
+    - Random colors: String "r" for random color generation
+    
+    **Palette Types**:
+    - Built-in palettes (gradient definitions)
+    - FastLED standard palettes  
+    - Custom user-defined palettes
+  operationId: getPaginatedPalettes
+  security: []
+  parameters:
+    - name: page
+      in: query
+      description: >
+        Page number to retrieve (0-based). If not specified, defaults to page 0.
+        The maximum page number is returned in the response `m` field.
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      example: 0
+  responses:
+    '200':
+      description: Paginated palette data retrieved successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/PaginatedPalettesResponse.yaml'
+          examples:
+            first_page:
+              summary: First page of palette data
+              value:
+                m: 3
+                p:
+                  "0":
+                    - [0, 194, 15, 120]
+                    - [51, 255, 0, 0]
+                    - [102, 255, 160, 0]
+                    - [153, 255, 255, 0]
+                    - [204, 0, 255, 0]
+                    - [255, 0, 255, 255]
+                  "1":
+                    - "r"
+                    - "r"
+                    - "r"
+                    - "r"
+                  "2":
+                    - "c1"
+                  "3":
+                    - "c1"
+                    - "c1"
+                    - "c2"
+                    - "c2"
+                  "4":
+                    - "c3"
+                    - "c2"
+                    - "c1"
+            custom_palettes:
+              summary: Page containing custom palettes
+              value:
+                m: 3
+                p:
+                  "65":
+                    - [0, 255, 0, 0]
+                    - [128, 255, 255, 0]
+                    - [255, 0, 0, 255]
+                  "66":
+                    - [0, 0, 255, 0]
+                    - [64, 128, 255, 128]
+                    - [128, 255, 255, 255]
+                    - [192, 128, 128, 255]
+                    - [255, 0, 0, 128]
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+  x-code-samples:
+    - lang: curl
+      source:
+        $ref: ../code_samples/curl/pal/get_palx.curl 

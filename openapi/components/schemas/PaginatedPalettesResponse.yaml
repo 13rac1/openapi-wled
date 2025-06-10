@@ -1,0 +1,70 @@
+description: >
+  Paginated palettes response returned by GET /json/palx. Contains palette color data
+  with pagination support to handle large numbers of palettes efficiently.
+type: object
+properties:
+  m:
+    type: integer
+    minimum: 0
+    description: >
+      Maximum page number (0-based). Indicates how many pages of palette data are available.
+      Clients can request pages 0 through this value.
+    example: 3
+    readOnly: true
+  p:
+    type: object
+    description: >
+      Palette data object where keys are palette IDs (as strings) and values are color arrays.
+      Each palette contains an array of color entries that define the palette's gradient.
+    readOnly: true
+    additionalProperties:
+      type: array
+      description: >
+        Color data array for this palette. Can contain either color position/RGB arrays or 
+        special string values for dynamic colors.
+      items:
+        oneOf:
+          - type: array
+            description: Color position and RGB values [position, red, green, blue]
+            items:
+              type: integer
+              minimum: 0
+              maximum: 255
+            minItems: 4
+            maxItems: 4
+            example: [0, 255, 160, 0]
+          - type: string
+            description: >
+              Special color reference. Can be segment colors ("c1", "c2", "c3") or 
+              "r" for random colors.
+            enum: ["r", "c1", "c2", "c3"]
+            example: "c1"
+required:
+  - m
+  - p
+example:
+  m: 3
+  p:
+    "0":
+      - [0, 194, 15, 120]
+      - [51, 255, 0, 0]
+      - [102, 255, 160, 0]
+      - [153, 255, 255, 0]
+      - [204, 0, 255, 0]
+      - [255, 0, 255, 255]
+    "1":
+      - "r"
+      - "r"
+      - "r"
+      - "r"
+    "2":
+      - "c1"
+    "3":
+      - "c1"
+      - "c1"
+      - "c2"
+      - "c2"
+    "4":
+      - "c3"
+      - "c2"
+      - "c1" 

@@ -268,12 +268,12 @@ Based on the analysis in `docs/implementation-vs-schema-gaps.md`, the following 
 - [x] Add path reference to main `openapi.yaml`
 
 #### Task 1.3: Add Paginated Palette Endpoint
-- [ ] Create `paths/json_palx.yaml` for `/json/palx` endpoint
-- [ ] Define GET operation with optional `page` query parameter
-- [ ] Create response schema `components/schemas/PaginatedPalettesResponse.yaml`
-- [ ] Document pagination structure with `m` (max pages) and `p` (palette data)
-- [ ] Include color data arrays vs simple names
-- [ ] Add path reference to main `openapi.yaml`
+- [x] Create `paths/json_palx.yaml` for `/json/palx` endpoint
+- [x] Define GET operation with optional `page` query parameter
+- [x] Create response schema `components/schemas/PaginatedPalettesResponse.yaml`
+- [x] Document pagination structure with `m` (max pages) and `p` (palette data)
+- [x] Include color data arrays vs simple names
+- [x] Add path reference to main `openapi.yaml`
 
 #### Task 1.4: Add Base JSON Endpoint
 - [ ] Create `paths/json.yaml` for `/json` endpoint (no suffix)

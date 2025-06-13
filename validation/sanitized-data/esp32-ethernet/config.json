@@ -5,7 +5,7 @@
       "name": "WLED Device",
       "description": "192.168.1.100"
     },
-    "timestamp": "2025-06-11T08:35:30.610Z",
+    "timestamp": "2025-06-11T08:43:56.441Z",
     "httpStatus": 200,
     "contentType": "application/json",
     "dataSize": 2534
@@ -115,28 +115,44 @@
             "pin": [
               0
             ],
-            "macros": "AA:BB:CC:DD:EE:FF"
+            "macros": [
+              0,
+              0,
+              0
+            ]
           },
           {
             "type": 0,
             "pin": [
               -1
             ],
-            "macros": "AA:BB:CC:DD:EE:FF"
+            "macros": [
+              0,
+              0,
+              0
+            ]
           },
           {
             "type": 0,
             "pin": [
               0
             ],
-            "macros": "AA:BB:CC:DD:EE:FF"
+            "macros": [
+              0,
+              0,
+              0
+            ]
           },
           {
             "type": 0,
             "pin": [
               0
             ],
-            "macros": "AA:BB:CC:DD:EE:FF"
+            "macros": [
+              0,
+              0,
+              0
+            ]
           }
         ],
         "tt": 32,
@@ -186,7 +202,7 @@
         "mode": 1,
         "dur": 60,
         "tbri": 0,
-        "macro": "AA:BB:CC:DD:EE:FF"
+        "macro": 0
       }
     },
     "def": {
@@ -243,7 +259,10 @@
       },
       "va": {
         "alexa": false,
-        "macros": "AA:BB:CC:DD:EE:FF",
+        "macros": [
+          0,
+          0
+        ],
         "p": 0
       },
       "mqtt": {
@@ -305,7 +324,7 @@
           0,
           0
         ],
-        "macro": "AA:BB:CC:DD:EE:FF"
+        "macro": 0
       },
       "ins": []
     },

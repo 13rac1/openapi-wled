@@ -115,7 +115,11 @@ function sanitizeObject(obj, depth = 0, parentKey = '') {
     else if (lowerKey.includes('password') || lowerKey.includes('pass') || lowerKey.includes('pwd')) {
       sanitized[key] = '***';
     }
-    else if (lowerKey === 'ssid' || (lowerKey.includes('ssid') && typeof value === 'string')) {
+    else if (lowerKey === 'bssid' || (lowerKey.includes('bssid') && typeof value === 'string')) {
+      // Always use MAC address format for BSSID
+      sanitized[key] = 'AA:BB:CC:DD:EE:FF';
+    }
+    else if (lowerKey === 'ssid') {
       // Special handling for SSIDs - sanitize all except our placeholders
       if (typeof value === 'string') {
         const ssidPattern = SENSITIVE_PATTERNS.find(p => p.onlyForSSID);
@@ -141,7 +145,8 @@ function sanitizeObject(obj, depth = 0, parentKey = '') {
       }
       sanitized[key] = sanitizedValue;
     }
-    else if (lowerKey === 'bssid' || lowerKey.includes('mac') || (lowerKey.includes('bssid') && typeof value === 'string')) {
+    else if (lowerKey.includes('mac') && typeof value === 'string') {
+      // Use MAC address pattern for other MAC addresses
       sanitized[key] = 'AA:BB:CC:DD:EE:FF';
     }
     else if (lowerKey.includes('ip') || lowerKey.includes('gateway') || lowerKey.includes('dns')) {

@@ -1,6 +1,6 @@
 {
   "ip": "192.168.1.100",
-  "collectionStart": "2025-06-11T08:35:30.096Z",
+  "collectionStart": "2025-06-11T08:43:55.899Z",
   "endpoints": {
     "complete-api": {
       "success": true,
@@ -54,7 +54,7 @@
     },
     "networks": {
       "success": true,
-      "dataSize": 2504,
+      "dataSize": 3132,
       "filename": "WLED-Device"
     },
     "state-info": {
@@ -67,5 +67,5 @@
       "error": "Failed after 3 attempts"
     }
   },
-  "collectionEnd": "2025-06-11T08:35:39.939Z"
+  "collectionEnd": "2025-06-11T08:44:03.310Z"
 }

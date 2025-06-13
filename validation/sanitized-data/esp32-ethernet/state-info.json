@@ -5,7 +5,7 @@
       "name": "WLED Device",
       "description": "192.168.1.100"
     },
-    "timestamp": "2025-06-11T08:35:31.757Z",
+    "timestamp": "2025-06-11T08:43:57.659Z",
     "httpStatus": 200,
     "contentType": "application/json",
     "dataSize": 1393
@@ -123,7 +123,7 @@
         }
       ],
       "wifi": {
-        "bssid": "WLED-Device",
+        "bssid": "AA:BB:CC:DD:EE:FF",
         "rssi": -47,
         "signal": 100,
         "channel": 1,
@@ -140,9 +140,9 @@
       "clock": 240,
       "flash": 4,
       "lwip": 0,
-      "freeheap": 177564,
-      "uptime": 6322,
-      "time": "1970-1-1, 01:45:22",
+      "freeheap": 176188,
+      "uptime": 6828,
+      "time": "1970-1-1, 01:53:48",
       "u": {
         "AudioReactive": [
           "<button class=\"btn btn-xs\" onclick=\"requestJson({AudioReactive:{enabled:true}});\"><i class=\"icons off\">&#xe08f;</i></button>"

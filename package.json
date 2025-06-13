@@ -11,7 +11,7 @@
   "scripts": {
     "start": "redocly preview-docs",
     "build": "redocly bundle openapi/openapi.yaml -o dist/openapi-wled-json-api.yaml",
-    "test": "redocly lint",
+    "test": "redocly lint && npm run validate:schema",
     "validate:collect": "node validation/scripts/collect-data.js",
     "validate:collect:esp32": "node validation/scripts/collect-data.js 10.0.0.100",
     "validate:sanitize": "node validation/scripts/sanitize-data.js",

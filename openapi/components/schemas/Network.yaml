@@ -26,28 +26,22 @@ properties:
     description: WiFi channel number (typically 1-14)
     nullable: true
   enc:
-    type: string
+    type: integer
+    format: int32
     description: |
       Encryption type:
-      * WIFI_AUTH_OPEN - Open network
-      * WIFI_AUTH_WEP - WEP encryption
-      * WIFI_AUTH_WPA_PSK - WPA-PSK encryption
-      * WIFI_AUTH_WPA2_PSK - WPA2-PSK encryption
-      * WIFI_AUTH_WPA_WPA2_PSK - WPA/WPA2-PSK encryption
-      * WIFI_AUTH_WPA2_ENTERPRISE - WPA2-Enterprise encryption
-      * WIFI_AUTH_MAX - Maximum value
-    enum:
-      - WIFI_AUTH_OPEN
-      - WIFI_AUTH_WEP
-      - WIFI_AUTH_WPA_PSK
-      - WIFI_AUTH_WPA2_PSK
-      - WIFI_AUTH_WPA_WPA2_PSK
-      - WIFI_AUTH_WPA2_ENTERPRISE
-      - WIFI_AUTH_MAX
+      * 0 - WIFI_AUTH_OPEN - Open network
+      * 1 - WIFI_AUTH_WEP - WEP encryption
+      * 2 - WIFI_AUTH_WPA_PSK - WPA-PSK encryption
+      * 3 - WIFI_AUTH_WPA2_PSK - WPA2-PSK encryption
+      * 4 - WIFI_AUTH_WPA_WPA2_PSK - WPA/WPA2-PSK encryption
+      * 5 - WIFI_AUTH_WPA2_ENTERPRISE - WPA2-Enterprise encryption
+      * 6 - WIFI_AUTH_MAX - Maximum value
+    enum: [0, 1, 2, 3, 4, 5, 6]
     nullable: true
 example:
   ssid: "MyWiFi"
   rssi: -65
   bssid: "00:11:22:33:44:55"
   channel: 6
-  enc: "WIFI_AUTH_WPA2_PSK" 
+  enc: 3 

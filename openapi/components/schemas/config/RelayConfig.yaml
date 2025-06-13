@@ -8,6 +8,10 @@ properties:
   rev:
     type: boolean
     description: Reverse/negate output
+  odrain:
+    type: boolean
+    description: Use open drain output
 example:
-  pin: 12
-  rev: false 
+  pin: -1
+  rev: false
+  odrain: false 

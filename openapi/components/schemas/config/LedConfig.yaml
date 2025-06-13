@@ -30,6 +30,10 @@ properties:
     type: boolean
     description: CCT is calculated from RGB instead of using seg.cct
     nullable: true
+  ic:
+    type: boolean
+    description: Individual LED control
+    nullable: true
   cb:
     type: integer
     format: uint8
@@ -228,36 +232,42 @@ properties:
           minimum: 0
           maximum: 65535
           nullable: true
+        maxpwr:
+          type: integer
+          format: uint16
+          description: Maximum power in milliamps for this bus
+          minimum: 0
+          maximum: 65535
+          nullable: true
+        ledma:
+          type: integer
+          format: uint8
+          description: Milliamps per LED for this bus
+          minimum: 0
+          maximum: 255
+          nullable: true
 required: []
 example:
-  total: 144
+  total: 30
   maxpwr: 850
-  ledma: 55
+  ledma: 0
   cct: false
   cr: false
+  ic: false
   cb: 0
   fps: 42
   rgbwm: 255
-  ld: false
-  matrix:
-    mpc: 1
-    panels:
-      - b: false
-        r: false
-        v: true
-        s: true
-        x: 0
-        y: 0
-        h: 12
-        w: 12
+  ld: true
   ins:
     - start: 0
-      len: 144
+      len: 30
       pin: [16]
       order: 0
       rev: false
       skip: 0
       type: 22
       ref: false
-      rgbwm: 255
-      freq: 0 
+      rgbwm: 0
+      freq: 0
+      maxpwr: 850
+      ledma: 55 

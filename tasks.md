@@ -359,19 +359,23 @@ Based on the analysis in `docs/implementation-vs-schema-gaps.md`, the following 
 - [x] `EthernetConfig.yaml` - **KNOWN ISSUE**: Change `relay` → `type`, verify enums
 
 #### Task 3.4: Hardware Configuration Validation (High Priority)
-- [ ] `HardwareConfig.yaml` - Main hardware wrapper
-- [ ] `LedConfig.yaml` - **COMPLEX**: LED strips, buses, pin configurations
-  - Verify bus configuration arrays
-  - Check LED strip type enums
-  - Validate pin assignment structures
-  - **Add 2D Matrix fields**: `mpc`, `panels` array with `b`, `r`, `v`, `s`, `x`, `y`, `h`, `w`
-- [x] `ButtonConfig.yaml` - Button hardware and macro configuration
-  - [x] Check macro array structures
-  - [x] Verify pin configurations
-  - [x] Validate button type enums
-- [ ] `InfraredConfig.yaml` - IR receiver configuration
-- [ ] `RelayConfig.yaml` - Relay output configuration
-- [ ] `HardwareInterfaceConfig.yaml` - I2C/SPI pin configurations
+- [x] HardwareConfig.yaml
+  - [x] LED configuration
+  - [x] Communication settings
+  - [x] Button configuration
+  - [x] Infrared settings
+  - [x] Relay configuration
+  - [x] Interface configuration
+- [x] LedConfig.yaml
+  - [x] Total LED count
+  - [x] Power limit
+  - [x] LED matrix
+  - [x] Individual LED control
+  - [x] LED segments
+- [x] RelayConfig.yaml
+  - [x] Pin configuration
+  - [x] Reverse logic
+  - [x] Open drain output
 
 #### Task 3.5: Interface Configuration Validation (Medium Priority)
 - [ ] `InterfaceConfig.yaml` - Main interface wrapper

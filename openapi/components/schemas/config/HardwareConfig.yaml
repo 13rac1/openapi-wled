@@ -52,41 +52,30 @@ properties:
 required: []
 example:
   led:
-    total: 100
-    maxpwr: 1000
-    ledma: 50
+    total: 30
+    maxpwr: 850
+    ledma: 0
     cct: false
     cr: false
+    ic: false
     cb: 0
-    fps: 60
+    fps: 42
     rgbwm: 255
-    ld: false
-    matrix:
-      mpc: 1
-      panels:
-        - b: false
-          r: false
-          v: false
-          s: true
-          x: 0
-          y: 0
-          h: 16
-          w: 16
+    ld: true
     ins:
       - start: 0
-        len: 100
-        pin: [2]
+        len: 30
+        pin: [16]
         order: 0
         rev: false
         skip: 0
         type: 22
         ref: false
         rgbwm: 0
-        freq: 800
-  com:
-    - start: 0
-      len: 100
-      order: 0
+        freq: 0
+        maxpwr: 850
+        ledma: 55
+  com: []
   btn:
     max: 4
     pull: true
@@ -95,18 +84,25 @@ example:
     ins:
       - type: 2
         pin: [0]
-        macros:
-          "0": 1
-          "1": 2
-          "2": 3
+        macros: [0, 0, 0]
+      - type: 0
+        pin: [-1]
+        macros: [0, 0, 0]
+      - type: 0
+        pin: [0]
+        macros: [0, 0, 0]
+      - type: 0
+        pin: [0]
+        macros: [0, 0, 0]
   ir:
-    pin: 4
-    type: 1
+    pin: -1
+    type: 0
     sel: true
   relay:
-    pin: 5
+    pin: -1
     rev: false
-  baud: 96
+    odrain: false
+  baud: 1152
   if:
-    i2c-pin: [21, 22]
-    spi-pin: [23, 18, 19] 
+    i2c-pin: [-1, -1]
+    spi-pin: [-1, -1, -1] 

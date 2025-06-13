@@ -442,30 +442,30 @@ Based on the analysis in `docs/implementation-vs-schema-gaps.md`, the following 
   - [ ] ESP8266 basic configuration  
   - [ ] ESP32 with 2D matrix
   - [ ] Different usermod configurations
-- [ ] Run schema validation against captured responses
-- [ ] Document validation failures and required fixes
-- [ ] Create automated validation test suite
+- [x] Run schema validation against captured responses
+- [x] Document validation failures and required fixes
+- [x] Create automated validation test suite
 
 ### Phase 4: Device Information Completion
 
 #### Task 4.1: Add Missing Platform-Specific Fields
-- [ ] Add `cn` field to `components/schemas/DeviceInfo.yaml`
+- [x] Add `cn` field to `components/schemas/DeviceInfoResponse.yaml`
   - Type: `string`
   - Description: "Codename"
   - ReadOnly: `true`
-- [ ] Add `release` field to `components/schemas/DeviceInfo.yaml`
+- [x] Add `release` field to `components/schemas/DeviceInfoResponse.yaml`
   - Type: `string`
   - Description: "Release information"
   - ReadOnly: `true`
-- [ ] Add `clock` field to `components/schemas/DeviceInfo.yaml`
+- [x] Add `clock` field to `components/schemas/DeviceInfoResponse.yaml`
   - Type: `integer`
   - Description: "CPU frequency in MHz"
   - ReadOnly: `true`
-- [ ] Add `flash` field to `components/schemas/DeviceInfo.yaml`
+- [x] Add `flash` field to `components/schemas/DeviceInfoResponse.yaml`
   - Type: `integer`
   - Description: "Flash memory size in MB"
   - ReadOnly: `true`
-- [ ] Add `ndc` field to `components/schemas/DeviceInfo.yaml`
+- [x] Add `ndc` field to `components/schemas/DeviceInfoResponse.yaml`
   - Type: `integer`
   - Description: "Node discovery count (-1 if disabled)"
   - ReadOnly: `true`
@@ -475,58 +475,21 @@ Based on the analysis in `docs/implementation-vs-schema-gaps.md`, the following 
 - [ ] Add conditional schema support for different builds
 - [ ] Include feature availability flags documentation
 
-### Phase 5: Testing and Validation
+### Phase 5: Final Validation and Documentation
 
-#### Task 5.1: Real Device Testing
-- [ ] Set up WLED device testing environment
-- [ ] Capture actual API responses from different WLED builds:
-  - [ ] ESP32 with all features enabled
-  - [ ] ESP8266 basic build
-  - [ ] ESP32 with 2D matrix support
-  - [ ] ESP32 with Ethernet support
-- [ ] Compare responses with schema definitions systematically
-
-#### Task 5.2: Schema Validation
-- [ ] Run `npm test` after all changes
-- [ ] Fix any validation errors
-- [ ] Test bundled schema generation
-- [ ] Verify all $ref links resolve correctly
-
-#### Task 5.3: Documentation Updates
-- [ ] Update main `openapi.yaml` with all new path references
-- [ ] Add code samples for new endpoints
-- [ ] Update API documentation with new features
-- [ ] Create migration guide for schema changes
-
-### Phase 6: Rust Library Alignment
-
-#### Task 6.1: Cross-Reference Analysis  
-- [ ] Compare updated schema with Rust library structures
-- [ ] Document remaining differences
-- [ ] Create mapping guide for field name differences
-- [ ] Identify potential Rust library updates needed
-
-#### Task 6.2: Version Compatibility
-- [ ] Document which WLED versions support which features
-- [ ] Add conditional field documentation
-- [ ] Create compatibility matrix
-
-### Phase 7: Final Validation and Documentation
-
-#### Task 7.1: Complete Testing
+#### Task 5.1: Complete Testing
 - [ ] Test all endpoints with real devices
 - [ ] Validate all request/response examples
 - [ ] Verify error response handling
 - [ ] Test edge cases and error conditions
 
-#### Task 7.2: Documentation Finalization
+#### Task 5.2: Documentation Finalization
 - [ ] Update `README.md` with schema completion status
 - [ ] Create API usage examples for all endpoints
 - [ ] Document known limitations and issues
 - [ ] Create troubleshooting guide
 
-#### Task 7.3: Quality Assurance
+#### Task 5.3: Quality Assurance
 - [ ] Code review of all schema changes
-- [ ] Spell check and grammar review of documentation
 - [ ] Verify all links and references work
 - [ ] Final validation report creation

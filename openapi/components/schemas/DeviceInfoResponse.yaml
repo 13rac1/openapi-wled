@@ -12,6 +12,16 @@ properties:
     description: Build ID (YYMMDDB, B = daily build index)
     example: 2310130
     readOnly: true
+  cn:
+    type: string
+    description: "Codename of the WLED version"
+    example: "Kōsen"
+    readOnly: true
+  release:
+    type: string
+    description: "Release information including build type and platform"
+    example: "ESP32_Ethernet"
+    readOnly: true
   leds:
     type: object
     description: Contains info about the LED setup
@@ -258,4 +268,14 @@ properties:
     type: string
     description: The IP address of this instance. Empty string if not connected (since 0.13.0)
     example: "192.168.1.40"
+    readOnly: true
+  clock:
+    type: integer
+    description: "CPU frequency in MHz (ESP32 only)"
+    example: 240
+    readOnly: true
+  flash:
+    type: integer
+    description: "Flash memory size in MB (ESP32 only)"
+    example: 4
     readOnly: true 

@@ -2,7 +2,7 @@
 
 An OpenAPI 3.0 schema for the WLED JSON API.
 
-Originally created as a 1:1 specification copy of [github.com/paul-fornage/wled-json-api-library](https://github.com/paul-fornage/wled-json-api-library).
+Originally created as a 1:1 specification copy of [github.com/paul-fornage/wled-json-api-library](https://github.com/paul-fornage/wled-json-api-library), this schema has been verified against the actual WLED implementation in [github.com/wled/WLED](https://github.com/wled/WLED.git).
 
 ## AI Usage
 
@@ -24,7 +24,32 @@ Starts the reference docs preview server.
 Bundles the definition to the dist folder.
 
 #### `npm test`
-Validates the definition.
+Validates the definition against the OpenAPI specification and real device data.
+
+### Validation
+
+To validate the schema against a real WLED device:
+
+1. Collect data from your device:
+   ```bash
+   # Collect from default IP (10.0.0.100)
+   npm run validate:collect
+
+   # Or specify a device IP
+   npm run validate:collect 192.168.1.100
+   ```
+
+2. Sanitize the collected data:
+   ```bash
+   npm run validate:sanitize your-device-name
+   ```
+
+3. Run the validation:
+   ```bash
+   npm test
+   ```
+
+See `validation/README.md` for detailed validation instructions and device configurations.
 
 The `.redocly.yaml` controls settings for various
 tools including the lint tool and the reference

@@ -10,12 +10,12 @@
   "private": true,
   "scripts": {
     "start": "redocly preview-docs",
-    "build": "redocly bundle openapi/openapi.yaml -o dist/openapi-wled-json-api.yaml",
+    "build": "redocly bundle openapi/openapi.yaml -o dist/openapi.yaml",
     "test": "redocly lint && npm run validate:schema",
     "validate:collect": "node validation/scripts/collect-data.js",
     "validate:collect:esp32": "node validation/scripts/collect-data.js 10.0.0.100",
     "validate:sanitize": "node validation/scripts/sanitize-data.js",
-    "validate:sanitize:all": "node validation/scripts/sanitize-data.js --all",
+    "validate:sanitize:all": "node validation/scripts/sanitize-data.js all",
     "validate:schema": "node validation/scripts/validate-schema.js"
   }
 }

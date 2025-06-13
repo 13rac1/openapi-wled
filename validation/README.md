@@ -16,7 +16,8 @@ The validation process involves:
 validation/
 ├── scripts/              # Data collection and processing tools
 │   ├── collect-data.js   # Capture JSON API responses from WLED devices
-│   └── sanitize-data.js  # Remove sensitive data from captured responses
+│   ├── sanitize-data.js  # Remove sensitive data from captured responses
+│   └── validate-schema.js # Validate captured data against OpenAPI schemas
 ├── captured-data/        # Raw device responses (GITIGNORED - sensitive!)
 ├── sanitized-data/       # Cleaned data safe for validation (GITIGNORED)
 └── reports/             # Validation reports and analysis (GITIGNORED)
@@ -74,7 +75,21 @@ npm run validate:sanitize:all
 
 ### 3. Schema Validation
 
-*Coming soon: Tools to compare sanitized data against OpenAPI schemas*
+Validate the captured data against the OpenAPI schema:
+
+```bash
+# Validate all endpoints
+npm test
+
+# Validate specific endpoint
+node validation/scripts/validate-schema.js validation/sanitized-data/esp32-ethernet/state.json
+```
+
+The validation script:
+- Bundles the OpenAPI schema from multiple files
+- Validates each endpoint's response against its schema
+- Generates a detailed validation report
+- Reports any mismatches between the schema and actual data
 
 ## Device Configurations Tested
 

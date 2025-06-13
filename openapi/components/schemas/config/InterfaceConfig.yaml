@@ -20,27 +20,30 @@ example:
   sync:
     port0: 21324
     port1: 65506
+    espnow: false
     recv:
       bri: true
       col: true
       fx: true
+      pal: true
       grp: 1
-      seg: true
+      seg: false
       sb: false
     send:
-      dir: true
-      btn: true
+      en: false
+      dir: false
+      btn: false
       va: false
-      hue: false
-      macro: false
+      hue: true
       grp: 1
-      ret: 2
+      ret: 0
   nodes:
     list: true
     bcast: true
   live:
     en: true
     mso: false
+    rlm: true
     port: 5568
     mc: false
     dmx:

@@ -9,6 +9,10 @@ properties:
     type: boolean
     description: Use Main Segment Only
     nullable: true
+  rlm:
+    type: boolean
+    description: Realtime respect LED maps
+    nullable: true
   port:
     type: integer
     format: uint16
@@ -107,16 +111,17 @@ required: []
 example:
   en: true
   mso: false
+  rlm: true
   port: 5568
-  mc: true
+  mc: false
   dmx:
     uni: 1
     seqskip: false
-    e131prio: 100
+    e131prio: 0
     addr: 1
     dss: 0
     mode: 4
-  timeout: 2500
+  timeout: 25
   maxbri: false
-  no-gc: false
+  no-gc: true
   offset: 0 

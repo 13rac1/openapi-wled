@@ -15,6 +15,10 @@ properties:
     minimum: 0
     maximum: 65535
     nullable: true
+  espnow:
+    type: boolean
+    description: Use ESP-NOW for synchronization
+    nullable: true
   recv:
     type: object
     description: WLED notifier receive configuration
@@ -31,6 +35,10 @@ properties:
       fx:
         type: boolean
         description: Apply effects setup
+        nullable: true
+      pal:
+        type: boolean
+        description: Apply palette
         nullable: true
       grp:
         type: integer
@@ -52,6 +60,10 @@ properties:
     description: WLED notifier send configuration
     nullable: true
     properties:
+      en:
+        type: boolean
+        description: Enable sending notifications
+        nullable: true
       dir:
         type: boolean
         description: Send notification if change via UI or HTTP API
@@ -67,10 +79,6 @@ properties:
       hue:
         type: boolean
         description: Send notification if Hue light changes
-        nullable: true
-      macro:
-        type: boolean
-        description: Send notification for macro
         nullable: true
       grp:
         type: integer
@@ -90,18 +98,20 @@ required: []
 example:
   port0: 21324
   port1: 65506
+  espnow: false
   recv:
     bri: true
     col: true
     fx: true
+    pal: true
     grp: 1
-    seg: true
-    sb: true
+    seg: false
+    sb: false
   send:
-    dir: true
-    btn: true
-    va: true
+    en: false
+    dir: false
+    btn: false
+    va: false
     hue: true
-    macro: true
     grp: 1
-    ret: 1 
+    ret: 0 

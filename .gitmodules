@@ -1,6 +1,3 @@
-[submodule "wled-json-api-library"]
-	path = wled-json-api-library
-	url = https://github.com/paul-fornage/wled-json-api-library.git
 [submodule "WLED"]
 	path = WLED
 	url = https://github.com/wled/WLED.git

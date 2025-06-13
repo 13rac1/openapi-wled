@@ -1,0 +1,37 @@
+type: object
+description: Security configuration settings
+example:
+  pin: "1234"
+  ota:
+    lock: false
+    "lock-wifi": false
+    pskl: 7
+    aota: true
+properties:
+  pin:
+    type: string
+    description: PIN for settings pages. If empty, no PIN is required
+    nullable: true
+  ota:
+    type: object
+    description: Over-The-Air (OTA) update configuration
+    properties:
+      lock:
+        type: boolean
+        description: Prevents OTA firmware updates without password. ALWAYS enable if system exposed to any public networks
+        nullable: true
+      "lock-wifi":
+        type: boolean
+        description: Prevents access to WiFi settings when OTA lock is enabled
+        nullable: true
+      pskl:
+        type: integer
+        format: uint8
+        minimum: 0
+        maximum: 255
+        description: Length of OTA password
+        nullable: true
+      aota:
+        type: boolean
+        description: ArduinoOTA allows easy updates directly from the IDE. Careful, it does not auto-disable when OTA lock is on
+        nullable: true 

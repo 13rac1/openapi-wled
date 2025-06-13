@@ -82,6 +82,10 @@ properties:
     $ref: './DmxConfig.yaml'
     description: >
       DMX protocol settings. Only included in builds with DMX support.
+  sec:
+    $ref: './SecurityConfig.yaml'
+    description: >
+      Security settings including PIN protection and OTA update security.
   um:
     type: object
     description: >
@@ -114,4 +118,11 @@ example:
       mqtt: false
   light:
     scale-bri: 100
-    aseg: true 
+    aseg: true
+  sec:
+    pin: "1234"
+    ota:
+      lock: false
+      "lock-wifi": false
+      pskl: 7
+      aota: true 

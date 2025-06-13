@@ -3,23 +3,26 @@ type: object
 properties:
   mdns:
     type: string
-    description: mDNS address (*.local, replaced by wledXXXXXX if default is used)
+    description: mDNS address for device discovery (*.local, defaults to wledXXXXXX if not set)
+    maxLength: 32
     nullable: true
   name:
     type: string
-    description: Server Description; Name of module - use default
+    description: Server description/device name (used for MQTT, Home Assistant, and web interface)
+    maxLength: 32
     nullable: true
   inv:
     type: string
-    description: Alexa invocation name; speech control name of device. Choose something voice-to-text can understand
+    description: Alexa invocation name; speech control name of device. Choose something voice-to-text can understand. Only used if Alexa is enabled.
+    maxLength: 32
     nullable: true
   sui:
     type: boolean
-    description: Simplified UI
+    description: Simplified UI mode - reduces UI complexity for basic users
     nullable: true
 required: []
 example:
-  mdns: "myled.local"
-  name: "WLED Light"
+  mdns: "wled.local"
+  name: "WLED Device"
   inv: "living room light"
   sui: false 

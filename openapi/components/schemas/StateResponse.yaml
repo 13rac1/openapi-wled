@@ -1,8 +1,128 @@
-allOf:
-  - $ref: './State.yaml'
+type: object
 description: >
-  State response object returned by GET /json/state. Contains the current device state
-  including all lighting parameters, effects, segments, and control settings.
+  The main state object containing all device state properties including lighting state,
+  effects, segments, and various control options. This is the core object for controlling
+  WLED device behavior.
+properties:
+  on:
+    type: boolean
+    description: On/Off state of the light
+    example: true
+  bri:
+    type: integer
+    minimum: 1
+    maximum: 255
+    description: >
+      Brightness of the light. If on is false, contains last brightness when light was on
+      (aka brightness when on is set to true). Setting bri to 0 is supported but it is
+      recommended to use the range 1-255 and use on: false to turn off. The state response
+      will never have the value 0 for bri.
+    example: 128
+  transition:
+    type: integer
+    minimum: 0
+    maximum: 255
+    description: >
+      Duration of the crossfade between different colors/brightness levels. One unit is 100ms,
+      so a value of 4 results in a transition of 400ms.
+    example: 7
+  tt:
+    type: integer
+    minimum: 0
+    maximum: 255
+    description: >
+      Similar to transition, but applies to just the current API call. Not included in state response.
+    example: 4
+  ps:
+    type: integer
+    minimum: -1
+    maximum: 65535
+    description: >
+      ID of currently set preset. 1~17~ can be used to iterate through presets 1-17.
+      -1 indicates no preset is active.
+    example: 1
+  psave:
+    type: integer
+    minimum: 1
+    maximum: 250
+    description: >
+      Save current light config to specified preset slot. Not included in state response.
+      Range is 1 to 16 (250 in 0.11+).
+    example: 1
+  pl:
+    type: integer
+    minimum: -1
+    maximum: 0
+    description: >
+      ID of currently set playlist. For now, this sets the preset cycle feature,
+      -1 is off and 0 is on.
+    example: -1
+  nl:
+    $ref: './Nightlight.yaml'
+  udpn:
+    $ref: './UdpSync.yaml'
+  v:
+    type: boolean
+    description: >
+      If set to true in a JSON POST command, the response will contain the full JSON state object.
+      Not included in state response.
+    example: true
+  rb:
+    type: boolean
+    description: >
+      If set to true, device will reboot immediately. Not included in state response.
+    example: false
+  live:
+    type: boolean
+    description: >
+      If set to true, enters realtime mode and blanks the LEDs. The realtime timeout option
+      does not have an effect when this command is used, WLED will stay in realtime mode until
+      the state (color/effect/segments, excluding brightness) is changed. It is expected that
+      {"live":false} is sent once live data sending is terminated. Not included in state response.
+    example: false
+  lor:
+    type: integer
+    minimum: 0
+    maximum: 2
+    description: >
+      Live data override. 0 is off, 1 is override until live data ends, 2 is override until
+      ESP reboot (available since 0.10.0)
+    example: 0
+  time:
+    type: integer
+    minimum: 0
+    description: >
+      Set module time to unix timestamp. Not included in state response.
+    example: 1699123456
+  mainseg:
+    type: integer
+    minimum: 0
+    description: >
+      Main Segment. Range is 0 to info.leds.maxseg-1.
+    example: 0
+  ledmap:
+    type: integer
+    minimum: 0
+    description: >
+      Current LED map ID
+    readOnly: true
+    example: 0
+  error:
+    type: integer
+    minimum: 0
+    description: >
+      Error code if present
+    readOnly: true
+    example: 0
+  playlist:
+    $ref: './Playlist.yaml'
+  seg:
+    type: array
+    description: >
+      Array of segment objects. Segments are individual parts of the LED strip.
+      In 0.9.0+ this enables running different effects on different parts of the strip.
+    items:
+      $ref: './Segment.yaml'
 example:
   on: true
   bri: 128
@@ -21,18 +141,18 @@ example:
     sgrp: 1
     rgrp: 1
   mainseg: 0
+  ledmap: 0
+  error: 0
   seg:
     - id: 0
       start: 0
       stop: 30
       len: 30
+      lc: 3 
       on: true
       bri: 255
       col: [[255, 160, 0], [0, 0, 0], [0, 0, 0]]
       fx: 0
       sx: 128
       ix: 128
-      pal: 0
-      sel: true
-      rev: false
-      mi: false 
+      pal: 0 

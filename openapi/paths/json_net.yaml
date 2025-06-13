@@ -13,7 +13,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../components/schemas/NetworkList.yaml'
+            $ref: '../components/schemas/NetworkListResponse.yaml'
     '400':
       $ref: ../components/responses/BadRequest.yaml
   security:

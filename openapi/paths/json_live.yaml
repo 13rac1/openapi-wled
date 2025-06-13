@@ -15,6 +15,6 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../components/schemas/Live.yaml'
+            $ref: '../components/schemas/LiveResponse.yaml'
     '400':
       $ref: ../components/responses/BadRequest.yaml 

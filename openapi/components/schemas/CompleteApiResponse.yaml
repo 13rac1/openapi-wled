@@ -6,11 +6,11 @@ type: object
 properties:
   state:
     allOf:
-      - $ref: './State.yaml'
+      - $ref: './StateResponse.yaml'
     description: Current device state including brightness, effects, segments, and control settings
   info:
     allOf:
-      - $ref: './DeviceInfo.yaml'
+      - $ref: './DeviceInfoResponse.yaml'
     description: Device information including version, hardware capabilities, and system status
   effects:
     type: array

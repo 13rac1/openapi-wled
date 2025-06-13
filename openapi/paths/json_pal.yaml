@@ -13,7 +13,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../components/schemas/Palettes.yaml'
+            $ref: ../components/schemas/PalettesResponse.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
   security:

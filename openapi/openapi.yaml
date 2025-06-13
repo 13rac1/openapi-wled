@@ -88,17 +88,17 @@ components:
     CompleteApiResponse:
       $ref: components/schemas/CompleteApiResponse.yaml
     DeviceInfo:
-      $ref: components/schemas/DeviceInfo.yaml
+      $ref: components/schemas/DeviceInfoResponse.yaml
     StateInfoResponse:
       $ref: components/schemas/StateInfoResponse.yaml
     Effects:
-      $ref: components/schemas/Effects.yaml
+      $ref: components/schemas/EffectsResponse.yaml
     Effect:
       $ref: components/schemas/Effect.yaml
     EffectDataResponse:
       $ref: components/schemas/EffectDataResponse.yaml
     Palettes:
-      $ref: components/schemas/Palettes.yaml
+      $ref: components/schemas/PalettesResponse.yaml
     Palette:
       $ref: components/schemas/Palette.yaml
     PaginatedPalettesResponse:
@@ -106,13 +106,13 @@ components:
     Node:
       $ref: components/schemas/Node.yaml
     Nodes:
-      $ref: components/schemas/Nodes.yaml
+      $ref: components/schemas/NodesResponse.yaml
     Network:
       $ref: components/schemas/Network.yaml
     NetworkList:
-      $ref: components/schemas/NetworkList.yaml
+      $ref: components/schemas/NetworkListResponse.yaml
     Live:
-      $ref: components/schemas/Live.yaml
+      $ref: components/schemas/LiveResponse.yaml
   responses:
     BadRequest:
       $ref: components/responses/BadRequest.yaml

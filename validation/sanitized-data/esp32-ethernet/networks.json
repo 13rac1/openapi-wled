@@ -1,0 +1,227 @@
+{
+  "meta": {
+    "endpoint": {
+      "path": "/json/net",
+      "name": "WLED Device",
+      "description": "192.168.1.100"
+    },
+    "timestamp": "2025-06-11T08:35:31.620Z",
+    "httpStatus": 200,
+    "contentType": "application/json",
+    "dataSize": 2504
+  },
+  "data": {
+    "networks": [
+      {
+        "ssid": "WLED-Device",
+        "rssi": -48,
+        "bssid": "WLED-Device",
+        "channel": 1,
+        "enc": 4
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -55,
+        "bssid": "WLED-Device",
+        "channel": 1,
+        "enc": 3
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -59,
+        "bssid": "WLED-Device",
+        "channel": 1,
+        "enc": 3
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -64,
+        "bssid": "WLED-Device",
+        "channel": 10,
+        "enc": 3
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -67,
+        "bssid": "WLED-Device",
+        "channel": 11,
+        "enc": 0
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -70,
+        "bssid": "WLED-Device",
+        "channel": 2,
+        "enc": 3
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -70,
+        "bssid": "WLED-Device",
+        "channel": 6,
+        "enc": 3
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -71,
+        "bssid": "WLED-Device",
+        "channel": 6,
+        "enc": 3
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -71,
+        "bssid": "WLED-Device",
+        "channel": 6,
+        "enc": 3
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -72,
+        "bssid": "WLED-Device",
+        "channel": 6,
+        "enc": 3
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -74,
+        "bssid": "WLED-Device",
+        "channel": 1,
+        "enc": 4
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -78,
+        "bssid": "WLED-Device",
+        "channel": 11,
+        "enc": 3
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -79,
+        "bssid": "WLED-Device",
+        "channel": 1,
+        "enc": 3
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -81,
+        "bssid": "WLED-Device",
+        "channel": 11,
+        "enc": 4
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -84,
+        "bssid": "WLED-Device",
+        "channel": 6,
+        "enc": 3
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -84,
+        "bssid": "WLED-Device",
+        "channel": 10,
+        "enc": 3
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -85,
+        "bssid": "WLED-Device",
+        "channel": 6,
+        "enc": 3
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -85,
+        "bssid": "WLED-Device",
+        "channel": 11,
+        "enc": 3
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -86,
+        "bssid": "WLED-Device",
+        "channel": 2,
+        "enc": 0
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -86,
+        "bssid": "WLED-Device",
+        "channel": 11,
+        "enc": 3
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -87,
+        "bssid": "WLED-Device",
+        "channel": 2,
+        "enc": 3
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -88,
+        "bssid": "WLED-Device",
+        "channel": 2,
+        "enc": 3
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -88,
+        "bssid": "WLED-Device",
+        "channel": 5,
+        "enc": 3
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -89,
+        "bssid": "WLED-Device",
+        "channel": 3,
+        "enc": 3
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -89,
+        "bssid": "WLED-Device",
+        "channel": 11,
+        "enc": 3
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -90,
+        "bssid": "WLED-Device",
+        "channel": 6,
+        "enc": 3
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -91,
+        "bssid": "WLED-Device",
+        "channel": 11,
+        "enc": 3
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -91,
+        "bssid": "WLED-Device",
+        "channel": 11,
+        "enc": 3
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -92,
+        "bssid": "WLED-Device",
+        "channel": 5,
+        "enc": 3
+      },
+      {
+        "ssid": "WLED-Device",
+        "rssi": -93,
+        "bssid": "WLED-Device",
+        "channel": 5,
+        "enc": 3
+      }
+    ]
+  }
+}

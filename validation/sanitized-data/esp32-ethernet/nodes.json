@@ -1,0 +1,45 @@
+{
+  "meta": {
+    "endpoint": {
+      "path": "/json/nodes",
+      "name": "WLED Device",
+      "description": "192.168.1.100"
+    },
+    "timestamp": "2025-06-11T08:35:31.458Z",
+    "httpStatus": 200,
+    "contentType": "application/json",
+    "dataSize": 283
+  },
+  "data": {
+    "nodes": [
+      {
+        "name": "WLED Device",
+        "type": 160,
+        "ip": "192.168.1.100",
+        "age": 1,
+        "vid": 2412100
+      },
+      {
+        "name": "WLED Device",
+        "type": 160,
+        "ip": "192.168.1.100",
+        "age": 2,
+        "vid": 2412100
+      },
+      {
+        "name": "WLED Device",
+        "type": 160,
+        "ip": "192.168.1.100",
+        "age": 2,
+        "vid": 2412100
+      },
+      {
+        "name": "WLED Device",
+        "type": 160,
+        "ip": "192.168.1.100",
+        "age": 1,
+        "vid": 2412100
+      }
+    ]
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "ip": "192.168.1.100",
+  "collectionStart": "2025-06-11T08:35:30.096Z",
+  "endpoints": {
+    "complete-api": {
+      "success": true,
+      "dataSize": 4377,
+      "filename": "complete-api.json"
+    },
+    "state": {
+      "success": true,
+      "dataSize": 514,
+      "filename": "state.json"
+    },
+    "info": {
+      "success": true,
+      "dataSize": 861,
+      "filename": "info.json"
+    },
+    "config": {
+      "success": true,
+      "dataSize": 2534,
+      "filename": "config.json"
+    },
+    "effects": {
+      "success": true,
+      "dataSize": 2190,
+      "filename": "effects.json"
+    },
+    "palettes": {
+      "success": true,
+      "dataSize": 771,
+      "filename": "palettes.json"
+    },
+    "palettes-page0": {
+      "success": true,
+      "dataSize": 907,
+      "filename": "palettes-page0.json"
+    },
+    "palettes-page1": {
+      "success": true,
+      "dataSize": 1448,
+      "filename": "palettes-page1.json"
+    },
+    "effect-data": {
+      "success": true,
+      "dataSize": 5557,
+      "filename": "effect-data.json"
+    },
+    "nodes": {
+      "success": true,
+      "dataSize": 283,
+      "filename": "nodes.json"
+    },
+    "networks": {
+      "success": true,
+      "dataSize": 2504,
+      "filename": "WLED-Device"
+    },
+    "state-info": {
+      "success": true,
+      "dataSize": 1393,
+      "filename": "state-info.json"
+    },
+    "live": {
+      "success": false,
+      "error": "Failed after 3 attempts"
+    }
+  },
+  "collectionEnd": "2025-06-11T08:35:39.939Z"
+}

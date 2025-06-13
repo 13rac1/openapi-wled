@@ -1,0 +1,158 @@
+{
+  "meta": {
+    "endpoint": {
+      "path": "/json/si",
+      "name": "WLED Device",
+      "description": "192.168.1.100"
+    },
+    "timestamp": "2025-06-11T08:35:31.757Z",
+    "httpStatus": 200,
+    "contentType": "application/json",
+    "dataSize": 1393
+  },
+  "data": {
+    "state": {
+      "on": true,
+      "bri": 128,
+      "transition": 7,
+      "ps": -1,
+      "pl": -1,
+      "ledmap": 0,
+      "AudioReactive": {
+        "on": false
+      },
+      "nl": {
+        "on": false,
+        "dur": 60,
+        "mode": 1,
+        "tbri": 0,
+        "rem": -1
+      },
+      "udpn": {
+        "send": false,
+        "recv": true,
+        "sgrp": 1,
+        "rgrp": 1
+      },
+      "lor": 0,
+      "mainseg": 0,
+      "seg": [
+        {
+          "id": 0,
+          "start": 0,
+          "stop": 30,
+          "len": 30,
+          "grp": 1,
+          "spc": 0,
+          "of": 0,
+          "on": true,
+          "frz": false,
+          "bri": 255,
+          "cct": 127,
+          "set": 0,
+          "col": [
+            [
+              255,
+              160,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "fx": 0,
+          "sx": 128,
+          "ix": 128,
+          "pal": 0,
+          "c1": 128,
+          "c2": 128,
+          "c3": 16,
+          "sel": true,
+          "rev": false,
+          "mi": false,
+          "o1": false,
+          "o2": false,
+          "o3": false,
+          "si": 0,
+          "m12": 0
+        }
+      ]
+    },
+    "info": {
+      "ver": "0.15.0",
+      "vid": 2412100,
+      "cn": "Kōsen",
+      "release": "ESP32_Ethernet",
+      "leds": {
+        "count": 30,
+        "pwr": 470,
+        "fps": 2,
+        "maxpwr": 850,
+        "maxseg": 32,
+        "bootps": 0,
+        "seglc": [
+          1
+        ],
+        "lc": 1,
+        "rgbw": false,
+        "wv": 0,
+        "cct": 0
+      },
+      "str": false,
+      "name": "WLED Device",
+      "udpport": 21324,
+      "simplifiedui": false,
+      "live": false,
+      "liveseg": -1,
+      "lm": "",
+      "lip": "192.168.1.100",
+      "ws": 0,
+      "fxcount": 187,
+      "palcount": 71,
+      "cpalcount": 0,
+      "maps": [
+        {
+          "id": 0
+        }
+      ],
+      "wifi": {
+        "bssid": "WLED-Device",
+        "rssi": -47,
+        "signal": 100,
+        "channel": 1,
+        "ap": false
+      },
+      "fs": {
+        "u": 12,
+        "t": 983,
+        "pmt": 0
+      },
+      "ndc": 4,
+      "arch": "esp32",
+      "core": "v3.3.6-16-gcc5440f6a2",
+      "clock": 240,
+      "flash": 4,
+      "lwip": 0,
+      "freeheap": 177564,
+      "uptime": 6322,
+      "time": "1970-1-1, 01:45:22",
+      "u": {
+        "AudioReactive": [
+          "<button class=\"btn btn-xs\" onclick=\"requestJson({AudioReactive:{enabled:true}});\"><i class=\"icons off\">&#xe08f;</i></button>"
+        ]
+      },
+      "opt": 79,
+      "brand": "WLED",
+      "product": "FOSS",
+      "mac": "AA:BB:CC:DD:EE:FF",
+      "ip": "192.168.1.100"
+    }
+  }
+}

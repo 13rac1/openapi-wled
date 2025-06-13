@@ -321,12 +321,34 @@ Based on the analysis in `docs/implementation-vs-schema-gaps.md`, the following 
 ### Phase 3: Configuration Schema Field Validation (35 Files)
 
 #### Task 3.1: Setup Systematic Validation Process
-- [ ] Create validation script/tool to compare implementation vs schema
-- [ ] Set up test WLED device for configuration capture
-- [ ] Create configuration validation matrix spreadsheet
-- [ ] Document validation methodology and criteria
+- [x] Create validation suite framework structure (`validation/` directory)
+- [x] Set up test WLED device for comprehensive API data capture (ESP32 with Ethernet at 10.0.0.100)
+- [x] Create data collection script (`validation/scripts/collect-data.js`)
+  - [x] Capture all 13 JSON API endpoints successfully 
+  - [x] Implement retry logic and error handling
+  - [x] Real-world data collection from WLED v0.15.0 ESP32_Ethernet device
+- [x] Create comprehensive data sanitization framework (`validation/scripts/sanitize-data.js`)
+  - [x] Pattern-based sensitive data detection and replacement
+  - [x] All sensitive data properly sanitized (SSIDs, MAC addresses, IPs, passwords, device names)
+  - [x] Context-aware sanitization for nested structures and arrays
+- [x] Integrate npm script automation (`validate:collect`, `validate:sanitize`)
+- [x] Create validation documentation (`validation/README.md`)
+- [x] Setup git security (`.gitignore` excludes sensitive `captured-data/`, commits safe `sanitized-data/`)
+- [ ] Create validation script/tool to systematically compare captured JSON vs OpenAPI schemas
+- [ ] Create configuration validation matrix spreadsheet covering all endpoints
+- [ ] Build schema validation comparison tooling
+- [ ] Generate automated validation reports identifying:
+  - [ ] Missing fields in schemas  
+  - [ ] Incorrect field types or constraints
+  - [ ] Extra fields in schemas not in implementation
+  - [ ] Field name mismatches
+  - [ ] Platform-specific conditional fields
+- [ ] Document complete validation methodology and criteria
 
-#### Task 3.2: Core Configuration Structure Validation
+**Infrastructure Status**: ✅ All data collection and sanitization infrastructure is complete and functional. Ready to proceed with systematic schema validation against captured real-world data.
+
+#### Task 3.2: Core Configuration Structure Validation (**HIGH PRIORITY - Ready to Start**)
+*Use captured `validation/sanitized-data/esp32-ethernet/config.json` for validation*
 - [ ] `Config.yaml` - Main configuration wrapper structure
 - [ ] `ConfigRequest.yaml` - POST request structure  
 - [ ] `ConfigResponse.yaml` - GET response structure
@@ -398,11 +420,11 @@ Based on the analysis in `docs/implementation-vs-schema-gaps.md`, the following 
 - [ ] Document all discovered field name mismatches
 - [ ] Create migration guide for field name changes
 
-#### Task 3.9: Configuration Validation Testing
-- [ ] Capture actual `/json/cfg` responses from different device configurations:
-  - [ ] ESP32 with all features enabled
+#### Task 3.9: Extended Configuration Validation Testing
+*Primary validation can begin immediately with existing sanitized data*
+- [x] Capture actual `/json/cfg` responses from ESP32 with Ethernet ✅ (`validation/sanitized-data/esp32-ethernet/`)
+- [ ] Capture additional device configurations:
   - [ ] ESP8266 basic configuration  
-  - [ ] ESP32 with Ethernet
   - [ ] ESP32 with 2D matrix
   - [ ] Different usermod configurations
 - [ ] Run schema validation against captured responses

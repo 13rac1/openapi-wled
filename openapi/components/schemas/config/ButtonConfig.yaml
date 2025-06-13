@@ -51,31 +51,17 @@ properties:
             maximum: 127
           nullable: true
         macros:
-          type: object
-          description: Button macros
+          type: array
+          description: Button macros [short press, long press, double press]
+          minItems: 3
+          maxItems: 3
+          items:
+            type: integer
+            format: uint8
+            description: Preset to apply (0 for default behavior)
+            minimum: 0
+            maximum: 255
           nullable: true
-          properties:
-            "0":
-              type: integer
-              format: uint8
-              description: Preset to apply when button is pressed once, or default behaviour if 0
-              minimum: 0
-              maximum: 255
-              nullable: true
-            "1":
-              type: integer
-              format: uint8
-              description: Preset to apply when button is pressed for a long time, or default behaviour if 0
-              minimum: 0
-              maximum: 255
-              nullable: true
-            "2":
-              type: integer
-              format: uint8
-              description: Preset to apply when button is pressed twice, or default behaviour if 0
-              minimum: 0
-              maximum: 255
-              nullable: true
   tt:
     type: integer
     format: uint8

@@ -19,13 +19,11 @@ properties:
       This affects all state changes unless overridden.
     example: 7
   pal:
-    type: integer
-    minimum: 0
-    maximum: 255
+    type: boolean
     description: >
-      Palette transition configuration. Controls how color palettes transition
-      between states.
-    example: 0
+      Whether palette transitions are enabled. When true, color palettes will smoothly
+      transition between states.
+    example: false
   rpc:
     type: integer
     minimum: 1
@@ -37,5 +35,5 @@ properties:
 example:
   mode: false
   dur: 7
-  pal: 0
+  pal: false
   rpc: 60 

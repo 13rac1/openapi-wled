@@ -394,15 +394,29 @@ Based on the analysis in `docs/implementation-vs-schema-gaps.md`, the following 
 - [x] `VoiceAssistantConfig.yaml` - Alexa integration
 
 #### Task 3.6: Behavior Configuration Validation (Medium Priority)
-- [ ] `LightConfig.yaml` - Light behavior settings
+- [x] `LightConfig.yaml` - Light behavior settings
   - Verify gamma correction structure
   - Check transition settings
-- [ ] `GammaCorrection.yaml` - Gamma correction specifics
+- [x] `GammaCorrection.yaml` - Gamma correction specifics
 - [x] `TransitionConfig.yaml` - Transition timing
   - [x] Fixed pal field type to boolean
-- [ ] `NightlightConfig.yaml` - Nightlight behavior
-- [ ] `DefaultConfig.yaml` - Boot-up defaults
-- [ ] `AnalogClock.yaml` - Clock display settings
+  - [x] Removed unused mode field
+  - [x] Clarified duration units (centiseconds)
+- [x] `NightlightConfig.yaml` - Nightlight behavior
+  - [x] Added detailed mode descriptions
+  - [x] Clarified duration behavior for each mode
+  - [x] Added note about macro execution timing
+  - [x] Added sunrise/sunset mode specifics
+- [x] `DefaultConfig.yaml` - Boot-up defaults
+  - [x] Clarified preset number range (0 = no preset, 1-250 = preset number)
+  - [x] Added note about LED state when turnOnAtBoot is false
+  - [x] Added detail about default brightness behavior
+  - [x] Updated example to show default state
+- [x] `AnalogClock.yaml` - Clock display settings
+  - [x] Added missing osb field for solid black mode
+  - [x] Improved field descriptions for clarity
+  - [x] Clarified min/max LED boundaries
+  - [x] Added note about 12 o'clock position
 - [x] `TimersConfig.yaml` - **COMPLEX**: Scheduling and automation
   - [x] Verify timer instance structures
   - [x] Check countdown configuration

@@ -22,27 +22,31 @@ properties:
     format: uint8
     minimum: 0
     maximum: 255
-    description: Overlay min; boundaries of overlay mode
+    description: First LED of the clock overlay
     nullable: true
   max:
     type: integer
     format: uint8
     minimum: 0
     maximum: 255
-    description: Overlay max; boundaries of overlay mode
+    description: Last LED of the clock overlay
     nullable: true
   o12pix:
     type: integer
     format: uint8
     minimum: 0
     maximum: 255
-    description: The pixel in your strip where "midnight" would be
+    description: The pixel in your strip where "midnight" (12 o'clock) would be
     nullable: true
   o5m:
     type: boolean
-    description: Analog Clock 5 Minute Marks; Light pixels at every 5-minute position
+    description: Show 5-minute marks on the clock face
     nullable: true
   osec:
     type: boolean
     description: Display seconds as trail of LEDs instead of a single pixel
+    nullable: true
+  osb:
+    type: boolean
+    description: Show clock overlay only if all LEDs are solid black (effect is 0 and color is black)
     nullable: true 

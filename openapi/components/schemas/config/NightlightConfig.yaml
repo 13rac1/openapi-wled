@@ -10,11 +10,11 @@ properties:
     maximum: 3
     description: >
       Nightlight operation mode:
-      * 0 (NL_MODE_SET) - After nightlight time elapsed, set to target brightness
-      * 1 (NL_MODE_FADE) - Fade to target brightness gradually
-      * 2 (NL_MODE_COLORFADE) - Fade to target brightness and secondary color gradually
+      * 0 (NL_MODE_SET) - After nightlight time elapsed, set to target brightness immediately
+      * 1 (NL_MODE_FADE) - Fade to target brightness gradually over the duration
+      * 2 (NL_MODE_COLORFADE) - Fade to target brightness and secondary color gradually over the duration
       * 3 (NL_MODE_SUN) - Sunrise/sunset simulation. Target brightness is set immediately,
-        then Sunrise effect starts. Maximum 60 minutes.
+        then Sunrise effect starts. Maximum duration is 60 minutes.
     example: 1
   dur:
     type: integer
@@ -23,7 +23,7 @@ properties:
     maximum: 255
     description: >
       Duration of the nightlight mode in minutes. For sunrise/sunset mode (3),
-      maximum duration is 60 minutes.
+      maximum duration is 60 minutes. A value of 0 disables the nightlight feature.
     example: 60
   tbri:
     type: integer
@@ -33,6 +33,7 @@ properties:
     description: >
       Target brightness level to reach after nightlight duration completes.
       This is the final brightness that will be set or faded to.
+      For sunrise/sunset mode (3), this determines if it's a sunrise (non-zero) or sunset (zero).
     example: 0
   macro:
     type: integer
@@ -41,7 +42,8 @@ properties:
     maximum: 255
     description: >
       Macro to execute after the nightlight duration completes and the target
-      brightness is reached.
+      brightness is reached. The macro is executed after the transition is complete.
+      A value of 0 means no macro will be executed.
     example: 0
 example:
   mode: 1

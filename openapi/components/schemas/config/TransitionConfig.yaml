@@ -3,12 +3,6 @@ description: >
   Configuration for transitions between states, including timing and palette changes.
   Controls how smoothly the device transitions between different states and effects.
 properties:
-  mode:
-    type: boolean
-    description: >
-      Whether transitions are enabled. When true, changes in state will smoothly
-      transition over the specified duration instead of changing instantly.
-    example: false
   dur:
     type: integer
     minimum: 0
@@ -17,6 +11,7 @@ properties:
       Default transition duration in centiseconds (1/100th of a second).
       For example, a value of 7 means a transition takes 0.07 seconds.
       This affects all state changes unless overridden.
+      A value of 0 disables transitions.
     example: 7
   pal:
     type: boolean
@@ -33,7 +28,6 @@ properties:
       random palette changes. Minimum is 1 second, maximum is 255 seconds.
     example: 60
 example:
-  mode: false
   dur: 7
   pal: false
   rpc: 60 

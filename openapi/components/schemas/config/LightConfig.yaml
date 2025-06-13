@@ -38,9 +38,8 @@ example:
     col: 1.0
     val: 1.0
   tr:
-    mode: false
-    dur: 700
-    pal: 0
+    dur: 7
+    pal: false
     rpc: 60
   nl:
     mode: 0

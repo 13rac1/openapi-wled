@@ -4,23 +4,23 @@ properties:
   ps:
     type: integer
     format: uint8
-    description: Save preset to load after power-up
+    description: Save preset to load after power-up (0 = no preset, 1-250 = preset number)
     minimum: 0
     maximum: 255
     nullable: true
   on:
     type: boolean
-    description: Turn on LEDs at power-up
+    description: Turn on LEDs at power-up. If false, LEDs will be off after boot regardless of preset.
     nullable: true
   bri:
     type: integer
     format: uint8
-    description: Default brightness
+    description: Default brightness to use after power-up (0-255). If 0 and turnOnAtBoot is true, brightness will be set to 128.
     minimum: 0
     maximum: 255
     nullable: true
 required: []
 example:
-  ps: 1
+  ps: 0
   on: true
   bri: 128 

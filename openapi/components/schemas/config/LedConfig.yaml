@@ -268,6 +268,6 @@ example:
       type: 22
       ref: false
       rgbwm: 0
-      freq: 0
+      freq: 0 
       maxpwr: 850
       ledma: 55 

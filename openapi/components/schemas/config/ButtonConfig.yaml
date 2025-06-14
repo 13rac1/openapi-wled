@@ -61,7 +61,7 @@ properties:
             description: Preset to apply (0 for default behavior)
             minimum: 0
             maximum: 255
-          nullable: true
+            nullable: true
   tt:
     type: integer
     format: uint8

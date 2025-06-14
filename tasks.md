@@ -471,9 +471,9 @@ Based on the analysis in `docs/implementation-vs-schema-gaps.md`, the following 
   - ReadOnly: `true`
 
 #### Task 4.2: Platform-Specific Conditional Fields
-- [ ] Document ESP32 vs ESP8266 specific fields
-- [ ] Add conditional schema support for different builds
-- [ ] Include feature availability flags documentation
+- [x] Document ESP32 vs ESP8266 specific fields
+- [x] Add conditional schema support for different builds
+- [x] Include feature availability flags documentation
 
 ### Phase 5: Final Validation and Documentation
 

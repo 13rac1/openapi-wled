@@ -13,5 +13,5 @@ properties:
     description: Use open drain output
 example:
   pin: -1
-  rev: false
+  rev: false 
   odrain: false 

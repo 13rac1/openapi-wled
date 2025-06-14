@@ -118,7 +118,7 @@ example:
       mqtt: false
   light:
     scale-bri: 100
-    aseg: true
+    aseg: true 
   sec:
     pin: "1234"
     ota:

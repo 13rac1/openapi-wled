@@ -48,12 +48,15 @@ get:
                   t: 983
                   pmt: 0
                 ndc: 0
-                arch: "esp32"
-                core: "v3.3.6-16-gcc5440f6a2"
+                platform:
+                  arch: "esp32"
+                  core: "v3.3.6-16-gcc5440f6a2"
+                  clock: 240
+                  flash: 4
+                  opt: 79
                 freeheap: 200300
                 uptime: 6
                 time: "1970-1-1, 00:00:06"
-                opt: 79
                 brand: "WLED"
                 product: "FOSS"
                 mac: "a842e38d9828"

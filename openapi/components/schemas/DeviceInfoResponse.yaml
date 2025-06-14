@@ -214,25 +214,12 @@ properties:
     maximum: 255
     description: Number of other WLED devices discovered on the network. -1 if Node discovery disabled
     readOnly: true
-  arch:
-    type: string
-    description: Name of the platform
-    example: "esp32"
-    readOnly: true
-  core:
-    type: string
-    description: Version of the underlying (Arduino core) SDK
-    example: "v3.3.6-16-gcc5440f6a2"
-    readOnly: true
+  platform:
+    $ref: './PlatformSpecificInfo.yaml'
   freeheap:
     type: integer
     format: uint32
     description: Bytes of heap memory (RAM) currently available. Problematic if <10k
-    readOnly: true
-  psram:
-    type: integer
-    format: uint64
-    description: Available PSRAM in bytes (only present when hardware supports psram)
     readOnly: true
   uptime:
     type: integer
@@ -243,11 +230,6 @@ properties:
     type: string
     description: The current time in human readable format
     example: "1970-1-1, 00:00:06"
-    readOnly: true
-  opt:
-    type: integer
-    format: uint16
-    description: Used for debugging purposes only. Bitmap of build info
     readOnly: true
   brand:
     type: string

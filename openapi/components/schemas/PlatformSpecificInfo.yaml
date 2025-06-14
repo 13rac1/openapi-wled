@@ -1,0 +1,90 @@
+description: Platform-specific information fields that vary between ESP32 and ESP8266
+type: object
+properties:
+  arch:
+    type: string
+    description: Name of the platform (esp32 or esp8266)
+    enum: [esp32, esp8266]
+    example: "esp32"
+    readOnly: true
+
+  core:
+    type: string
+    description: Version of the underlying (Arduino core) SDK
+    example: "v3.3.6-16-gcc5440f6a2"
+    readOnly: true
+
+  # ESP32-specific fields
+  clock:
+    type: integer
+    description: CPU frequency in MHz (ESP32 only)
+    example: 240
+    readOnly: true
+    x-platform: esp32
+
+  flash:
+    type: integer
+    description: Flash memory size in MB (ESP32 only)
+    example: 4
+    readOnly: true
+    x-platform: esp32
+
+  psram:
+    type: integer
+    format: uint64
+    description: Available PSRAM in bytes (ESP32 only, only present when hardware supports PSRAM)
+    example: 4194304
+    readOnly: true
+    x-platform: esp32
+
+  # ESP8266-specific fields
+  lwip:
+    type: integer
+    description: LWIP version (ESP8266 only)
+    example: 2
+    readOnly: true
+    x-platform: esp8266
+
+  # Feature flags
+  opt:
+    type: integer
+    format: uint16
+    description: Build-time feature flags bitmap
+    readOnly: true
+    x-feature-flags:
+      - bit: 0
+        value: 1
+        name: Adalight
+        description: Adalight protocol support
+      - bit: 1
+        value: 2
+        name: HueSync
+        description: Philips Hue sync support
+      - bit: 2
+        value: 4
+        name: Filesystem
+        description: Filesystem support
+      - bit: 3
+        value: 8
+        name: Cronixie
+        description: Cronixie clock support
+      - bit: 4
+        value: 16
+        name: Alexa
+        description: Alexa integration
+      - bit: 5
+        value: 32
+        name: Debug
+        description: Debug mode
+      - bit: 6
+        value: 64
+        name: DebugHost
+        description: Debug host support (ESP32 only)
+      - bit: 7
+        value: 128
+        name: Debug
+        description: Debug mode
+      - bit: 8
+        value: 256
+        name: DebugUI
+        description: Debug UI support (ESP32 only) 

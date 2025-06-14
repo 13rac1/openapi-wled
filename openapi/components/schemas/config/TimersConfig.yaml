@@ -12,10 +12,10 @@ properties:
         minItems: 6
         maxItems: 6
         items:
-          type: integer
-          format: uint8
-          minimum: 0
-          maximum: 255
+            type: integer
+            format: uint8
+            minimum: 0
+            maximum: 255
         example: [24, 12, 31, 23, 59, 59]
       macro:
         type: integer

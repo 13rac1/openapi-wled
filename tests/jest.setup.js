@@ -4,6 +4,7 @@ jest.mock('fs', () => ({
   mkdirSync: jest.fn(),
   readFileSync: jest.fn(),
   writeFileSync: jest.fn(),
+  readdirSync: jest.fn()
 }));
 
 // Mock http module

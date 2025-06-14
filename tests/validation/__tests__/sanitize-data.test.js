@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Import the functions we want to test
-const { sanitizeObject, sanitizeString, sanitizeFile } = require('../../../validation/scripts/sanitize-data');
+const { sanitizeObject, sanitizeString, sanitizeFile, sanitizeDirectory } = require('../../../validation/scripts/sanitize-data');
 
 describe('sanitize-data.js', () => {
   beforeEach(() => {
@@ -23,6 +23,12 @@ describe('sanitize-data.js', () => {
       expect(sanitizeString(input)).toBe(expected);
     });
 
+    test('should sanitize email addresses', () => {
+      const input = 'Contact: user@example.com';
+      const expected = 'Contact: user@example.com';
+      expect(sanitizeString(input)).toBe(expected);
+    });
+
     test('should sanitize SSIDs', () => {
       const input = 'MyHomeNetwork';
       const expected = 'WLED-Device';
@@ -32,6 +38,12 @@ describe('sanitize-data.js', () => {
     test('should not sanitize placeholder SSIDs', () => {
       const input = 'WLED-Device';
       expect(sanitizeString(input, 'networks')).toBe(input);
+    });
+
+    test('should sanitize WLED device names with MAC suffixes', () => {
+      const input = 'wled-123456';
+      const expected = 'wled-device';
+      expect(sanitizeString(input)).toBe(expected);
     });
   });
 
@@ -99,6 +111,66 @@ describe('sanitize-data.js', () => {
       };
       expect(sanitizeObject(input)).toEqual(expected);
     });
+
+    test('should handle IP address arrays', () => {
+      const input = {
+        ip: [192, 168, 1, 1],
+        gateway: [192, 168, 1, 254],
+        dns: [8, 8, 8, 8]
+      };
+      const expected = {
+        ip: [192, 168, 1, 100],
+        gateway: [192, 168, 1, 100],
+        dns: [192, 168, 1, 100]
+      };
+      expect(sanitizeObject(input)).toEqual(expected);
+    });
+
+    test('should handle device identification fields', () => {
+      const input = {
+        name: 'My WLED Device',
+        mdns: 'wled-123456',
+        host: 'wled-device.local',
+        hostname: 'wled-device'
+      };
+      const expected = {
+        name: 'WLED Device',
+        mdns: 'wled-device',
+        host: 'wled-device.local',
+        hostname: 'wled-device'
+      };
+      expect(sanitizeObject(input)).toEqual(expected);
+    });
+
+    test('should handle location data', () => {
+      const input = {
+        location: 'My House',
+        lat: 40.7128,
+        lng: -74.0060,
+        timezone: 'America/New_York'
+      };
+      const expected = {
+        location: 'Home',
+        lat: 40.7128,
+        lng: -74.0060,
+        timezone: 'UTC'
+      };
+      expect(sanitizeObject(input)).toEqual(expected);
+    });
+
+    test('should handle recursion depth limit', () => {
+      // Create a deeply nested object
+      let input = {};
+      let current = input;
+      for (let i = 0; i < 60; i++) {
+        current.nested = { ssid: 'Network' + i };
+        current = current.nested;
+      }
+
+      const result = sanitizeObject(input);
+      expect(result.nested).toBeDefined();
+      expect(console.warn).toHaveBeenCalledWith('⚠️  Max recursion depth reached, stopping sanitization');
+    });
   });
 
   describe('sanitizeFile', () => {
@@ -129,6 +201,58 @@ describe('sanitize-data.js', () => {
       fs.readFileSync.mockReturnValue('invalid json');
       
       const result = sanitizeFile('input.json', 'output.json');
+      
+      expect(result).toBe(false);
+      expect(console.error).toHaveBeenCalled();
+    });
+
+    test('should handle file read errors', () => {
+      fs.readFileSync.mockImplementation(() => {
+        throw new Error('File not found');
+      });
+      
+      const result = sanitizeFile('input.json', 'output.json');
+      
+      expect(result).toBe(false);
+      expect(console.error).toHaveBeenCalled();
+    });
+  });
+
+  describe('sanitizeDirectory', () => {
+    test('should process a directory of files', () => {
+      // Mock directory structure
+      fs.existsSync.mockImplementation((path) => {
+        return path === 'input'; // Only input exists, output does not
+      });
+      fs.readdirSync.mockReturnValue(['file1.json', 'file2.json']);
+      fs.readFileSync.mockReturnValue('{"ssid": "MyHomeNetwork"}');
+      fs.writeFileSync.mockImplementation(() => {});
+      
+      const result = sanitizeDirectory('input', 'output');
+      
+      expect(result).toBe(true);
+      expect(fs.mkdirSync).toHaveBeenCalledWith('output', { recursive: true });
+      expect(fs.readFileSync).toHaveBeenCalledTimes(2);
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(2);
+    });
+
+    test('should handle non-existent input directory', () => {
+      fs.existsSync.mockReturnValue(false);
+      
+      const result = sanitizeDirectory('nonexistent', 'output');
+      
+      expect(result).toBe(false);
+      expect(console.error).toHaveBeenCalled();
+    });
+
+    test('should handle file processing errors', () => {
+      fs.existsSync.mockReturnValue(true);
+      fs.readdirSync.mockReturnValue(['file1.json']);
+      fs.readFileSync.mockImplementation(() => {
+        throw new Error('Read error');
+      });
+      
+      const result = sanitizeDirectory('input', 'output');
       
       expect(result).toBe(false);
       expect(console.error).toHaveBeenCalled();

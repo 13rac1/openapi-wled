@@ -273,4 +273,10 @@ if (require.main === module) {
     console.error('💥 Validation failed:', error);
     process.exit(1);
   });
-} 
+}
+
+module.exports = {
+  validateResponse,
+  resolveSchema,
+  generateReport
+}; 

@@ -2,6 +2,8 @@
 dist
 node_modules
 
+coverage
+
 # Validation data (contains sensitive device information)
 validation/captured-data/
 

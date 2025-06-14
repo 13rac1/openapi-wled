@@ -86,7 +86,7 @@ function sanitizeObject(obj, depth = 0, parentKey = '') {
   }
   
   if (obj === null || obj === undefined) {
-    return obj;
+    return obj;  // Return null/undefined as is
   }
   
   if (Array.isArray(obj)) {
@@ -108,30 +108,26 @@ function sanitizeObject(obj, depth = 0, parentKey = '') {
     const fullKey = parentKey ? `${parentKey}.${key}` : key;
     
     // Check if this field should be sanitized by name
-    if (SENSITIVE_FIELDS.hasOwnProperty(lowerKey)) {
+    if (SENSITIVE_FIELDS.hasOwnProperty(lowerKey) && value !== null && value !== undefined) {
       sanitized[key] = SENSITIVE_FIELDS[lowerKey];
     } 
     // Special handling for certain field patterns
-    else if (lowerKey.includes('password') || lowerKey.includes('pass') || lowerKey.includes('pwd')) {
+    else if ((lowerKey.includes('password') || lowerKey.includes('pass') || lowerKey.includes('pwd')) && value !== null && value !== undefined) {
       sanitized[key] = '***';
     }
-    else if (lowerKey === 'bssid' || (lowerKey.includes('bssid') && typeof value === 'string')) {
+    else if (lowerKey === 'bssid' && typeof value === 'string') {
       // Always use MAC address format for BSSID
       sanitized[key] = 'AA:BB:CC:DD:EE:FF';
     }
-    else if (lowerKey === 'ssid') {
+    else if (lowerKey === 'ssid' && typeof value === 'string') {
       // Special handling for SSIDs - sanitize all except our placeholders
-      if (typeof value === 'string') {
-        const ssidPattern = SENSITIVE_PATTERNS.find(p => p.onlyForSSID);
-        if (ssidPattern && ssidPattern.pattern.test(value)) {
-          sanitized[key] = ssidPattern.replacement;
-        } else if (value === 'WLED-Device' || value === 'WLED-AP') {
-          sanitized[key] = value; // Keep our placeholders
-        } else {
-          sanitized[key] = 'WLED-Device';
-        }
+      const ssidPattern = SENSITIVE_PATTERNS.find(p => p.onlyForSSID);
+      if (ssidPattern && ssidPattern.pattern.test(value)) {
+        sanitized[key] = ssidPattern.replacement;
+      } else if (value === 'WLED-Device' || value === 'WLED-AP') {
+        sanitized[key] = value; // Keep our placeholders
       } else {
-        sanitized[key] = value;
+        sanitized[key] = 'WLED-Device';
       }
     }
     else if (lowerKey === 'mdns' && typeof value === 'string') {
@@ -149,7 +145,7 @@ function sanitizeObject(obj, depth = 0, parentKey = '') {
       // Use MAC address pattern for other MAC addresses
       sanitized[key] = 'AA:BB:CC:DD:EE:FF';
     }
-    else if (lowerKey.includes('ip') || lowerKey.includes('gateway') || lowerKey.includes('dns')) {
+    else if ((lowerKey.includes('ip') || lowerKey.includes('gateway') || lowerKey.includes('dns')) && value !== null && value !== undefined) {
       if (typeof value === 'string') {
         sanitized[key] = '192.168.1.100';
       } else if (Array.isArray(value) && value.every(v => typeof v === 'number')) {
@@ -353,6 +349,14 @@ function main() {
     }
   }
 }
+
+// Export functions for testing
+module.exports = {
+  sanitizeObject,
+  sanitizeString,
+  sanitizeFile,
+  sanitizeDirectory
+};
 
 // Run if called directly
 if (require.main === module) {

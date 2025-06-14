@@ -482,6 +482,7 @@ Based on the analysis in `docs/implementation-vs-schema-gaps.md`, the following 
 - [ ] Validate all request/response examples
 - [ ] Verify error response handling
 - [ ] Test edge cases and error conditions
+- [ ] Jest Tests for all Javascript scripts
 
 #### Task 5.2: Documentation Finalization
 - [ ] Update `README.md` with schema completion status

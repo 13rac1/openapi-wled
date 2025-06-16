@@ -26,6 +26,37 @@ Bundles the definition to the dist folder.
 #### `npm test`
 Validates the definition against the OpenAPI specification and real device data.
 
+### Testing
+
+The project includes several testing options:
+
+#### Basic Testing
+```bash
+# Run all tests (lint, schema validation, and validation tests)
+npm test
+
+# Run only validation tests
+npm run test:validation
+
+# Run validation tests with coverage report
+npm run test:validation:coverage
+```
+
+#### End-to-End Testing
+```bash
+# Run E2E tests (generates client, runs tests, cleans up)
+WLED_DEVICE_URL=http://10.0.0.100 npm run test:e2e
+
+# Run E2E tests for watch mode without cleanup
+npm run test:e2e:watch
+```
+
+#### Schema Validation
+```bash
+# Validate schema against OpenAPI spec
+npm run validate:schema
+```
+
 ### Validation
 
 To validate the schema against a real WLED device:

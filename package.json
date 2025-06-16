@@ -23,7 +23,6 @@
     "test:validation": "vitest run tests/validation",
     "test:validation:coverage": "vitest run tests/validation --coverage",
     "test:e2e": "npm run generate:client && vitest run tests/e2e/__tests__ && npm run clean:client",
-    "test:e2e:watch": "npm run generate:client && vitest tests/e2e/__tests__",
     "validate:collect": "node validation/scripts/collect-data.js",
     "validate:collect:esp32": "node validation/scripts/collect-data.js 10.0.0.100",
     "validate:sanitize": "node validation/scripts/sanitize-data.js",

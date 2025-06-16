@@ -4,6 +4,8 @@ node_modules
 
 coverage
 
+openapitools.json
+
 # Validation data (contains sensitive device information)
 validation/captured-data/
 

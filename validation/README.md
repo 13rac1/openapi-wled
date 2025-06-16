@@ -60,9 +60,6 @@ Remove sensitive information from captured data:
 ```bash
 # Sanitize specific folder
 npm run validate:sanitize esp32-ethernet
-
-# Sanitize all captured data
-npm run validate:sanitize:all
 ```
 
 **Sensitive data removed:**

@@ -42,6 +42,17 @@ get:
                   aseg: true
     '400':
       $ref: ../components/responses/BadRequest.yaml
+    '401':
+      description: Unauthorized - PIN required
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: integer
+                example: 1
+                description: Error code indicating PIN required
 
 post:
   tags:
@@ -114,4 +125,15 @@ post:
                   on: true
                   bri: 200
     '400':
-      $ref: ../components/responses/BadRequest.yaml 
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      description: Unauthorized - PIN required
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: integer
+                example: 1
+                description: Error code indicating PIN required 

@@ -17,4 +17,15 @@ get:
           schema:
             $ref: '../components/schemas/LiveResponse.yaml'
     '400':
-      $ref: ../components/responses/BadRequest.yaml 
+      $ref: ../components/responses/BadRequest.yaml
+    '501':
+      description: Not Implemented - JSON live feature disabled
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: integer
+                example: 4
+                description: Error code indicating feature not implemented 

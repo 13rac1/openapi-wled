@@ -5,5 +5,37 @@ content:
       type: object
       properties:
         error:
-          type: string
-          description: A brief description of the error. 
+          type: integer
+          description: |
+            Error code indicating the type of error:
+            - 2: Concurrency error (client active)
+            - 3: JSON buffer not released
+            - 4: Not implemented
+            - 7: Not enough RAM for pixels
+            - 8: Effect RAM depleted
+            - 9: JSON parsing failed
+            - 10: Filesystem init failed
+            - 11: Filesystem quota exceeded
+            - 12: Preset not found
+            - 13: IR JSON file not found
+            - 14: Remote JSON file not found
+            - 19: General filesystem error
+            - 30: Temperature above threshold
+            - 31: Current above threshold
+            - 32: Voltage below threshold
+          enum:
+            - 2
+            - 3
+            - 4
+            - 7
+            - 8
+            - 9
+            - 10
+            - 11
+            - 12
+            - 13
+            - 14
+            - 19
+            - 30
+            - 31
+            - 32 

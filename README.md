@@ -56,4 +56,3 @@ tools including the lint tool and the reference
 docs engine.  Open it to find examples and
 [read the docs](https://redocly.com/docs/cli/configuration/)
 for more information.
-

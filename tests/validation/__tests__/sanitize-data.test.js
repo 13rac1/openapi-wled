@@ -1,13 +1,32 @@
-const fs = require('fs');
-const path = require('path');
+import { describe, test, expect, beforeEach, vi } from 'vitest';
+import * as fs from 'fs';
+import * as path from 'path';
+import { sanitizeObject, sanitizeString, sanitizeFile, sanitizeDirectory } from '../../../validation/scripts/sanitize-data.js';
 
-// Import the functions we want to test
-const { sanitizeObject, sanitizeString, sanitizeFile, sanitizeDirectory } = require('../../../validation/scripts/sanitize-data');
+// Mock console methods
+vi.spyOn(console, 'warn');
+vi.spyOn(console, 'error');
+vi.spyOn(console, 'log');
+
+// Mock fs module
+vi.mock('fs', () => {
+  const mockFs = {
+    readFileSync: vi.fn(),
+    writeFileSync: vi.fn(),
+    existsSync: vi.fn(),
+    readdirSync: vi.fn(),
+    mkdirSync: vi.fn()
+  };
+  return {
+    default: mockFs,
+    ...mockFs
+  };
+});
 
 describe('sanitize-data.js', () => {
   beforeEach(() => {
     // Clear all mocks before each test
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('sanitizeString', () => {
@@ -183,7 +202,9 @@ describe('sanitize-data.js', () => {
         }
       });
       
+      fs.existsSync.mockReturnValue(true);
       fs.readFileSync.mockReturnValue(rawData);
+      fs.writeFileSync.mockImplementation(() => {});
       
       const inputPath = 'input.json';
       const outputPath = 'output.json';
@@ -198,6 +219,7 @@ describe('sanitize-data.js', () => {
     });
 
     test('should handle JSON parse errors', () => {
+      fs.existsSync.mockReturnValue(true);
       fs.readFileSync.mockReturnValue('invalid json');
       
       const result = sanitizeFile('input.json', 'output.json');
@@ -207,6 +229,7 @@ describe('sanitize-data.js', () => {
     });
 
     test('should handle file read errors', () => {
+      fs.existsSync.mockReturnValue(true);
       fs.readFileSync.mockImplementation(() => {
         throw new Error('File not found');
       });
@@ -221,12 +244,11 @@ describe('sanitize-data.js', () => {
   describe('sanitizeDirectory', () => {
     test('should process a directory of files', () => {
       // Mock directory structure
-      fs.existsSync.mockImplementation((path) => {
-        return path === 'input'; // Only input exists, output does not
-      });
+      fs.existsSync.mockImplementation((path) => path === 'input');
       fs.readdirSync.mockReturnValue(['file1.json', 'file2.json']);
       fs.readFileSync.mockReturnValue('{"ssid": "MyHomeNetwork"}');
       fs.writeFileSync.mockImplementation(() => {});
+      fs.mkdirSync.mockImplementation(() => {});
       
       const result = sanitizeDirectory('input', 'output');
       

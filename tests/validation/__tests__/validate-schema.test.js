@@ -1,5 +1,6 @@
-const Ajv = require('ajv');
-const { validateResponse, resolveSchema, generateReport } = require('../../../validation/scripts/validate-schema');
+import { describe, it, expect } from 'vitest';
+import Ajv from 'ajv';
+import { validateResponse, resolveSchema, generateReport } from '../../../validation/scripts/validate-schema';
 
 describe('validate-schema.js', () => {
   describe('validateResponse', () => {

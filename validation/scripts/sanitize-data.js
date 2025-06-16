@@ -1,7 +1,12 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Get __dirname equivalent in ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Sanitization replacements
 const SANITIZATION_RULES = {
@@ -79,7 +84,7 @@ const SENSITIVE_PATTERNS = [
 /**
  * Recursively sanitize an object, replacing sensitive values
  */
-function sanitizeObject(obj, depth = 0, parentKey = '') {
+export function sanitizeObject(obj, depth = 0, parentKey = '') {
   if (depth > 50) {
     console.warn('⚠️  Max recursion depth reached, stopping sanitization');
     return obj;
@@ -171,7 +176,7 @@ function sanitizeObject(obj, depth = 0, parentKey = '') {
 /**
  * Sanitize string values using regex patterns
  */
-function sanitizeString(str, context = '') {
+export function sanitizeString(str, context = '') {
   let sanitized = str;
   
   // If we're in a networks context, be more aggressive about sanitizing SSIDs
@@ -201,7 +206,7 @@ function sanitizeString(str, context = '') {
 /**
  * Process a single JSON file
  */
-function sanitizeFile(inputPath, outputPath) {
+export function sanitizeFile(inputPath, outputPath) {
   try {
     console.log(`📝 Processing: ${path.basename(inputPath)}`);
     
@@ -237,7 +242,7 @@ function sanitizeFile(inputPath, outputPath) {
 /**
  * Process a directory of captured data
  */
-function sanitizeDirectory(inputDir, outputDir) {
+export function sanitizeDirectory(inputDir, outputDir) {
   if (!fs.existsSync(inputDir)) {
     console.error(`❌ Input directory does not exist: ${inputDir}`);
     return false;
@@ -350,15 +355,7 @@ function main() {
   }
 }
 
-// Export functions for testing
-module.exports = {
-  sanitizeObject,
-  sanitizeString,
-  sanitizeFile,
-  sanitizeDirectory
-};
-
 // Run if called directly
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   main();
 } 

@@ -1,11 +1,16 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const path = require('path');
-const Ajv = require('ajv');
-const addFormats = require('ajv-formats');
-const yaml = require('js-yaml');
-const { execSync } = require('child_process');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import Ajv from 'ajv';
+import addFormats from 'ajv-formats';
+import yaml from 'js-yaml';
+import { execSync } from 'child_process';
+
+// Get __dirname equivalent in ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Configuration
 const OPENAPI_ROOT = path.join(__dirname, '../../openapi/openapi.yaml');
@@ -68,7 +73,7 @@ const ENDPOINT_SCHEMA_MAP = {
 /**
  * Bundle the OpenAPI schema into a single file
  */
-function bundleOpenApiSchema() {
+export function bundleOpenApiSchema() {
   console.log('📦 Bundling OpenAPI schema...');
   try {
     const bundledPath = path.join(__dirname, '../temp-bundled.yaml');
@@ -83,7 +88,7 @@ function bundleOpenApiSchema() {
 /**
  * Load and parse the bundled OpenAPI schema
  */
-function loadOpenApiSchema(bundledPath) {
+export function loadOpenApiSchema(bundledPath) {
   console.log('📖 Loading OpenAPI schema...');
   try {
     const content = fs.readFileSync(bundledPath, 'utf8');
@@ -97,7 +102,7 @@ function loadOpenApiSchema(bundledPath) {
 /**
  * Resolve schema references
  */
-function resolveSchema(schema, rootSchema) {
+export function resolveSchema(schema, rootSchema) {
   if (!schema || typeof schema !== 'object') {
     return schema;
   }
@@ -131,7 +136,7 @@ function resolveSchema(schema, rootSchema) {
 /**
  * Load a sanitized JSON response
  */
-function loadSanitizedResponse(filename) {
+export function loadSanitizedResponse(filename) {
   const filepath = path.join(SANITIZED_DATA_DIR, filename);
   try {
     const content = fs.readFileSync(filepath, 'utf8');
@@ -146,7 +151,7 @@ function loadSanitizedResponse(filename) {
 /**
  * Validate a response against its schema
  */
-function validateResponse(response, schema, endpoint) {
+export function validateResponse(response, schema, endpoint) {
   try {
     const validate = ajv.compile(schema);
     const valid = validate(response);
@@ -169,7 +174,7 @@ function validateResponse(response, schema, endpoint) {
 /**
  * Generate a validation report
  */
-function generateReport(results) {
+export function generateReport(results) {
   const report = {
     timestamp: new Date().toISOString(),
     summary: {
@@ -203,7 +208,7 @@ function generateReport(results) {
 /**
  * Main validation function
  */
-async function main() {
+export async function main() {
   console.log('🔍 Starting schema validation...');
   
   // Bundle and load schema
@@ -265,18 +270,25 @@ async function main() {
   
   // Clean up temporary bundled file
   fs.unlinkSync(bundledPath);
+  if (report.summary.invalid > 0) {
+    console.log('\n❌ Validation Errors:');
+    report.details
+      .filter(r => !r.valid)
+      .forEach(result => {
+        console.log(`\n${result.endpoint}:`);
+        result.errors.forEach(error => {
+          console.log(`  - ${error.path}: ${error.message}`);
+        });
+      });
+    process.exit(1);
+  }
+  console.log('\n✅ All endpoints validated successfully!');
 }
 
 // Run if called directly
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   main().catch(error => {
-    console.error('💥 Validation failed:', error);
+    console.error('❌ Fatal error:', error);
     process.exit(1);
   });
-}
-
-module.exports = {
-  validateResponse,
-  resolveSchema,
-  generateReport
-}; 
+} 

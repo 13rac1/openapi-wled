@@ -1,8 +1,13 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const path = require('path');
-const http = require('http');
+import fs from 'fs';
+import path from 'path';
+import http from 'http';
+import { fileURLToPath } from 'url';
+
+// Get __dirname equivalent in ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Configuration
 const DEVICE_IP = process.argv[2] || '10.0.0.100';
@@ -200,7 +205,7 @@ async function main() {
 }
 
 // Handle command line usage
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   if (process.argv.includes('--help')) {
     console.log('Usage: node collect-data.js [IP_ADDRESS]');
     console.log('Example: node collect-data.js 10.0.0.100');

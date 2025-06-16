@@ -1,27 +1,34 @@
 {
   "name": "wled-json-api",
   "version": "1.0.0",
+  "type": "module",
   "dependencies": {
     "@redocly/cli": "^1.34.3",
     "ajv": "^8.12.0",
     "ajv-formats": "^2.1.1",
-    "js-yaml": "^4.1.0"
+    "js-yaml": "^4.1.0",
+    "superagent": "^10.2.1"
   },
   "devDependencies": {
-    "jest": "^29.7.0"
+    "@babel/core": "^7.27.4",
+    "@babel/preset-env": "^7.27.2",
+    "@openapitools/openapi-generator-cli": "^2.7.0",
+    "vitest": "^1.3.1"
   },
   "private": true,
   "scripts": {
     "start": "redocly preview-docs",
     "build": "redocly bundle openapi/openapi.yaml -o dist/openapi.yaml",
     "test": "redocly lint && npm run validate:schema && npm run test:validation",
-    "test:validation": "jest tests/validation",
-    "test:validation:watch": "jest tests/validation --watch",
-    "test:validation:coverage": "jest tests/validation --coverage",
+    "test:validation": "vitest run tests/validation",
+    "test:validation:coverage": "vitest run tests/validation --coverage",
+    "test:e2e": "npm run generate:client && vitest run tests/e2e/__tests__ && npm run clean:client",
+    "test:e2e:watch": "npm run generate:client && vitest tests/e2e/__tests__",
     "validate:collect": "node validation/scripts/collect-data.js",
     "validate:collect:esp32": "node validation/scripts/collect-data.js 10.0.0.100",
     "validate:sanitize": "node validation/scripts/sanitize-data.js",
-    "validate:sanitize:all": "node validation/scripts/sanitize-data.js all",
-    "validate:schema": "node validation/scripts/validate-schema.js"
+    "validate:schema": "node validation/scripts/validate-schema.js",
+    "generate:client": "npm run build && openapi-generator-cli generate -i dist/openapi.yaml -g javascript -o client",
+    "clean:client": "rm -rf client"
   }
 }

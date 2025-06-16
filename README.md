@@ -2,9 +2,13 @@
 
 An OpenAPI 3.0 schema for the WLED JSON API.
 
-Originally created as a 1:1 specification copy of [github.com/paul-fornage/wled-json-api-library](https://github.com/paul-fornage/wled-json-api-library), this schema has been verified against the actual WLED implementation in [github.com/wled/WLED](https://github.com/wled/WLED.git).
+* Reference Docs: https://13rac1.github.io/openapi-wled/
+* OpenAPI 3.0 YAML: https://13rac1.github.io/openapi-wled/openapi-wled.yaml
+* OpenAPI 3.0 JSON: https://13rac1.github.io/openapi-wled/openapi-wled.json
 
-## AI Usage
+## History
+
+Originally created as a 1:1 specification copy of [github.com/paul-fornage/wled-json-api-library](https://github.com/paul-fornage/wled-json-api-library), this schema has been verified against the actual WLED implementation in [github.com/wled/WLED](https://github.com/wled/WLED.git).
 
 This project was created with the Cursor IDE using Claude 3.7, Claude 4.0 and Gemini 2.5.
 
@@ -42,16 +46,34 @@ npm run test:validation
 npm run test:validation:coverage
 ```
 
+#### Schema Validation
+```bash
+# Validate schema against OpenAPI spec
+npm run validate:schema
+```
+
+
 #### End-to-End Testing
+
+Requires an actual WLED device on the network. Not run by `npm test`
+
 ```bash
 # Run E2E tests (generates client, runs tests, cleans up)
 WLED_DEVICE_URL=http://10.0.0.100 npm run test:e2e
 ```
 
-#### Schema Validation
-```bash
-# Validate schema against OpenAPI spec
-npm run validate:schema
+Example results:
+```
+ ✓ tests/e2e/__tests__/wled-api.test.js (6 tests) 2542ms
+   ✓ WLED API End-to-End Tests > Device Information > should get device info 40ms
+   ✓ WLED API End-to-End Tests > Device Information > should get complete API data 79ms
+   ✓ WLED API End-to-End Tests > State Management > should get current state 42ms
+   ✓ WLED API End-to-End Tests > State Management > should update state 49ms
+   ✓ WLED API End-to-End Tests > Configuration Management > should get current configuration 125ms
+   ✓ WLED API End-to-End Tests > Configuration Management > should update and restore device name  1336ms
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
 ```
 
 ### Validation

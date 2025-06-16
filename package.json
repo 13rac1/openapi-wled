@@ -18,7 +18,7 @@
   "private": true,
   "scripts": {
     "start": "redocly preview-docs",
-    "build": "redocly bundle openapi/openapi.yaml -o dist/openapi-wled.yaml && redocly build-docs openapi/openapi.yaml -o dist/index.html",
+    "build": "redocly bundle openapi/openapi.yaml -o dist/openapi-wled.yaml && redocly bundle openapi/openapi.yaml -o dist/openapi-wled.json && redocly build-docs openapi/openapi.yaml -o dist/index.html",
     "test": "redocly lint && npm run validate:schema && npm run test:validation",
     "test:validation": "vitest run tests/validation",
     "test:validation:coverage": "vitest run tests/validation --coverage",

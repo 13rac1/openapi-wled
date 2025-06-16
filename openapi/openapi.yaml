@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: WLED JSON API
-  version: '0.14'
+  version: '0.15.0'
   description: |
     JSON API for controlling WLED LED controllers.
     This API allows you to control LED effects, colors, and device settings.

@@ -46,9 +46,6 @@ npm run test:validation:coverage
 ```bash
 # Run E2E tests (generates client, runs tests, cleans up)
 WLED_DEVICE_URL=http://10.0.0.100 npm run test:e2e
-
-# Run E2E tests for watch mode without cleanup
-npm run test:e2e:watch
 ```
 
 #### Schema Validation
@@ -80,7 +77,18 @@ To validate the schema against a real WLED device:
    npm test
    ```
 
-See `validation/README.md` for detailed validation instructions and device configurations.
+### GitHub Pages Deployment
+
+The API documentation is automatically deployed to GitHub Pages when changes are pushed to the main branch. The deployment process:
+
+1. Builds the OpenAPI schema using `npm run build`
+2. Deploys the generated documentation to GitHub Pages
+3. The documentation will be available at `https://13rac1.github.io/openapi-wled`
+
+To manually trigger a deployment:
+1. Go to the "Actions" tab in your GitHub repository
+2. Select "Deploy API Documentation" workflow
+3. Click "Run workflow"
 
 The `.redocly.yaml` controls settings for various
 tools including the lint tool and the reference

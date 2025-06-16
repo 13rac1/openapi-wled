@@ -1,5 +1,5 @@
 {
-  "name": "wled-json-api",
+  "name": "openapi-wled",
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
@@ -13,12 +13,12 @@
     "@babel/core": "^7.27.4",
     "@babel/preset-env": "^7.27.2",
     "@openapitools/openapi-generator-cli": "^2.7.0",
-    "vitest": "^1.3.1"
+    "vitest": "^3.2.3"
   },
   "private": true,
   "scripts": {
     "start": "redocly preview-docs",
-    "build": "redocly bundle openapi/openapi.yaml -o dist/openapi.yaml",
+    "build": "redocly bundle openapi/openapi.yaml -o dist/openapi-wled.yaml && redocly build-docs openapi/openapi.yaml -o dist/index.html",
     "test": "redocly lint && npm run validate:schema && npm run test:validation",
     "test:validation": "vitest run tests/validation",
     "test:validation:coverage": "vitest run tests/validation --coverage",

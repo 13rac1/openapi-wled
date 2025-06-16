@@ -4,6 +4,7 @@ An OpenAPI 3.0 schema for the WLED JSON API.
 
 * Reference Docs: https://13rac1.github.io/openapi-wled/
 * OpenAPI 3.0 YAML: https://13rac1.github.io/openapi-wled/openapi-wled.yaml
+* OpenAPI 3.0 YAML Deferenced: https://13rac1.github.io/openapi-wled/openapi-wled-dereferenced.yaml
 * OpenAPI 3.0 JSON: https://13rac1.github.io/openapi-wled/openapi-wled.json
 
 ## History
